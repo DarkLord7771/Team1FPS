@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881078823651809854}
-  - component: {fileID: 8080432946976364879}
   - component: {fileID: 6251126739678344490}
   - component: {fileID: 4001022238776668889}
   - component: {fileID: 8437640336110333634}
@@ -36,21 +35,6 @@ Transform:
   - {fileID: 543619251364455058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8080432946976364879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2389688218710471397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca40fb8be2c89c4c8e6daaa75de1694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 2205646625461132255, guid: 8d6ed9056dd71a445858652b4e37dbbe, type: 3}
-  spawnPoint: {fileID: 6578891616138228785}
-  spawnDelay: 1
 --- !u!33 &6251126739678344490
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -131,6 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543619251364455058}
+  - component: {fileID: 7221294842045159186}
   - component: {fileID: 1048234478070102312}
   - component: {fileID: 7453335732490260438}
   - component: {fileID: 1779329809635491599}
@@ -156,6 +141,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881078823651809854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7221294842045159186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578891616138228785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca40fb8be2c89c4c8e6daaa75de1694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2205646625461132255, guid: 8d6ed9056dd71a445858652b4e37dbbe, type: 3}
+  spawnPoint: {fileID: 6578891616138228785}
+  spawnDelay: 3
 --- !u!33 &1048234478070102312
 MeshFilter:
   m_ObjectHideFlags: 0
