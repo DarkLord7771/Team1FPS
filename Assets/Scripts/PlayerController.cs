@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(-15, -35)] [SerializeField] int gravity;
 
     [SerializeField] GameObject bullet;
-    [SerializeField] int shootRate;
+    [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
     int jumpCount;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         Movement();
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && !isShooting)
         {
             StartCoroutine(Shoot());
         }
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, shootPos.transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
