@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [Range(1, 3)]     [SerializeField] int jumps;
     [Range(5, 25)]    [SerializeField] int jumpSpeed;
     [Range(-15, -35)] [SerializeField] int gravity;
+
+    [SerializeField] GameObject bullet;
+    [SerializeField] int shootRate;
+    [SerializeField] Transform shootPos;
 
     int jumpCount;
     Vector3 moveDir;
@@ -29,6 +33,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+
+        if (Input.GetButton("Fire1"))
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     void Movement()
@@ -52,5 +61,20 @@ public class PlayerController : MonoBehaviour
 
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
+    }
+
+    IEnumerator Shoot()
+    {
+        isShooting = true;
+
+        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        HP -= amount;
     }
 }

@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    public void takeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         HP -= amount;
         StartCoroutine(flashRed());
