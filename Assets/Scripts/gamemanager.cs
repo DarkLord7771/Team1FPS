@@ -9,6 +9,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuShop;
 
     public GameObject player;
     public PlayerController playerScript;
