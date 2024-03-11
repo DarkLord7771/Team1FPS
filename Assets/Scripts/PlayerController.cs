@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour, IDamage
     float walkSpeed = 6;
     float sprintSpeed = 10;
 
+    private Vector3 crouchHeight = new Vector3(1, 0.5f, 1);
+    private Vector3 playerHeight = new Vector3(1, 2, 1);
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +75,17 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             isSprinting = false;
             speed = walkSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            transform.localScale = crouchHeight;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        }
+        else
+        {
+            transform.localScale = playerHeight;
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         }
 
         playerVel.y += gravity * Time.deltaTime;
