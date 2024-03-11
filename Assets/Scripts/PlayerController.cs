@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     bool isShooting;
 
+    public bool isSprinting;
+    float walkSpeed = 6;
+    float sprintSpeed = 10;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,8 +64,21 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVel.y = jumpSpeed;
         }
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isSprinting = true;
+            speed = sprintSpeed;
+        }
+        else
+        {
+            isSprinting = false;
+            speed = walkSpeed;
+        }
+
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
+
+
     }
 
     IEnumerator Shoot()
