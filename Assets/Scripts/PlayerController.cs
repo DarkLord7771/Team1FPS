@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Player Stats -----")]
     [Range(1, 10)]    [SerializeField] int HP;
     [Range(1, 5)]     [SerializeField] float speed;
+    [Range(1, 3)]     [SerializeField] float sprintMod;
     [Range(1, 3)]     [SerializeField] int jumps;
     [Range(5, 25)]    [SerializeField] int jumpSpeed;
     [Range(-15, -35)] [SerializeField] int gravity;
@@ -22,10 +23,7 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 moveDir;
     Vector3 playerVel;
     bool isShooting;
-
-    public bool isSprinting;
-    float walkSpeed = 6;
-    float sprintSpeed = 10;
+    int HPOrig;
 
     private Vector3 crouchHeight = new Vector3(1, 0.5f, 1);
     private Vector3 playerHeight = new Vector3(1, 2, 1);
@@ -33,12 +31,15 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+        HPOrig = HP;
+        UpdatePlayerUI();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Sprint();
+
         Movement();
 
         if (Input.GetButton("Fire1") && !isShooting)
@@ -66,17 +67,6 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVel.y = jumpSpeed;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            isSprinting = true;
-            speed = sprintSpeed;
-        }
-        else
-        {
-            isSprinting = false;
-            speed = walkSpeed;
-        }
-
         if (Input.GetKey(KeyCode.C))
         {
             transform.localScale = crouchHeight;
@@ -94,6 +84,18 @@ public class PlayerController : MonoBehaviour, IDamage
 
     }
 
+    void Sprint()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed *= sprintMod;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed /= sprintMod;
+        }
+    }
+
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -107,5 +109,19 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        StartCoroutine(flashDamageScreen());
+        UpdatePlayerUI();
+    }
+
+    IEnumerator flashDamageScreen()
+    {
+        gamemanager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamageFlash.SetActive(false);
+    }
+
+    void UpdatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
 }

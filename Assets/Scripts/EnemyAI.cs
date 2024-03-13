@@ -23,12 +23,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(gamemanager.instance.player.transform.position);
+        //agent.SetDestination(gamemanager.instance.player.transform.position);
 
-        if (!isShooting)
-        {
-            StartCoroutine(shoot());
-        }
+        //if (!isShooting)
+        //{
+        //    StartCoroutine(shoot());
+        //}
 
     }
 

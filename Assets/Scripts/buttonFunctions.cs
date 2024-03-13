@@ -24,4 +24,24 @@ public class buttonFunctions : MonoBehaviour
         Application.Quit();
     #endif
     }
+
+    public void buyHP()
+    {
+        // Add to player HP.
+    }
+
+    public void buySpeed()
+    {
+        // Add to player speed.
+    }
+
+    public void buyJumpDistance()
+    {
+        // Add to player jump speed.
+    }
+
+    public void buyDamage()
+    {
+        // Add to player damage.
+    }
 }
