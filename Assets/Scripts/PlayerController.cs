@@ -131,4 +131,20 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
     }
+
+    public void UpgradeHealth(int amount)
+    {
+        HPOrig += amount;
+        HP = HPOrig;
+        UpdatePlayerUI();
+    }
+    public void UpgradeSpeed(float amount)
+    {
+        speed += amount;
+    }
+
+    public void UpgradeJumpSpeed(int amount)
+    {
+        jumpSpeed += amount;
+    }
 }
