@@ -13,8 +13,13 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuShop;
+    [SerializeField] GameObject menuStart;
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text waveCountText;
+    [SerializeField] TMP_Text goldTotalText;
+
+
+    [SerializeField] int waveCount;
     public GameObject playerDamageFlash;
     public Image playerHPBar;
 
@@ -25,6 +30,8 @@ public class gamemanager : MonoBehaviour
 
     float timeScaleOrig;
     int enemyCount;
+    int gold;
+    int totalWaves;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +40,10 @@ public class gamemanager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
+
+        totalWaves = waveCount;
+
+        waveCountText.text = waveCount.ToString("F0");
     }
 
     // Update is called once per frame
@@ -42,7 +53,7 @@ public class gamemanager : MonoBehaviour
         {
             statePaused();
             menuActive = menuPause;
-            menuActive.SetActive(isPaused);
+            menuActive.SetActive(true);
         }
     }
 
@@ -62,21 +73,57 @@ public class gamemanager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(isPaused);
+        menuActive.SetActive(false);
         menuActive = null;
     }
 
     public void updateGameGoal(int amount)
     {
+        if (amount < 0)
+        {
+            gold += 2;
+        }
+
         enemyCount += amount;
+        
+        // Update enemy count, wave count, and gold text.
         enemyCountText.text = enemyCount.ToString("F0");
+        waveCountText.text = waveCount.ToString("F0");
+        goldTotalText.text = gold.ToString("F0");
 
         if (enemyCount <= 0)
         {
-            statePaused();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-        }
+            waveCount -= 1;
 
+            if (waveCount > 0)
+            {
+                statePaused();
+                menuActive = menuShop;
+                menuActive.SetActive(true);
+            }
+            else if(waveCount <= 0)
+            {
+                statePaused();
+                menuActive = menuWin;
+                menuActive.SetActive(true);
+            }
+        }
+    }
+
+    public void playerHasLost()
+    {
+        statePaused();
+        menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public int GetGold()
+    {
+        return gold;
+    }
+
+    public int GetWave() 
+    { 
+        return totalWaves - waveCount; 
     }
 }

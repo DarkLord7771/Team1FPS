@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(5, 25)]    [SerializeField] int jumpSpeed;
     [Range(-15, -35)] [SerializeField] int gravity;
 
+    [Header("----- Player Max Stats -----")]
+    [SerializeField] int maxHP;
+    [SerializeField] int maxSpeed;
+    [SerializeField] int maxJumpSpeed;
+
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
@@ -24,6 +29,9 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     bool isShooting;
     int HPOrig;
+    Bullet bulletScript;
+
+
 
     private Vector3 crouchHeight = new Vector3(1, 0.5f, 1);
     private Vector3 playerHeight = new Vector3(1, 1, 1);
@@ -74,7 +82,6 @@ public class PlayerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
 
-
     }
 
     void Sprint()
@@ -118,6 +125,11 @@ public class PlayerController : MonoBehaviour, IDamage
         HP -= amount;
         StartCoroutine(flashDamageScreen());
         UpdatePlayerUI();
+
+        if (HP <= 0)
+        {
+            gamemanager.instance.playerHasLost();
+        }
     }
 
     IEnumerator flashDamageScreen()
@@ -134,17 +146,26 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpgradeHealth(int amount)
     {
-        HPOrig += amount;
-        HP = HPOrig;
-        UpdatePlayerUI();
+        if (HPOrig != maxHP)
+        {
+            HPOrig += amount;
+            HP = HPOrig;
+            UpdatePlayerUI();
+        }
     }
     public void UpgradeSpeed(float amount)
     {
-        speed += amount;
+        if (speed != maxSpeed)
+        {
+            speed += amount;
+        }
     }
 
     public void UpgradeJumpSpeed(int amount)
     {
-        jumpSpeed += amount;
+        if (jumpSpeed != maxJumpSpeed)
+        {
+            jumpSpeed += amount;
+        }
     }
 }

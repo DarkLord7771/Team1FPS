@@ -23,19 +23,56 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Spawn Enemy 1 if "Fire2" is pressed.
         if (Input.GetButtonDown("Fire2") && !spawnedEnemy)
         {
-            StartCoroutine(SpawnEnemy());
+            StartCoroutine(SpawnEnemy1());
+        }
+        // Spawn Enemy 2 if 2 is pressed.
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && !spawnedEnemy)
+        {
+            StartCoroutine(SpawnEnemy2());
+        }
+        // Spawn Enemy 3 if 3 is pressed.
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && !spawnedEnemy)
+        {
+            StartCoroutine(SpawnEnemy3());
         }
     }
 
-   IEnumerator SpawnEnemy()
+   IEnumerator SpawnEnemy1()
     {
         spawnedEnemy = true;
 
         if (spawnerEmpty)
         {
             Instantiate(enemy1, spawnPoint.transform.position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(spawnDelay);
+        spawnedEnemy = false;
+    }
+
+    IEnumerator SpawnEnemy2()
+    {
+        spawnedEnemy = true;
+
+        if (spawnerEmpty)
+        {
+            Instantiate(enemy2, spawnPoint.transform.position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(spawnDelay);
+        spawnedEnemy = false;
+    }
+
+    IEnumerator SpawnEnemy3()
+    {
+        spawnedEnemy = true;
+
+        if (spawnerEmpty)
+        {
+            Instantiate(enemy3, spawnPoint.transform.position, Quaternion.identity);
         }
 
         yield return new WaitForSeconds(spawnDelay);
