@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
+    [SerializeField] GameObject enemy1;
+    [SerializeField] GameObject enemy2;
+    [SerializeField] GameObject enemy3;
     [SerializeField] GameObject spawnPoint;
     [SerializeField] float spawnDelay;
 
@@ -33,7 +35,7 @@ public class Spawner : MonoBehaviour
 
         if (spawnerEmpty)
         {
-            Instantiate(enemy, spawnPoint.transform.position, Quaternion.identity);
+            Instantiate(enemy1, spawnPoint.transform.position, Quaternion.identity);
         }
 
         yield return new WaitForSeconds(spawnDelay);

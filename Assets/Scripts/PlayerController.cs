@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IDamage
     int HPOrig;
 
     private Vector3 crouchHeight = new Vector3(1, 0.5f, 1);
-    private Vector3 playerHeight = new Vector3(1, 2, 1);
+    private Vector3 playerHeight = new Vector3(1, 1, 1);
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour, IDamage
     void Update()
     {
         Sprint();
+
+        Crouch();
 
         Movement();
 
@@ -67,16 +69,7 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVel.y = jumpSpeed;
         }
 
-        if (Input.GetKey(KeyCode.C))
-        {
-            transform.localScale = crouchHeight;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-        }
-        else
-        {
-            transform.localScale = playerHeight;
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        }
+
 
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
@@ -93,6 +86,20 @@ public class PlayerController : MonoBehaviour, IDamage
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed /= sprintMod;
+        }
+    }
+
+    void Crouch()
+    {
+        if (Input.GetKey(KeyCode.C))
+        {
+            transform.localScale = crouchHeight;
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        }
+        else
+        {
+            transform.localScale = playerHeight;
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         }
     }
 

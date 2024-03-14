@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 5727256360581765017}
   - component: {fileID: 4875634354784556692}
   - component: {fileID: 2205369062290094447}
-  - component: {fileID: 5338128045537133452}
   m_Layer: 0
   m_Name: '"Gun"'
   m_TagString: Untagged
@@ -196,27 +195,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5338128045537133452
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5505698671203001191}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8776547915646870787
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,13 +278,13 @@ MonoBehaviour:
   controller: {fileID: 9001948008768963193}
   HP: 10
   speed: 5
+  sprintMod: 1.5
   jumps: 2
   jumpSpeed: 9
   gravity: -15
   bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   shootRate: 0.2
   shootPos: {fileID: 3319917989057238911}
-  isSprinting: 1
 --- !u!33 &3774749029946527827
 MeshFilter:
   m_ObjectHideFlags: 0

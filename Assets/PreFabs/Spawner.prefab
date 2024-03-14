@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca40fb8be2c89c4c8e6daaa75de1694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6704630055685082423, guid: 020909f2d3ce1b84ba047ae854619328, type: 3}
+  enemy1: {fileID: 6704630055685082423, guid: 020909f2d3ce1b84ba047ae854619328, type: 3}
+  enemy2: {fileID: 0}
+  enemy3: {fileID: 0}
   spawnPoint: {fileID: 6578891616138228785}
   spawnDelay: 1
 --- !u!33 &6251126739678344490

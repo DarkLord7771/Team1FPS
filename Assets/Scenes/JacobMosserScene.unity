@@ -514,9 +514,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: sprintMod
-      value: 1.5
+    - target: {fileID: 5727256360581765017, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: m_Name
@@ -800,6 +800,10 @@ PrefabInstance:
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730752275820880815, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x
