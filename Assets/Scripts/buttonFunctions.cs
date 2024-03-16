@@ -44,6 +44,7 @@ public class buttonFunctions : MonoBehaviour
         if (gamemanager.instance.GetGold() == 10)
         {
             gamemanager.instance.playerScript.UpgradeHealth(1);
+
         }
     }
 

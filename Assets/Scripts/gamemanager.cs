@@ -8,30 +8,38 @@ public class gamemanager : MonoBehaviour
 {
     public static gamemanager instance;
 
+    // UI Menus
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuStart;
+
+    // UI Text
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text goldTotalText;
 
-
-    [SerializeField] int waveCount;
+    // Player
     public GameObject playerDamageFlash;
     public Image playerHPBar;
-
     public GameObject player;
     public PlayerController playerScript;
 
+    // Pause
     public bool isPaused;
 
+    // Time
     float timeScaleOrig;
+
+    // Wave function variables
+    [SerializeField] int waveCount;
+    int totalWaves;
+
+    // Game Mechanics
     int enemyCount;
     int gold;
-    int totalWaves;
 
     // Start is called before the first frame update
     void Awake()
