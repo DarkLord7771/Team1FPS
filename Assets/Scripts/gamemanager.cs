@@ -9,6 +9,7 @@ public class gamemanager : MonoBehaviour
     public static gamemanager instance;
 
     // UI Menus
+    [Header("---- UI Menus -----")]
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
@@ -17,9 +18,13 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuStart;
 
     // UI Text
+    [Header("---- UI Text -----")]
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text goldTotalText;
+
+    // Shop variables
+    [SerializeField] int cost;
 
     // Player
     public GameObject playerDamageFlash;
@@ -39,7 +44,9 @@ public class gamemanager : MonoBehaviour
 
     // Game Mechanics
     int enemyCount;
-    int gold;
+    [SerializeField] int goldDropped;
+    [SerializeField] GameObject spawner;
+    [SerializeField] Spawner spawnerScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -89,7 +96,7 @@ public class gamemanager : MonoBehaviour
     {
         if (amount < 0)
         {
-            gold += 2;
+            gamemanager.instance.playerScript.SetGold(goldDropped);
         }
 
         enemyCount += amount;
@@ -97,7 +104,7 @@ public class gamemanager : MonoBehaviour
         // Update enemy count, wave count, and gold text.
         enemyCountText.text = enemyCount.ToString("F0");
         waveCountText.text = waveCount.ToString("F0");
-        goldTotalText.text = gold.ToString("F0");
+        UpdateGoldDisplay();
 
         if (enemyCount <= 0)
         {
@@ -125,13 +132,13 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    public int GetGold()
-    {
-        return gold;
-    }
-
     public int GetWave() 
     { 
         return totalWaves - waveCount; 
+    }
+
+    public void UpdateGoldDisplay()
+    {
+        goldTotalText.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
     }
 }

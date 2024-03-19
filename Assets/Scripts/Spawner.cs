@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject enemy3;
     [SerializeField] GameObject spawnPoint;
     [SerializeField] float spawnDelay;
+    [SerializeField] int enemyCount;
 
     bool spawnedEnemy;
     bool spawnerEmpty;
@@ -23,24 +24,24 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Spawn Enemy 1 if "Fire2" is pressed.
+        // If R-Mouse Button is pressed and spawnedEnemy is false, start SpawnWave.
         if (Input.GetButtonDown("Fire2") && !spawnedEnemy)
         {
-            StartCoroutine(SpawnEnemy1());
-        }
-        // Spawn Enemy 2 if 2 is pressed.
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && !spawnedEnemy)
-        {
-            StartCoroutine(SpawnEnemy2());
-        }
-        // Spawn Enemy 3 if 3 is pressed.
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && !spawnedEnemy)
-        {
-            StartCoroutine(SpawnEnemy3());
+            StartCoroutine(SpawnWave(enemyCount));
         }
     }
 
-   IEnumerator SpawnEnemy1()
+    IEnumerator SpawnWave(int enemies)
+    {
+        // Spawn specified number of enemies.
+        for (int i = 0; i <= enemies; i++)
+        {
+            StartCoroutine(SpawnEnemy());
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+
+    IEnumerator SpawnEnemy1()
     {
         spawnedEnemy = true;
 
@@ -75,6 +76,32 @@ public class Spawner : MonoBehaviour
             Instantiate(enemy3, spawnPoint.transform.position, Quaternion.identity);
         }
 
+        yield return new WaitForSeconds(spawnDelay);
+        spawnedEnemy = false;
+    }
+
+    IEnumerator SpawnEnemy()
+    {
+        spawnedEnemy = true;
+
+        // Get random number to spawn random enemy.
+        int enemy = Random.Range(0, 3);
+
+        // Spawn enemy based on random int.
+        switch (enemy)
+        {
+            case 0:
+                Instantiate(enemy1, spawnPoint.transform.position, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(enemy2, spawnPoint.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(enemy3, spawnPoint.transform.position, Quaternion.identity);
+                break;
+        }
+
+        // Wait for spawn delay and set spawnedEnemy to false.
         yield return new WaitForSeconds(spawnDelay);
         spawnedEnemy = false;
     }

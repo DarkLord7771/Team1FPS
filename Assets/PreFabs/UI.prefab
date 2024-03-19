@@ -54,15 +54,18 @@ MonoBehaviour:
   menuWin: {fileID: 2635491384665688746}
   menuLose: {fileID: 2368028483548334612}
   menuShop: {fileID: 3247210774595229292}
+  menuStart: {fileID: 0}
   enemyCountText: {fileID: 6462652585879559474}
   waveCountText: {fileID: 7027316747620074990}
   goldTotalText: {fileID: 5906343974342537078}
-  waveCount: 2
+  cost: 10
   playerDamageFlash: {fileID: 6470038172373336169}
   playerHPBar: {fileID: 3018548197539190469}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   isPaused: 0
+  waveCount: 2
+  goldDropped: 2
 --- !u!114 &5099418801267117675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1880,11 +1883,11 @@ MonoBehaviour:
       - m_Target: {fileID: 5099418801267117675}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: BuySpeed
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2844,11 +2847,11 @@ MonoBehaviour:
       - m_Target: {fileID: 5099418801267117675}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: BuyHP
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5684,11 +5687,11 @@ MonoBehaviour:
       - m_Target: {fileID: 5099418801267117675}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: BuyJumpDistance
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

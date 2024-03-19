@@ -38,37 +38,50 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.stateUnPaused();
     }
 
-    public void BuyHP()
+    public void BuyHP(int cost)
     {
-        // Add to player HP if player has 10 gold.
-        if (gamemanager.instance.GetGold() == 10)
+        int playerGold = gamemanager.instance.playerScript.GetGold();
+
+        // Add to player HP if player has enough gold to cover cost, reduce player gold.
+        if (playerGold >= cost)
         {
             gamemanager.instance.playerScript.UpgradeHealth(1);
-
+            gamemanager.instance.playerScript.SetGold(-cost);
+            gamemanager.instance.UpdateGoldDisplay();
         }
     }
 
-    public void BuySpeed()
+    public void BuySpeed(int cost)
     {
+        int playerGold = gamemanager.instance.playerScript.GetGold();
+
         // Add to player speed if player has 10 gold.
-        if (gamemanager.instance.GetGold() == 10)
+        if (playerGold >= cost)
         {
             gamemanager.instance.playerScript.UpgradeSpeed(1);
+            gamemanager.instance.playerScript.SetGold(-cost);
+            gamemanager.instance.UpdateGoldDisplay();
         }
     }
 
-    public void BuyJumpDistance()
+    public void BuyJumpDistance(int cost)
     {
+        int playerGold = gamemanager.instance.playerScript.GetGold();
+
         // Add to player jump speed if player has 10 gold.
-        if (gamemanager.instance.GetGold() == 10)
+        if (playerGold >= cost)
         {
             gamemanager.instance.playerScript.UpgradeJumpSpeed(1);
+            gamemanager.instance.playerScript.SetGold(-cost);
+            gamemanager.instance.UpdateGoldDisplay();
         }
     }
 
-    public void BuyDamage()
+    public void BuyDamage(int cost)
     {
-        if(gamemanager.instance.GetGold() == 10)
+        int playerGold = gamemanager.instance.playerScript.GetGold();
+
+        if (playerGold >= cost)
         {
             //gamemanager.instance.playerScript.UpgradeDamage(1);
         }

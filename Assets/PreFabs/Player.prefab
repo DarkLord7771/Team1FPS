@@ -282,6 +282,10 @@ MonoBehaviour:
   jumps: 2
   jumpSpeed: 9
   gravity: -15
+  gold: 0
+  maxHP: 25
+  maxSpeed: 10
+  maxJumpSpeed: 25
   bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   shootRate: 0.2
   shootPos: {fileID: 3319917989057238911}

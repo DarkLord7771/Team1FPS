@@ -957,9 +957,12 @@ MonoBehaviour:
   model: {fileID: 492598167362539677}
   agent: {fileID: 3392005809860812753}
   shootPos: {fileID: 8767342134046924975}
+  headPos: {fileID: 3304055603712755574}
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   HP: 5
   shootRate: 2
+  viewCone: 0
+  faceTargetSpeed: 5
 --- !u!195 &3392005809860812753
 NavMeshAgent:
   m_ObjectHideFlags: 0
