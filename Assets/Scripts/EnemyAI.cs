@@ -5,18 +5,21 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    [Header("-----Components-----")]
+    [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject Bullet;
-    Animator enemyAnimator;
 
-    [Header("-----Enemy Stats-----")]
+    [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] float shootRate;
+
+    [Header("----- Enemy Locomotion -----")]
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] float animSpeedTrans;
 
     bool isShooting;
     Vector3 playerDir;
@@ -24,19 +27,24 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        enemyAnimator = GetComponent<Animator>();
         gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        AttackPlayer();
+        // Get magnitude of normalized agent velocity.
+        float animSpeed = agent.velocity.normalized.magnitude;
+
+        //Set animator Speed float to lerp to velocity based off of animSpeedTrans.
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
+
+        PursuePlayer();
     }
 
-    void AttackPlayer()
+    void PursuePlayer()
     {
-        MoveTowardPlayer();
+        agent.SetDestination(gamemanager.instance.player.transform.position);
 
         // Get players direction.
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
@@ -57,8 +65,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 // If remaining distance is less than or equal to stopping distance.
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
-                    // Stop animation and rotate toward player.
-                    enemyAnimator.SetBool("isMoving", false);
                     FaceTarget();
                 }
             }
@@ -72,24 +78,23 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    void MoveTowardPlayer()
-    {
-        // Move enemy toward player and set animation to running animation.
-        agent.SetDestination(gamemanager.instance.player.transform.position);
-        enemyAnimator.SetBool("isMoving", true);
-    }
-
     IEnumerator shoot()
     {
         isShooting = true;
-        Instantiate(Bullet, shootPos.position, transform.rotation);
+        anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    public void CreateBullet()
+    {
+        Instantiate(Bullet, shootPos.position, transform.rotation);
     }
 
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        anim.SetTrigger("Damage");
         StartCoroutine(flashRed());
 
         if (HP <= 0)

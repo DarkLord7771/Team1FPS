@@ -24,29 +24,33 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text goldTotalText;
 
     // Shop variables
+    [Header("----- Shop -----")]
     [SerializeField] int cost;
 
+    // Wave function
+    [Header("---- Wave Components -----")]
+    [SerializeField] GameObject spawner;
+    [SerializeField] Spawner spawnerScript;
+
+    [Header("----- Wave Function -----")]
+    [SerializeField] int waveCount;
+    [SerializeField] int goldDropped;
+    int totalWaves;
+    int enemyCount;
+
     // Player
-    public GameObject playerDamageFlash;
-    public Image playerHPBar;
+    [Header("----- Player -----")]
     public GameObject player;
     public PlayerController playerScript;
+    public GameObject playerDamageFlash;
+    public Image playerHPBar;
 
     // Pause
+    [Header("----- Game State -----")]
     public bool isPaused;
 
     // Time
     float timeScaleOrig;
-
-    // Wave function variables
-    [SerializeField] int waveCount;
-    int totalWaves;
-
-    // Game Mechanics
-    int enemyCount;
-    [SerializeField] int goldDropped;
-    [SerializeField] GameObject spawner;
-    [SerializeField] Spawner spawnerScript;
 
     // Start is called before the first frame update
     void Awake()

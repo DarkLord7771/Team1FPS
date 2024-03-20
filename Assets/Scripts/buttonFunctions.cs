@@ -7,9 +7,7 @@ public class buttonFunctions : MonoBehaviour
 {
     public void StartButton()
     {
-        //gamemanager.instance.statePaused();
         SceneManager.LoadScene("Level 0");
-        //gamemanager.instance.stateUnPaused();
     }
 
     public void Resume()
@@ -83,7 +81,9 @@ public class buttonFunctions : MonoBehaviour
 
         if (playerGold >= cost)
         {
-            //gamemanager.instance.playerScript.UpgradeDamage(1);
+            gamemanager.instance.playerScript.UpgradeDamage(1);
+            gamemanager.instance.playerScript.SetGold(-cost);
+            gamemanager.instance.UpdateGoldDisplay();
         }
     }
 }

@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] GameObject bullet;
+    [SerializeField] Bullet bulletInfo;
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)]    [SerializeField] int HP;
@@ -21,7 +23,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int maxSpeed;
     [SerializeField] int maxJumpSpeed;
 
-    [SerializeField] GameObject bullet;
+    [Header("----- Gun Stats -----")]
+    [SerializeField] int damage;
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
@@ -39,21 +42,28 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         UpdatePlayerUI();
+
+        bulletInfo = bullet.GetComponent<Bullet>();
+        bulletInfo.SetDamage(damage);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Sprint();
-
-        Crouch();
-
-        Movement();
-
-        if (Input.GetButton("Fire1") && !isShooting)
+        if (!gamemanager.instance.isPaused)
         {
-            StartCoroutine(Shoot());
+            Sprint();
+
+            Crouch();
+
+            Movement();
+
+            if (Input.GetButton("Fire1") && !isShooting)
+            {
+                StartCoroutine(Shoot());
+            }
         }
+        
     }
 
     void Movement()
@@ -111,7 +121,6 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
-
         Instantiate(bullet, shootPos.position, shootPos.transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
@@ -175,5 +184,11 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             jumpSpeed += amount;
         }
+    }
+
+    public void UpgradeDamage(int amount)
+    {
+        damage += amount;
+        bulletInfo.SetDamage(damage);
     }
 }

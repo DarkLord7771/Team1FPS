@@ -793,14 +793,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 35607878198858558, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-      propertyPath: waveCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 35607878198858558, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-      propertyPath: goldDropped
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI

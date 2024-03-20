@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
+    [Header("----- Components -----")]
     [SerializeField] Rigidbody rb;
 
+    [Header("----- Stats -----")]
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
-
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +34,8 @@ public class Bullet : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-    public void UpgradeDamage(int amount)
+    public void SetDamage(int dmg)
     {
-        damage += amount;
+        damage = dmg;
     }
 }

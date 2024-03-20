@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("----- Components -----")]
     [SerializeField] GameObject enemy1;
     [SerializeField] GameObject enemy2;
     [SerializeField] GameObject enemy3;
     [SerializeField] GameObject spawnPoint;
+
+    [Header("---- Spawn Controls -----")]
     [SerializeField] float spawnDelay;
     [SerializeField] int enemyCount;
 
@@ -34,7 +37,7 @@ public class Spawner : MonoBehaviour
     IEnumerator SpawnWave(int enemies)
     {
         // Spawn specified number of enemies.
-        for (int i = 0; i <= enemies; i++)
+        for (int i = 0; i < enemies; i++)
         {
             StartCoroutine(SpawnEnemy());
             yield return new WaitForSeconds(spawnDelay);
