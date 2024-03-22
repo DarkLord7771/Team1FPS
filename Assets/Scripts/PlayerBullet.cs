@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] Rigidbody rb;
@@ -16,7 +15,6 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.forward * speed;
         Destroy(gameObject, destroyTime);
     }
 
@@ -24,10 +22,10 @@ public class Bullet : MonoBehaviour
     {
         if (other.isTrigger)
             return;
-        
+
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if (dmg != null && !other.CompareTag("Enemy"))
+        if (dmg != null && !other.CompareTag("Player"))
         {
             dmg.TakeDamage(damage);
         }

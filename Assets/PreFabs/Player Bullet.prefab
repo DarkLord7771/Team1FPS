@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767045153754801029}
-  - component: {fileID: 5548475565106078619}
+  - component: {fileID: 7398636865481295034}
   - component: {fileID: 4444541484325688213}
   - component: {fileID: 5106315404970732661}
   - component: {fileID: 4356992713818369321}
   m_Layer: 0
-  m_Name: PlayerBullet
+  m_Name: Player Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5548475565106078619
+--- !u!114 &7398636865481295034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 189821690963155026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542db48c7d5757a4199211cfe5bb4133, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c8db2225249f67498a53ea69f5e9a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4356992713818369321}
   damage: 1
-  speed: 25
+  speed: 30
   destroyTime: 3
 --- !u!135 &4444541484325688213
 SphereCollider:
@@ -145,8 +145,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.7169812, g: 0, b: 0, a: 1}
-      key1: {r: 0.7169812, g: 0, b: 0, a: 1}
+      key0: {r: 1, g: 0.12941177, b: 0.15294118, a: 1}
+      key1: {r: 1, g: 0.07450981, b: 0.09019608, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

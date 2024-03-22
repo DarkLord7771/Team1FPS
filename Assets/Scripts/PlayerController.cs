@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject bullet;
-    [SerializeField] Bullet bulletInfo;
+    [SerializeField] PlayerBullet bulletInfo;
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)]    [SerializeField] int HP;
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int maxJumpSpeed;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] int damage;
+    [SerializeField] int shootDamage;
+    
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
@@ -43,8 +45,8 @@ public class PlayerController : MonoBehaviour, IDamage
         HPOrig = HP;
         UpdatePlayerUI();
 
-        bulletInfo = bullet.GetComponent<Bullet>();
-        bulletInfo.SetDamage(damage);
+        bulletInfo = bullet.GetComponent<PlayerBullet>();
+        bulletInfo.SetDamage(shootDamage);
     }
 
     // Update is called once per frame
@@ -121,10 +123,21 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
-        Instantiate(bullet, shootPos.position, shootPos.transform.rotation);
+
+        RaycastHit hit;
+        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
+        {
+            CreateBullet(hit.point);
+        }
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    void CreateBullet(Vector3 target)
+    {
+        var shotBullet = Instantiate(bullet, shootPos.position, shootPos.transform.rotation);
+        shotBullet.GetComponent<Rigidbody>().velocity = (target - shootPos.transform.position).normalized * bulletInfo.speed;
     }
 
     public void TakeDamage(int amount)
@@ -188,7 +201,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpgradeDamage(int amount)
     {
-        damage += amount;
-        bulletInfo.SetDamage(damage);
+        //damage += amount;
+        //bulletInfo.SetDamage(damage);
     }
 }
