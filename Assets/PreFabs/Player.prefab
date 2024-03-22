@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 9001948008768963193}
-  bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
+  bullet: {fileID: 189821690963155026, guid: 09c58334879879f498f67d427f7edb48, type: 3}
   bulletInfo: {fileID: 0}
   HP: 10
   speed: 5
@@ -288,7 +288,7 @@ MonoBehaviour:
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
-  damage: 1
+  shootDamage: 1
   shootRate: 0.2
   shootPos: {fileID: 3319917989057238911}
 --- !u!33 &3774749029946527827

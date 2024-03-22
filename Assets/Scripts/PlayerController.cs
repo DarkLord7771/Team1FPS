@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("----- Gun Stats -----")]
     [SerializeField] int shootDamage;
-    
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
@@ -201,7 +200,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpgradeDamage(int amount)
     {
-        //damage += amount;
-        //bulletInfo.SetDamage(damage);
+        shootDamage += amount;
+        bulletInfo.SetDamage(shootDamage);
     }
 }
