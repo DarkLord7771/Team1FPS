@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject Bullet;
+    public WaveSpawner whereISpawned;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
