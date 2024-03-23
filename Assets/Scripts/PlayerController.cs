@@ -133,6 +133,17 @@ public class PlayerController : MonoBehaviour, IDamage
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
         {
             CreateBullet(hit.point);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if (hit.transform != transform && dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
+            else
+            {
+                Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            }
         }
 
         yield return new WaitForSeconds(shootRate);
