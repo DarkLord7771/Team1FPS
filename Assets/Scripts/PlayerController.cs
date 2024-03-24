@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -8,8 +9,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
-    [SerializeField] GameObject bullet;
-    [SerializeField] PlayerBullet bulletInfo;
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)]    [SerializeField] int HP;
@@ -18,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 3)]     [SerializeField] int jumps;
     [Range(5, 25)]    [SerializeField] int jumpSpeed;
     [Range(-15, -35)] [SerializeField] int gravity;
+    [SerializeField] int damageUpgrade;
     [SerializeField] int gold;
 
     [Header("----- Player Max Stats -----")]
@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
-    [SerializeField] Transform shootPos;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audJump;
@@ -58,9 +57,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         UpdatePlayerUI();
-
-        bulletInfo = bullet.GetComponent<PlayerBullet>();
-        bulletInfo.SetDamage(shootDamage);
     }
 
     // Update is called once per frame
@@ -171,8 +167,7 @@ public class PlayerController : MonoBehaviour, IDamage
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
-
-            CreateBullet(hit.point);
+            aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume) ;
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -184,17 +179,10 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
-
         }
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-    }
-
-    void CreateBullet(Vector3 target)
-    {
-        var shotBullet = Instantiate(bullet, shootPos.position, shootPos.transform.rotation);
-        shotBullet.GetComponent<Rigidbody>().velocity = (target - shootPos.transform.position).normalized * bulletInfo.speed;
     }
 
     public void TakeDamage(int amount)
@@ -259,20 +247,21 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpgradeDamage(int amount)
     {
-        shootDamage += amount;
-        bulletInfo.SetDamage(shootDamage);
+        damageUpgrade += amount;
     }
 
     public void getGunStats(GunStats gun)
     {
         gunList.Add(gun);
 
-        shootDamage = gun.shootDamage;
+
+        shootDamage = gun.shootDamage + damageUpgrade;
         shootDist = gun.shootDist;
         shootRate = gun.shootRate;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
+        gunModel.GetComponent<Transform>().localScale = gun.gunTransform.localScale;
 
         selectedGun = gunList.Count - 1;
     }
@@ -293,11 +282,13 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void changeGun()
     {
-        shootDamage = gunList[selectedGun].shootDamage;
+        shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
         shootDist = gunList[selectedGun].shootDist;
         shootRate = gunList[selectedGun].shootRate;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+        gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
+
     }
 }
