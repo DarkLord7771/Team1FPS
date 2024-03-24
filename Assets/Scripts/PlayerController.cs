@@ -7,12 +7,13 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource aud;
     [SerializeField] GameObject bullet;
     [SerializeField] PlayerBullet bulletInfo;
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)]    [SerializeField] int HP;
-    [Range(1, 10)]     [SerializeField] float speed;
+    [Range(1, 10)]    [SerializeField] float speed;
     [Range(1, 3)]     [SerializeField] float sprintMod;
     [Range(1, 3)]     [SerializeField] int jumps;
     [Range(5, 25)]    [SerializeField] int jumpSpeed;
@@ -32,12 +33,22 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+    [SerializeField] AudioClip[] audSteps;
+    [Range(0, 1)][SerializeField] float audStepsVol;
+
     int jumpCount;
     Vector3 moveDir;
     Vector3 playerVel;
     bool isShooting;
     int HPOrig;
     int selectedGun;
+    bool playingSteps;
+    bool isSprinting;
 
     private Vector3 crouchHeight = new Vector3(1, 0.5f, 1);
     private Vector3 playerHeight = new Vector3(1, 1, 1);
@@ -55,6 +66,10 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        #if UNITY_EDITOR
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        #endif
+
         if (!gamemanager.instance.isPaused)
         {
             Sprint();
@@ -65,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             selectGun();
 
-            if (Input.GetButton("Fire1") && !isShooting)
+            if (gunList.Count > 0 && Input.GetButton("Fire1") && !isShooting)
             {
                 StartCoroutine(Shoot());
             }
@@ -90,12 +105,16 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
-
-
 
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
+
+        if (controller.isGrounded && moveDir.normalized.magnitude > 0.3f && !playingSteps)
+        {
+            StartCoroutine(playSteps());
+        }
 
     }
 
@@ -104,11 +123,31 @@ public class PlayerController : MonoBehaviour, IDamage
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed *= sprintMod;
+            isSprinting = true;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed /= sprintMod;
+            isSprinting = false;
         }
+    }
+
+    IEnumerator playSteps()
+    {
+        playingSteps = true;
+
+        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        playingSteps = false;
     }
 
     void Crouch()
@@ -130,9 +169,22 @@ public class PlayerController : MonoBehaviour, IDamage
         isShooting = true;
 
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
+        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
+
             CreateBullet(hit.point);
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+            if (hit.transform != transform && dmg != null)
+            {
+                dmg.TakeDamage(shootDamage);
+            }
+            else
+            {
+                Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+            }
+
         }
 
         yield return new WaitForSeconds(shootRate);
@@ -148,6 +200,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         HP -= amount;
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         StartCoroutine(flashDamageScreen());
         UpdatePlayerUI();
 
@@ -220,6 +273,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        selectedGun = gunList.Count - 1;
     }
 
     void selectGun()
