@@ -56,7 +56,8 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
-        UpdatePlayerUI();
+
+        SpawnPlayer();
     }
 
     // Update is called once per frame
@@ -82,6 +83,16 @@ public class PlayerController : MonoBehaviour, IDamage
             }
         }
         
+    }
+
+    public void SpawnPlayer()
+    {
+        HP = HPOrig;
+        UpdatePlayerUI();
+
+        controller.enabled = false;
+        transform.position = gamemanager.instance.playerStartPos.transform.position;
+        controller.enabled = true;
     }
 
     void Movement()

@@ -44,6 +44,7 @@ public class gamemanager : MonoBehaviour
     public PlayerController playerScript;
     public GameObject playerDamageFlash;
     public Image playerHPBar;
+    public GameObject playerStartPos;
 
     // Pause
     [Header("----- Game State -----")]
@@ -59,6 +60,7 @@ public class gamemanager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
+        playerStartPos = GameObject.FindWithTag("Player Spawn Pos");
 
         totalWaves = waveCount;
 
