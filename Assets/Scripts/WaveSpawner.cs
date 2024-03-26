@@ -17,7 +17,6 @@ public class WaveSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gamemanager.instance.updateGameGoal(numToSpawn);
 
     }
 
@@ -26,18 +25,18 @@ public class WaveSpawner : MonoBehaviour
     {
         if (startSpawning && !isSpawning && spawnCount < numToSpawn)
         {
-            StartCoroutine(spawn());
-
+            StartCoroutine(Spawn());
         }
     }
 
-    public void startWave()
+    public void StartWave()
     {
         startSpawning = true;
-        gamemanager.instance.updateGameGoal(numToSpawn);
+        
+        gamemanager.instance.UpdateGameGoal(numToSpawn);
     }
 
-    public IEnumerator spawn()
+    public IEnumerator Spawn()
     {
         isSpawning = true;
         int arrayPos = Random.Range(0, spawnPos.Length);
@@ -45,6 +44,7 @@ public class WaveSpawner : MonoBehaviour
 
         if(objectSpawned.GetComponent<EnemyAI>())
             objectSpawned.GetComponent<EnemyAI>().whereISpawned = this;
+
         spawnCount++;
         yield return new WaitForSeconds(spawnTimer);
         isSpawning = false;
@@ -52,7 +52,7 @@ public class WaveSpawner : MonoBehaviour
 
     }
 
-    public void updateEnemyNumber()
+    public void UpdateEnemyNumber()
     {
         {
             numberKilled++;
@@ -60,8 +60,7 @@ public class WaveSpawner : MonoBehaviour
             if(numberKilled >= numToSpawn)
             {
                 startSpawning = false;
-                StartCoroutine(WaveManager.instance.startWave());
-
+                StartCoroutine(WaveManager.instance.StartWave());
             }
         }
     }  

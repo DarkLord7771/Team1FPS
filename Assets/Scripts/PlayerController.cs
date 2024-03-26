@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             Movement();
 
-            selectGun();
+            SelectGun();
 
             if (gunList.Count > 0 && Input.GetButton("Fire1") && !isShooting)
             {
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (controller.isGrounded && moveDir.normalized.magnitude > 0.3f && !playingSteps)
         {
-            StartCoroutine(playSteps());
+            StartCoroutine(PlaySteps());
         }
 
     }
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator playSteps()
+    IEnumerator PlaySteps()
     {
         playingSteps = true;
 
@@ -174,12 +174,11 @@ public class PlayerController : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
+        aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume);
 
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
-            aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume) ;
-
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (hit.transform != transform && dmg != null)
@@ -200,16 +199,16 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HP -= amount;
         aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-        StartCoroutine(flashDamageScreen());
+        StartCoroutine(FlashDamageScreen());
         UpdatePlayerUI();
 
         if (HP <= 0)
         {
-            gamemanager.instance.playerHasLost();
+            gamemanager.instance.PlayerHasLost();
         }
     }
 
-    IEnumerator flashDamageScreen()
+    IEnumerator FlashDamageScreen()
     {
         gamemanager.instance.playerDamageFlash.SetActive(true);
         yield return new WaitForSeconds(0.1f);
@@ -258,10 +257,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpgradeDamage(int amount)
     {
+        // Increment damage upgrade and increase shoot damage.
         damageUpgrade += amount;
+        shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
     }
 
-    public void getGunStats(GunStats gun)
+    public void GetGunStats(GunStats gun)
     {
         gunList.Add(gun);
 
@@ -272,26 +273,28 @@ public class PlayerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        // Set scale of gun model based off of gun's transform.
         gunModel.GetComponent<Transform>().localScale = gun.gunTransform.localScale;
 
         selectedGun = gunList.Count - 1;
     }
 
-    void selectGun()
+    void SelectGun()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
-            changeGun();
+            ChangeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
         {
             selectedGun--;
-            changeGun();
+            ChangeGun();
         }
     }
 
-    void changeGun()
+    void ChangeGun()
     {
         shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
         shootDist = gunList[selectedGun].shootDist;
@@ -299,7 +302,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
-        gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
 
+        //Set scale of gun model based off of gun's transform.
+        gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
     }
 }

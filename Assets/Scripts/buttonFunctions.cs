@@ -32,7 +32,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void NextWave()
     {
-        SceneManager.LoadScene("Level " + gamemanager.instance.GetWave());
+        StartCoroutine(WaveManager.instance.StartWave());
         gamemanager.instance.stateUnPaused();
     }
 

@@ -6,8 +6,8 @@ public class WaveManager : MonoBehaviour
 {
 
     public static WaveManager instance;
-    [SerializeField] WaveSpawner[] spawners;
-    [SerializeField] int timeBetweenSpawns;
+    public WaveSpawner[] spawners;
+    public int timeBetweenSpawns;
 
     public int waveCurrent;
 
@@ -15,21 +15,24 @@ public class WaveManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        StartCoroutine(startWave());
+        StartCoroutine(StartWave());
 
+        // Check if gamemanager.instance is not null or if started first.
+        if (gamemanager.instance)
+        {
+            //Debug.Log("GM First");
+            gamemanager.instance.SetWaveCount();
+        }
     }
 
-    public IEnumerator startWave()
+    public IEnumerator StartWave()
     {
-        foreach (WaveSpawner spawner in spawners)
-        {
-            waveCurrent++;
+        waveCurrent++;
 
-            if(waveCurrent <= spawners.Length)
-            {
-                yield return new WaitForSeconds(timeBetweenSpawns);
-                spawners[waveCurrent -1].startWave();
-            }
+        if (waveCurrent <= spawners.Length)
+        {
+            yield return new WaitForSeconds(timeBetweenSpawns);
+            spawners[waveCurrent - 1].StartWave();
         }
     }
 }

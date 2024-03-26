@@ -16,11 +16,13 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuStart;
+    [SerializeField] GameObject menuWaveTimer;
 
     // UI Text
     [Header("---- UI Text -----")]
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text waveCountText;
+    [SerializeField] TMP_Text waveTimerText;
     [SerializeField] TMP_Text goldTotalText;
 
     // Shop variables
@@ -28,14 +30,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] int cost;
 
     // Wave function
-    [Header("---- Wave Components -----")]
-    [SerializeField] GameObject spawner;
-    [SerializeField] Spawner spawnerScript;
-
-    [Header("----- Wave Function -----")]
-    [SerializeField] int waveCount;
-    [SerializeField] int goldDropped;
-    int totalWaves;
+    public int waveCount;
     int enemyCount;
 
     // Player
@@ -62,9 +57,12 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerStartPos = GameObject.FindWithTag("Player Spawn Pos");
 
-        totalWaves = waveCount;
-
-        waveCountText.text = waveCount.ToString("F0");
+        // Check if WaveManager.instance is null or if it started first.
+        if (WaveManager.instance)
+        {
+            //Debug.Log("WM First");
+            SetWaveCount();
+        }
     }
 
     // Update is called once per frame
@@ -72,13 +70,13 @@ public class gamemanager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && menuActive == null)
         {
-            statePaused();
+            StatePaused();
             menuActive = menuPause;
             menuActive.SetActive(true);
         }
     }
 
-    public void statePaused()
+    public void StatePaused()
     {
         isPaused = !isPaused;
         Time.timeScale = 0;
@@ -98,53 +96,68 @@ public class gamemanager : MonoBehaviour
         menuActive = null;
     }
 
-    public void updateGameGoal(int amount)
+    public void UpdateGameGoal(int amount)
     {
-        if (amount < 0)
-        {
-            gamemanager.instance.playerScript.SetGold(goldDropped);
-        }
-
+        // Update enemy count and text.
         enemyCount += amount;
-        
-        // Update enemy count, wave count, and gold text.
         enemyCountText.text = enemyCount.ToString("F0");
-        waveCountText.text = waveCount.ToString("F0");
+
+        // Update Gold Display.
         UpdateGoldDisplay();
 
         if (enemyCount <= 0)
         {
-            waveCount -= 1;
+            // Update wave count and text.
+            waveCount--;
+            waveCountText.text = waveCount.ToString("F0");
 
-            if (waveCount > 0)
+            if (WaveManager.instance.waveCurrent < WaveManager.instance.spawners.Length)
             {
-                statePaused();
-                menuActive = menuShop;
-                menuActive.SetActive(true);
+                PlayerBeatWave();
             }
-            else if(waveCount <= 0)
+            else if (WaveManager.instance.waveCurrent >= WaveManager.instance.spawners.Length)
             {
-                statePaused();
-                menuActive = menuWin;
-                menuActive.SetActive(true);
+                PlayerHasWon();
             }
         }
     }
 
-    public void playerHasLost()
+    public void PlayerHasLost()
     {
-        statePaused();
+        StatePaused();
         menuActive = menuLose;
         menuActive.SetActive(true);
     }
 
-    public int GetWave() 
-    { 
-        return totalWaves - waveCount; 
+    public void PlayerHasWon()
+    {
+        StatePaused();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
+    public void PlayerBeatWave()
+    {
+        StatePaused();
+        menuActive = menuShop;
+        menuActive.SetActive(true);
+    }
+
+    public void WaveCountDown()
+    {
+        StatePaused();
+        menuActive = menuWaveTimer;
+        menuActive.SetActive(true);
     }
 
     public void UpdateGoldDisplay()
     {
         goldTotalText.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
+    }
+
+    public void SetWaveCount()
+    {
+        waveCount = WaveManager.instance.spawners.Length;
+        waveCountText.text = waveCount.ToString("F0");
     }
 }

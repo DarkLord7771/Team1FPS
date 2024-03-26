@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
     [SerializeField] float shootRate;
+    [SerializeField] int gold;
 
     [Header("----- Enemy Locomotion -----")]
     [SerializeField] int faceTargetSpeed;
@@ -28,7 +29,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        gamemanager.instance.updateGameGoal(1);
+
     }
 
     // Update is called once per frame
@@ -60,7 +61,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 if (!isShooting)
                 {
-                    StartCoroutine(shoot());
+                    StartCoroutine(Shoot());
                 }
                 
                 // If remaining distance is less than or equal to stopping distance.
@@ -79,7 +80,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    IEnumerator shoot()
+    IEnumerator Shoot()
     {
         isShooting = true;
         anim.SetTrigger("Shoot");
@@ -96,17 +97,24 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= amount;
         anim.SetTrigger("Damage");
-        StartCoroutine(flashRed());
+        StartCoroutine(FlashRed());
 
         if (HP <= 0)
         {
-            gamemanager.instance.updateGameGoal(-1);
+            gamemanager.instance.playerScript.SetGold(gold);
+            gamemanager.instance.UpdateGameGoal(-1);
+
+            if (whereISpawned)
+            {
+                whereISpawned.UpdateEnemyNumber();
+            }
+
             Destroy(gameObject);
         }
 
     }
 
-    IEnumerator flashRed()
+    IEnumerator FlashRed()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
