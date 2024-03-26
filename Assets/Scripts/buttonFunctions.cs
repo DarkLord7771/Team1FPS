@@ -7,18 +7,18 @@ public class buttonFunctions : MonoBehaviour
 {
     public void StartButton()
     {
-        SceneManager.LoadScene("Level 0");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Resume()
     {
-        gamemanager.instance.stateUnPaused();
+        gamemanager.instance.StateUnPaused();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gamemanager.instance.stateUnPaused();
+        gamemanager.instance.StateUnPaused();
     }
 
     public void Quit()
@@ -32,8 +32,8 @@ public class buttonFunctions : MonoBehaviour
 
     public void NextWave()
     {
-        StartCoroutine(WaveManager.instance.StartWave());
-        gamemanager.instance.stateUnPaused();
+        gamemanager.instance.StateUnPaused();
+        gamemanager.instance.StartCountDown();
     }
 
     public void BuyHP(int cost)

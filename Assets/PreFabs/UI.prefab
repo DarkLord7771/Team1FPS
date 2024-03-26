@@ -74,12 +74,14 @@ MonoBehaviour:
   waveTimerText: {fileID: 8036798969996007042}
   goldTotalText: {fileID: 5906343974342537078}
   cost: 10
+  waveCount: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
   playerDamageFlash: {fileID: 6470038172373336169}
   playerHPBar: {fileID: 3018548197539190469}
   playerStartPos: {fileID: 0}
   isPaused: 0
+  isTimerRunning: 0
 --- !u!114 &5099418801267117675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2509,9 +2511,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5099418801267117675}
+      - m_Target: {fileID: 33387752622169721}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: Resume
+        m_MethodName: NextWave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

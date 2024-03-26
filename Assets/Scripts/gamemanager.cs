@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Threading;
 
 public class gamemanager : MonoBehaviour
 {
@@ -30,7 +31,9 @@ public class gamemanager : MonoBehaviour
     [SerializeField] int cost;
 
     // Wave function
+    [Header("----- Wave -----")]
     public int waveCount;
+    float timeLeft;
     int enemyCount;
 
     // Player
@@ -44,6 +47,7 @@ public class gamemanager : MonoBehaviour
     // Pause
     [Header("----- Game State -----")]
     public bool isPaused;
+    public bool isTimerRunning;
 
     // Time
     float timeScaleOrig;
@@ -74,6 +78,19 @@ public class gamemanager : MonoBehaviour
             menuActive = menuPause;
             menuActive.SetActive(true);
         }
+
+        if (isTimerRunning)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+                UpdateTimer(timeLeft);
+            }
+            else
+            {
+                CountDownComplete();
+            }
+        }
     }
 
     public void StatePaused()
@@ -86,7 +103,7 @@ public class gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void stateUnPaused()
+    public void StateUnPaused()
     {
         isPaused = !isPaused;
         Time.timeScale = timeScaleOrig;
@@ -143,11 +160,12 @@ public class gamemanager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
-    public void WaveCountDown()
+    public void StartCountDown()
     {
-        StatePaused();
         menuActive = menuWaveTimer;
         menuActive.SetActive(true);
+        timeLeft = WaveManager.instance.timeBetweenSpawns;
+        isTimerRunning = true;
     }
 
     public void UpdateGoldDisplay()
@@ -159,5 +177,21 @@ public class gamemanager : MonoBehaviour
     {
         waveCount = WaveManager.instance.spawners.Length;
         waveCountText.text = waveCount.ToString("F0");
+    }
+
+    void UpdateTimer(float currentTime)
+    {
+        currentTime += 1;
+
+        float time = Mathf.FloorToInt(currentTime % 60);
+
+        waveTimerText.text = time.ToString("F0");
+    }
+
+    void CountDownComplete()
+    {
+        isTimerRunning = false;
+        menuActive.SetActive(false);
+        menuActive = null;
     }
 }
