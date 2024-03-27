@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5526050962803086390}
   - component: {fileID: 3392075016790190811}
   - component: {fileID: 1799960339570213810}
+  - component: {fileID: 8760795063944853975}
   m_Layer: 0
   m_Name: Gun Pickup - Pistol
   m_TagString: Untagged
@@ -119,3 +120,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.1529534
   m_Center: {x: -0.0012764189, y: -0.19935292, z: -0.1865819}
+--- !u!114 &8760795063944853975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2651325931397032034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3bb8570ec6e514a8ac056445964012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 15
+  rotationDirection: {x: 0, y: 1, z: 0}

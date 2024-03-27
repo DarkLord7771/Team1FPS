@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6176495539348025122}
   - component: {fileID: 189946798970465339}
   - component: {fileID: 1805015456720156994}
+  - component: {fileID: 6962877231120574041}
   m_Layer: 0
   m_Name: Gun Pickup - Heavy
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8957890519902502973}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.66286343, z: -0, w: 0.74874043}
+  m_LocalRotation: {x: 0, y: 0.6628618, z: 0, w: 0.74874175}
   m_LocalPosition: {x: 6.47, y: 1, z: 8.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -119,3 +120,17 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5028952
   m_Center: {x: -0.01837631, y: -0.11330216, z: 0.16474877}
+--- !u!114 &6962877231120574041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957890519902502973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3bb8570ec6e514a8ac056445964012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 15
+  rotationDirection: {x: 0, y: 1, z: 0}
