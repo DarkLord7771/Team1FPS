@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject Bullet;
+    [SerializeField] AudioSource aud;
     public WaveSpawner whereISpawned;
 
     [Header("----- Enemy Stats -----")]
@@ -22,6 +23,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Enemy Locomotion -----")]
     [SerializeField] int faceTargetSpeed;
     [SerializeField] float animSpeedTrans;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audEnemyHurt;
+    [Range(0, 1)][SerializeField] float audEnemyHurtVol;
+    [SerializeField] AudioClip[] audEnemySteps;
+    [Range(0, 1)][SerializeField] float audEnemyStepsVol;
+    [SerializeField] AudioClip[] audEnemyShoot;
+    [Range(0, 1)][SerializeField] float audEnemyShootVol;
 
     bool isShooting;
     Vector3 playerDir;
@@ -119,5 +128,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
+    }
+
+    public void PlayWalkingAudio()
+    {
+        aud.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
     }
 }
