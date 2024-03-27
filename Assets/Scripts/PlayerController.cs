@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             StartCoroutine(PlaySteps());
         }
-
     }
 
     void Sprint()
@@ -305,5 +304,13 @@ public class PlayerController : MonoBehaviour, IDamage
 
         //Set scale of gun model based off of gun's transform.
         gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SkyBox"))
+        {
+            playerVel.y = 0;
+        }
     }
 }

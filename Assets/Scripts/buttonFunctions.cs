@@ -24,6 +24,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void Quit()
     {
+        PlayerPrefs.DeleteKey("Difficulty");
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
     #else
