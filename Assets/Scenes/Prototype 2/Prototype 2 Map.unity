@@ -41167,10 +41167,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 889400917602182331, guid: 51ed819df9164be488ec3cf1b8ad5f3a, type: 3}
-      propertyPath: spawners.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 889400917602182331, guid: 51ed819df9164be488ec3cf1b8ad5f3a, type: 3}
       propertyPath: spawners.Array.data[0]
       value: 
       objectReference: {fileID: 1487537241}
@@ -42003,10 +41999,6 @@ PrefabInstance:
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131371821517008916, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x
