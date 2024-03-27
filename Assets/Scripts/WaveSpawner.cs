@@ -13,11 +13,12 @@ public class WaveSpawner : MonoBehaviour
     bool isSpawning;
     bool startSpawning;
     int numberKilled;
+    int diffMod;  //difficulty modifier
 
     // Start is called before the first frame update
     void Start()
     {
-
+        diffMod = PlayerPrefs.GetInt("Difficulty");
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class WaveSpawner : MonoBehaviour
 
     public void StartWave()
     {
+        numToSpawn = numToSpawn + (2 * diffMod);
         startSpawning = true;
         
         gamemanager.instance.UpdateGameGoal(numToSpawn);

@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 666279741}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,6 +309,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &903512097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+  m_PrefabInstance: {fileID: 1832416069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1832416069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -317,13 +322,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 35607878198858558, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: UIHolder
+      value: 
+      objectReference: {fileID: 903512097}
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4131371821517008916, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x
