@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
 
     [Header("----- Stats -----")]
     [SerializeField] int damage;
-    public int speed;
+    [SerializeField] int speed;
     [SerializeField] int destroyTime;
 
     // Start is called before the first frame update
