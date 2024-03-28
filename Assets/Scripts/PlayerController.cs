@@ -179,6 +179,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
+                
 
             if (hit.transform != transform && dmg != null)
             {
@@ -189,6 +190,8 @@ public class PlayerController : MonoBehaviour, IDamage
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
             }
         }
+
+        //Debug.Log(hit.collider.name);
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
