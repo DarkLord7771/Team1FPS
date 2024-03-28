@@ -93,6 +93,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         anim.SetTrigger("Shoot");
+        aud.PlayOneShot(audEnemyShoot[Random.Range(0, audEnemyShoot.Length)], audEnemyShootVol);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -107,6 +108,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         HP -= amount;
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
+        aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
 
         if (HP <= 0)
         {
