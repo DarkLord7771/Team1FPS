@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
@@ -13,10 +14,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] GameObject Bullet;
     [SerializeField] AudioSource aud;
+    [SerializeField] Slider healthbar;
     public WaveSpawner whereISpawned;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+    int maxHP;
     [SerializeField] float shootRate;
     [SerializeField] int gold;
 
@@ -38,7 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-
+        maxHP = HP;
     }
 
     // Update is called once per frame
@@ -109,6 +112,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
+        SetHealthBar();
 
         if (HP <= 0)
         {
@@ -135,5 +139,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void PlayWalkingAudio()
     {
         aud.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
+    }
+
+    void SetHealthBar()
+    {
+        healthbar.value = (float)HP / maxHP;
     }
 }
