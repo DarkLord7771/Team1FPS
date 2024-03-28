@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour, IDamage
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 3)]     [SerializeField] int jumps;
     [Range(5, 25)]    [SerializeField] int jumpSpeed;
     [Range(-15, -35)] [SerializeField] int gravity;
+
     [SerializeField] int damageUpgrade;
     [SerializeField] int gold;
 
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             SelectGun();
 
-            if (gunList.Count > 0 && Input.GetButton("Fire1") && !isShooting)
+            if (gunList.Count > 0 && Input.GetButton("Fire1") && !isShooting && gunList[selectedGun].ammoCur > 0)
             {
                 StartCoroutine(Shoot());
             }
@@ -179,7 +181,8 @@ public class PlayerController : MonoBehaviour, IDamage
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-                
+            gunList[selectedGun].ammoCur--;
+            UpdatePlayerUI();
 
             if (hit.transform != transform && dmg != null)
             {
@@ -217,9 +220,13 @@ public class PlayerController : MonoBehaviour, IDamage
         gamemanager.instance.playerDamageFlash.SetActive(false);
     }
 
-    void UpdatePlayerUI()
+    public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+
+        // Update ammo/
+        gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
+        gamemanager.instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
     }
 
     public int GetGold()
@@ -268,7 +275,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         gunList.Add(gun);
 
-
         shootDamage = gun.shootDamage + damageUpgrade;
         shootDist = gun.shootDist;
         shootRate = gun.shootRate;
@@ -280,6 +286,7 @@ public class PlayerController : MonoBehaviour, IDamage
         gunModel.GetComponent<Transform>().localScale = gun.gunTransform.localScale;
 
         selectedGun = gunList.Count - 1;
+        UpdatePlayerUI();
     }
 
     void SelectGun()
@@ -307,6 +314,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         //Set scale of gun model based off of gun's transform.
         gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
+
+        UpdatePlayerUI();
     }
 
     private void OnTriggerEnter(Collider other)

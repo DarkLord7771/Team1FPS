@@ -9,7 +9,7 @@ public class GunPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gun.ammoCur = gun.ammoMax;
     }
 
     private void OnTriggerEnter(Collider other)

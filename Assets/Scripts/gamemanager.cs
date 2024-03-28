@@ -25,6 +25,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTimerText;
     [SerializeField] TMP_Text goldTotalText;
+    public TMP_Text ammoCurrent;
+    public TMP_Text ammoMax;
 
     // Shop variables
     [Header("----- Shop -----")]
