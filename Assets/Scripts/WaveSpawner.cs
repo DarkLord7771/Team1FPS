@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject objectToSpwan;
+    [SerializeField] GameObject objectToSpawn;
     [SerializeField] int numToSpawn;
     [SerializeField] int spawnTimer;
     [SerializeField] Transform[] spawnPos;
@@ -42,7 +42,7 @@ public class WaveSpawner : MonoBehaviour
     {
         isSpawning = true;
         int arrayPos = Random.Range(0, spawnPos.Length);
-        GameObject objectSpawned = Instantiate(objectToSpwan, spawnPos[arrayPos].transform.position, spawnPos[arrayPos].transform.rotation);
+        GameObject objectSpawned = Instantiate(objectToSpawn, spawnPos[arrayPos].transform.position, spawnPos[arrayPos].transform.rotation);
 
         if(objectSpawned.GetComponent<EnemyAI>())
             objectSpawned.GetComponent<EnemyAI>().whereISpawned = this;
@@ -50,8 +50,6 @@ public class WaveSpawner : MonoBehaviour
         spawnCount++;
         yield return new WaitForSeconds(spawnTimer);
         isSpawning = false;
-
-
     }
 
     public void UpdateEnemyNumber()

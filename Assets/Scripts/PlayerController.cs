@@ -83,6 +83,10 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 StartCoroutine(Shoot());
             }
+            else if (gunList.Count > 0 && Input.GetButtonDown("Fire1") && !isShooting && gunList[selectedGun].ammoCur <= 0)
+            {
+                StartCoroutine(NoAmmoFlash());
+            }
         }
         
     }
@@ -198,6 +202,13 @@ public class PlayerController : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    IEnumerator NoAmmoFlash()
+    {
+        gamemanager.instance.menuNoAmmo.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        gamemanager.instance.menuNoAmmo.SetActive(false);
     }
 
     public void TakeDamage(int amount)
@@ -324,5 +335,43 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         playerVel.y = 0;
         jumpCount = jumps;
+    }
+
+    public bool HasMissingAmmo()
+    {
+        if (gunList.Count > 0)
+        {
+            for  (int i = 0; i < gunList.Count; i++)
+            {
+                if (gunList[i].ammoCur != gunList[i].ammoMax)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasGuns()
+    {
+        if (gunList.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void RefillAmmo()
+    {
+        for (int i = 0;i < gunList.Count; i++)
+        {
+            gunList[i].ammoCur = gunList[i].ammoMax;
+        }
+
+        UpdatePlayerUI();
     }
 }

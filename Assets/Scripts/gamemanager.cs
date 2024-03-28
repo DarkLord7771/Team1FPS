@@ -18,6 +18,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuStart;
     [SerializeField] GameObject menuWaveTimer;
+    public GameObject menuFullAmmo;
+    public GameObject menuNoAmmo;
 
     // UI Text
     [Header("---- UI Text -----")]
