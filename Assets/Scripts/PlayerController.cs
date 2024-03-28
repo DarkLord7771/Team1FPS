@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audStepsVol;
 
     int jumpCount;
-    Vector3 moveDir;
     Vector3 playerVel;
+    Vector3 moveDir;
     bool isShooting;
     int HPOrig;
     int selectedGun;
@@ -223,10 +223,12 @@ public class PlayerController : MonoBehaviour, IDamage
     public void UpdatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-
-        // Update ammo/
-        gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
-        gamemanager.instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+        if (gunList.Count > 0)
+        {
+            // Update ammo/
+            gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
+            gamemanager.instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+        }
     }
 
     public int GetGold()
@@ -318,11 +320,9 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void StopJumping()
     {
-        if (other.CompareTag("SkyBox"))
-        {
-            playerVel.y = 0;
-        }
+        playerVel.y = 0;
+        jumpCount = jumps;
     }
 }
