@@ -42,6 +42,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         maxHP = HP;
+
+        // Find healthbar and set it to not active on start.
+        healthbar = GameObject.Find("Health Bar").GetComponent<Slider>();
+        healthbar.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,6 +57,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         //Set animator Speed float to lerp to velocity based off of animSpeedTrans.
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
 
+        healthbar.transform.rotation = Camera.main.transform.rotation;
         PursuePlayer();
     }
 
@@ -143,6 +148,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void SetHealthBar()
     {
+        // If the healthbar is not active, set it to active.
+        if (!healthbar.gameObject.activeSelf)
+        {
+            healthbar.gameObject.SetActive(true);
+        }
+
         healthbar.value = (float)HP / maxHP;
     }
 }

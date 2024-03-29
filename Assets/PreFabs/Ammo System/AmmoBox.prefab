@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lid: {fileID: 3081654873364618711}
-  lidOpenXRot: 180
+  lidOpenRot: {x: -90, y: 0, z: 0}
   destroyTime: 0.3
   whereISpawned: {fileID: 0}
   spawnIndex: 0

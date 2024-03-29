@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class AmmoSpawner : MonoBehaviour
@@ -33,18 +34,19 @@ public class AmmoSpawner : MonoBehaviour
 
     void SpawnAmmoBox(int index)
     {
-            GameObject objectSpawned = Instantiate(ammoBox, ammoSpawnPos[index].transform.position, ammoSpawnPos[index].transform.rotation);
+        GameObject objectSpawned = Instantiate(ammoBox, ammoSpawnPos[index].transform.position, ammoSpawnPos[index].transform.rotation);
 
-            if (objectSpawned.GetComponent<AmmoBox>())
-            {
-                objectSpawned.GetComponent<AmmoBox>().whereISpawned = this;
-                objectSpawned.GetComponent<AmmoBox>().spawnIndex = index;
-            }
+        if (objectSpawned.GetComponent<AmmoBox>())
+        {
+            objectSpawned.GetComponent<AmmoBox>().whereISpawned = this;
+            objectSpawned.GetComponent<AmmoBox>().spawnIndex = index;
+        }
     }
 
     IEnumerator Respawn(int index)
     {
         isSpawning = true;
+
         yield return new WaitForSeconds(spawnTimer);
         SpawnAmmoBox(index);
 

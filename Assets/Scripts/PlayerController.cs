@@ -51,13 +51,13 @@ public class PlayerController : MonoBehaviour, IDamage
     bool playingSteps;
     bool isSprinting;
 
-    private Vector3 crouchHeight = new Vector3(1, 0.5f, 1);
-    private Vector3 playerHeight = new Vector3(1, 1, 1);
+    float crouchOrig;
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
+        crouchOrig = controller.height;
 
         SpawnPlayer();
     }
@@ -86,6 +86,11 @@ public class PlayerController : MonoBehaviour, IDamage
             else if (gunList.Count > 0 && Input.GetButtonDown("Fire1") && !isShooting && gunList[selectedGun].ammoCur <= 0)
             {
                 StartCoroutine(NoAmmoFlash());
+            }
+
+            if ((controller.collisionFlags & CollisionFlags.Above) != 0)
+            {
+                playerVel.y = -1;
             }
         }
         
@@ -166,13 +171,11 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (Input.GetKey(KeyCode.C))
         {
-            transform.localScale = crouchHeight;
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+            controller.height = 1;
         }
         else
         {
-            transform.localScale = playerHeight;
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            controller.height = crouchOrig;
         }
     }
 
@@ -181,12 +184,15 @@ public class PlayerController : MonoBehaviour, IDamage
         isShooting = true;
         aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume);
 
+        // Update Ammo Count
+        gunList[selectedGun].ammoCur--;
+        UpdatePlayerUI();
+
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-            gunList[selectedGun].ammoCur--;
-            UpdatePlayerUI();
+            
 
             if (hit.transform != transform && dmg != null)
             {
@@ -329,12 +335,6 @@ public class PlayerController : MonoBehaviour, IDamage
         gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
 
         UpdatePlayerUI();
-    }
-
-    public void StopJumping()
-    {
-        playerVel.y = 0;
-        jumpCount = jumps;
     }
 
     public bool HasMissingAmmo()

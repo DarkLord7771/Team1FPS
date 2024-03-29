@@ -5,7 +5,7 @@ using UnityEngine;
 public class AmmoBox : MonoBehaviour
 {
     [SerializeField] GameObject lid;
-    [SerializeField] float lidOpenXRot;
+    [SerializeField] Vector3 lidOpenRot;
     [SerializeField] float destroyTime;
     Quaternion lidRot;
 
@@ -17,16 +17,19 @@ public class AmmoBox : MonoBehaviour
     void Start()
     {
         lidRot = lid.transform.rotation;
+
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
+        // Debug.Log(other.name);
 
         if (other.CompareTag("Player") && gamemanager.instance.playerScript.HasMissingAmmo())
         {
-            lid.transform.rotation = new Quaternion(lidOpenXRot, lid.transform.rotation.y, lid.transform.rotation.z, lid.transform.rotation.w);
+            lid.transform.Rotate(lidOpenRot);
             gamemanager.instance.playerScript.RefillAmmo();
+            
             hasRefilledAmmo = true;
         }
         else if (gamemanager.instance.playerScript.HasGuns() && !gamemanager.instance.playerScript.HasMissingAmmo())
