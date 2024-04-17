@@ -204,8 +204,6 @@ public class PlayerController : MonoBehaviour, IDamage
             }
         }
 
-        //Debug.Log(hit.collider.name);
-
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -242,7 +240,7 @@ public class PlayerController : MonoBehaviour, IDamage
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         if (gunList.Count > 0)
         {
-            // Update ammo/
+            // Update ammo
             gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
             gamemanager.instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
         }

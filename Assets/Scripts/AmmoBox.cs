@@ -50,6 +50,7 @@ public class AmmoBox : MonoBehaviour
                 whereISpawned.StartSpawn(spawnIndex);
             }
 
+
             Destroy(gameObject, destroyTime);
             hasRefilledAmmo = false;
         }

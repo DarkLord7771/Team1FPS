@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool isShooting;
     Vector3 playerDir;
+    WeaponIk weaponIk;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         // Find healthbar and set it to not active on start.
         healthbar = GameObject.Find("Health Bar").GetComponent<Slider>();
         healthbar.gameObject.SetActive(false);
+
+        weaponIk = GetComponent<WeaponIk>();
+        weaponIk.SetAimTransform(shootPos);
     }
 
     // Update is called once per frame
@@ -67,7 +71,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         // Get players direction.
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
-        Debug.DrawRay(headPos.position, playerDir);
+        weaponIk.SetTargetTransform(gamemanager.instance.player.transform);
 
         // Get raycast hit and from head position to player direction and store it in hit.
         RaycastHit hit;
@@ -108,7 +112,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void CreateBullet()
     {
-        Instantiate(Bullet, shootPos.position, transform.rotation);
+        Instantiate(Bullet, shootPos.position, shootPos.rotation);
     }
 
     public void TakeDamage(int amount)

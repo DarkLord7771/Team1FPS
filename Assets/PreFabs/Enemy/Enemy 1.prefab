@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357298956647400737}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.12801836, y: -0.7130506, z: -0.01992976, w: 0.6890378}
   m_LocalPosition: {x: -1.518, y: -0.188, z: 0.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6704630055684976217}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 8.511, y: -92.878, z: -12.261}
 --- !u!1 &6704630055685065455
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 6704630055677773137}
   - component: {fileID: -5256320992836916668}
   - component: {fileID: 7271575603810649764}
+  - component: {fileID: 6738825533545923295}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -280,7 +281,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4c96027b5322955489512115b44cbcc7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -407,6 +408,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6738825533545923295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704630055685082423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e48f254eed7f8949acca82898a1527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  aimTransform: {fileID: 5010096878474489794}
+  targetOffset: {x: 0, y: 0.5, z: 0}
+  iterations: 10
+  weight: 0.6
+  angleLimit: 90
+  distanceLimit: 1.5
+  humanBones:
+  - bone: 7
+    weight: 1
 --- !u!1 &6704630055685082459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,6 +1255,14 @@ PrefabInstance:
     - target: {fileID: 6927698441854646339, guid: 771f73f74019e824f891bb9f8e71d57c, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927698441854646339, guid: 771f73f74019e824f891bb9f8e71d57c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927698441854646339, guid: 771f73f74019e824f891bb9f8e71d57c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 6927698441854646339, guid: 771f73f74019e824f891bb9f8e71d57c, type: 3}
       propertyPath: m_LocalPosition.x
