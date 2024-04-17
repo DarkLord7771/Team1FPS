@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
+using UnityEditor.Build.Content;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour, IDamage
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
+    bool lowHealth;
+    bool flashActive;
 
     float crouchOrig;
 
@@ -92,8 +96,12 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 playerVel.y = -1;
             }
+
+            if (lowHealth && !flashActive)
+            {
+                StartCoroutine(FlashDamageScreen());
+            }
         }
-        
     }
 
     public void SpawnPlayer()
@@ -219,7 +227,15 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HP -= amount;
         aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-        StartCoroutine(FlashDamageScreen());
+
+        if ((float)HP/HPOrig > .3f)
+        {
+            StartCoroutine(FlashDamageScreen());
+        }
+        else
+        {
+            lowHealth = true;
+        }
         UpdatePlayerUI();
 
         if (HP <= 0)
@@ -230,9 +246,18 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator FlashDamageScreen()
     {
-        gamemanager.instance.playerDamageFlash.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gamemanager.instance.playerDamageFlash.SetActive(false);
+        flashActive = true;
+
+        if (gamemanager.instance.playerDamageFlash.GetComponent<Image>().color.a >= .0001f)
+            gamemanager.instance.playerDamageFlash.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+        for (float i = .5f; i >= 0; i -= Time.deltaTime)
+        {
+            gamemanager.instance.playerDamageFlash.GetComponent<Image>().color = new Color(1, 1, 1, i);
+            yield return new WaitForSeconds(.005f);
+        }
+
+        flashActive = false;
     }
 
     public void UpdatePlayerUI()
