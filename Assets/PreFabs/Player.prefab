@@ -246,7 +246,7 @@ MonoBehaviour:
   controller: {fileID: 9001948008768963193}
   aud: {fileID: 1807330016778002900}
   HP: 10
-  speed: 5
+  speed: 7
   sprintMod: 1.5
   jumps: 2
   jumpSpeed: 9
