@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 25)]    [SerializeField] int HP;
+    [Range(0, 25)]    [SerializeField] int HP;
     [Range(1, 10)]    [SerializeField] float speed;
     [Range(1, 3)]     [SerializeField] float sprintMod;
     [Range(1, 3)]     [SerializeField] int jumps;

@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.isTrigger)
             return;
-        
+
         IDamage dmg = other.GetComponent<IDamage>();
 
         if (dmg != null && !other.CompareTag("Enemy"))
