@@ -156,7 +156,7 @@ public class gamemanager : MonoBehaviour
     public void PlayerHasWon()
     {
         StatePaused();
-        SetMenuActive(menuLose);
+        SetMenuActive(menuWin);
     }
 
     public void PlayerBeatWave()

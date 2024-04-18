@@ -6,18 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] menuAud;
+   
     public void StartButton()
     {
+        aud.PlayOneShot(menuAud[0]);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Resume()
     {
+        aud.PlayOneShot(menuAud[0]);
         gamemanager.instance.StateUnPaused();
     }
 
     public void Restart()
     {
+        aud.PlayOneShot(menuAud[0]);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gamemanager.instance.StateUnPaused();
     }
@@ -34,6 +40,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void NextWave()
     {
+        aud.PlayOneShot(menuAud[0]);
         gamemanager.instance.StateUnPaused();
         gamemanager.instance.StartCountDown();
     }
@@ -49,6 +56,7 @@ public class buttonFunctions : MonoBehaviour
             gamemanager.instance.playerScript.SetGold(-cost);
             gamemanager.instance.UpdateGoldDisplay();
         }
+        aud.PlayOneShot(menuAud[1]);
     }
 
     public void BuySpeed(int cost)
@@ -62,6 +70,7 @@ public class buttonFunctions : MonoBehaviour
             gamemanager.instance.playerScript.SetGold(-cost);
             gamemanager.instance.UpdateGoldDisplay();
         }
+        aud.PlayOneShot(menuAud[1]);
     }
 
     public void BuyJumpDistance(int cost)
@@ -75,6 +84,8 @@ public class buttonFunctions : MonoBehaviour
             gamemanager.instance.playerScript.SetGold(-cost);
             gamemanager.instance.UpdateGoldDisplay();
         }
+
+        aud.PlayOneShot(menuAud[1]);
     }
 
     public void BuyDamage(int cost)
@@ -87,5 +98,7 @@ public class buttonFunctions : MonoBehaviour
             gamemanager.instance.playerScript.SetGold(-cost);
             gamemanager.instance.UpdateGoldDisplay();
         }
+
+        aud.PlayOneShot(menuAud[1]);
     }
 }
