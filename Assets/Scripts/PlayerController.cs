@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+    [SerializeField] int totalGunsAllowed;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audJump;
@@ -396,5 +397,27 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         UpdatePlayerUI();
+    }
+
+    public bool BuyGun(GunStats gun)
+    {
+        if (gold >= gun.cost)
+        {
+            RemoveGun();
+            GetGunStats(gun);
+            gold -= gun.cost;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    void RemoveGun()
+    {
+        if (gunList.Count >= totalGunsAllowed)
+        {
+            gunList.RemoveAt(0);
+        }
     }
 }

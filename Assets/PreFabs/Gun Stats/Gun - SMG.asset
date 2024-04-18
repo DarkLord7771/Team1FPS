@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5109b1cf1d9a41aaea7a8cd679311, type: 3}
   m_Name: Gun - SMG
   m_EditorClassIdentifier: 
+  gunName: SMG
+  cost: 15
   shootDamage: 2
   shootDist: 15
   shootRate: 0.2

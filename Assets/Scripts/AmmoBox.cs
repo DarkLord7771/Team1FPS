@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class AmmoBox : MonoBehaviour
 {
+    [Header("----- Components -----")]
     [SerializeField] GameObject lid;
     [SerializeField] Vector3 lidOpenRot;
     [SerializeField] float destroyTime;
     Quaternion lidRot;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip audOpen;
+    [Range(0, 1)][SerializeField] float audOpenVol;
+    [SerializeField] AudioClip audClose;
+    [Range(0, 1)][SerializeField] float audCloseVol;
 
     public AmmoSpawner whereISpawned;
     public int spawnIndex;
@@ -17,8 +25,6 @@ public class AmmoBox : MonoBehaviour
     void Start()
     {
         lidRot = lid.transform.rotation;
-
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,6 +33,7 @@ public class AmmoBox : MonoBehaviour
 
         if (other.CompareTag("Player") && gamemanager.instance.playerScript.HasMissingAmmo())
         {
+            aud.PlayOneShot(audOpen, audOpenVol);
             lid.transform.Rotate(lidOpenRot);
             gamemanager.instance.playerScript.RefillAmmo();
             
@@ -43,6 +50,7 @@ public class AmmoBox : MonoBehaviour
     {
         if (hasRefilledAmmo)
         {
+            aud.PlayOneShot(audClose, audCloseVol);
             lid.transform.rotation = lidRot;
 
             if (whereISpawned)

@@ -20,6 +20,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWaveTimer;
     public GameObject menuFullAmmo;
     public GameObject menuNoAmmo;
+    public GameObject menuBuyGun;
+    public GameObject menuNotEnoughGold;
 
     // UI Text
     [Header("---- UI Text -----")]
@@ -29,6 +31,11 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text goldTotalText;
     public TMP_Text ammoCurrent;
     public TMP_Text ammoMax;
+    public TMP_Text weaponBuyText;
+    public TMP_Text weaponCostText;
+
+    [Header("----- UI Variables -----")]
+    [SerializeField] float menuDisplayTime;
 
     // Shop variables
     [Header("----- Shop -----")]
@@ -68,7 +75,6 @@ public class gamemanager : MonoBehaviour
         // Check if WaveManager.instance is null or if it started first.
         if (WaveManager.instance)
         {
-            //Debug.Log("WM First");
             SetWaveCount();
         }
     }
@@ -79,8 +85,7 @@ public class gamemanager : MonoBehaviour
         if (Input.GetButtonDown("Cancel") && menuActive == null)
         {
             StatePaused();
-            menuActive = menuPause;
-            menuActive.SetActive(true);
+            SetMenuActive(menuPause);
         }
 
         if (isTimerRunning)
@@ -113,8 +118,7 @@ public class gamemanager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
-        menuActive = null;
+        SetMenuInactive();
     }
 
     public void UpdateGameGoal(int amount)
@@ -146,15 +150,13 @@ public class gamemanager : MonoBehaviour
     public void PlayerHasLost()
     {
         StatePaused();
-        menuActive = menuLose;
-        menuActive.SetActive(true);
+        SetMenuActive(menuLose);
     }
 
     public void PlayerHasWon()
     {
         StatePaused();
-        menuActive = menuWin;
-        menuActive.SetActive(true);
+        SetMenuActive(menuLose);
     }
 
     public void PlayerBeatWave()
@@ -166,8 +168,7 @@ public class gamemanager : MonoBehaviour
 
     public void StartCountDown()
     {
-        menuActive = menuWaveTimer;
-        menuActive.SetActive(true);
+        SetMenuActive(menuWaveTimer);
         timeLeft = WaveManager.instance.timeBetweenSpawns;
         isTimerRunning = true;
     }
@@ -195,7 +196,28 @@ public class gamemanager : MonoBehaviour
     void CountDownComplete()
     {
         isTimerRunning = false;
-        menuActive.SetActive(false);
-        menuActive = null;
+        SetMenuInactive();
+    }
+
+    public void SetMenuActive(GameObject menu)
+    {
+        menuActive = menu;
+        menuActive.SetActive(true);
+    }
+
+    public void SetMenuInactive()
+    {
+        if (menuActive != null)
+        {
+            menuActive.SetActive(false);
+            menuActive = null;
+        }
+    }
+
+    public IEnumerator DisplayMessage(GameObject menu)
+    {
+        SetMenuActive(menu);
+        yield return new WaitForSeconds(menuDisplayTime);
+        SetMenuInactive();
     }
 }
