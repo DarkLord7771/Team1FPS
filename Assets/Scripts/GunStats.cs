@@ -6,12 +6,17 @@ using UnityEngine;
 
 public class GunStats : ScriptableObject
 {
+    public string gunName;
+    public int cost;
+
+    // Shooting Stats
     public int shootDamage;
     public int shootDist;
     public float shootRate;
     public int ammoCur;
     public int ammoMax;
 
+    // Components
     public GameObject model;
     public ParticleSystem hitEffect;
     public AudioClip shootSound;

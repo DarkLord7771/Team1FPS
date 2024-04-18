@@ -1,4 +1,5 @@
  # Full Sail University - Team 1 - War Wave
  # -------------03/2024-------------
-![Platoon](https://github.com/DarkLord7771/Team1FPS/assets/134660640/8ab969bd-2e61-4d9e-999b-d4e785254ebc)
+![1757-American soldiers going into battle-OfficialStableDiffusionsd_xl_base_10s-2043188907](https://github.com/DarkLord7771/Team1FPS/assets/134660640/25640cc0-3971-4e2a-8e38-a037a9eaeae4)
+
 

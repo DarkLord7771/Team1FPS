@@ -188,10 +188,10 @@ MonoBehaviour:
   aud: {fileID: -4069974602146560184}
   healthbar: {fileID: 2810211077740837828}
   whereISpawned: {fileID: 0}
-  HP: 20
+  HP: 3
   shootRate: 3
   gold: 4
-  faceTargetSpeed: 0
+  faceTargetSpeed: 5
   animSpeedTrans: 8
   audEnemyHurt:
   - {fileID: 8300000, guid: 6a83780baa2d2c54e862d0b99f8e11db, type: 3}

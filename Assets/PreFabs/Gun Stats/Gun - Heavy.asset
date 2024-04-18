@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5109b1cf1d9a41aaea7a8cd679311, type: 3}
   m_Name: Gun - Heavy
   m_EditorClassIdentifier: 
+  gunName: Heavy
+  cost: 25
   shootDamage: 7
   shootDist: 20
   shootRate: 0.7
