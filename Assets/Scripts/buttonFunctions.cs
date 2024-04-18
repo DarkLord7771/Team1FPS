@@ -16,6 +16,16 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.StateUnPaused();
     }
 
+    /*public void openOptions()
+    {
+
+    }
+
+    public void closeOptions()
+    {
+
+    }*/
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
