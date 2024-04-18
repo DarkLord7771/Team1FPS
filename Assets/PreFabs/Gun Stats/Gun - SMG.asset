@@ -15,7 +15,7 @@ MonoBehaviour:
   gunName: SMG
   cost: 15
   shootDamage: 2
-  shootDist: 15
+  shootDist: 25
   shootRate: 0.2
   ammoCur: 350
   ammoMax: 350

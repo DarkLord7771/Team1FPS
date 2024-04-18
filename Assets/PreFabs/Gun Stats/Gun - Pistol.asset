@@ -15,10 +15,10 @@ MonoBehaviour:
   gunName: Pistol
   cost: 0
   shootDamage: 1
-  shootDist: 10
-  shootRate: 0.3
-  ammoCur: 25
-  ammoMax: 25
+  shootDist: 30
+  shootRate: 0.5
+  ammoCur: 48
+  ammoMax: 48
   model: {fileID: 5494625650325380441, guid: 944f765b84e4c4012876d61f4dfc7b5a, type: 3}
   hitEffect: {fileID: 8796357564163452080, guid: 345ad314e763e2c41b1904b892610767, type: 3}
   shootSound: {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
