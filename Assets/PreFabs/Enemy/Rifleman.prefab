@@ -168,11 +168,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6704630055685023741}
   - component: {fileID: 6516259054721603572}
+  - component: {fileID: 6738825533545923295}
   - component: {fileID: 2494967432448120183}
   - component: {fileID: 6704630055677773137}
   - component: {fileID: -5256320992836916668}
   - component: {fileID: 7271575603810649764}
-  - component: {fileID: 6738825533545923295}
   m_Layer: 0
   m_Name: Rifleman
   m_TagString: Enemy
@@ -218,6 +218,7 @@ MonoBehaviour:
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   aud: {fileID: 7271575603810649764}
   healthbar: {fileID: 7926742597593473157}
+  Explosion: {fileID: 6567749030722860747, guid: 434f1b588ca1a994a8a5ecf4c996d6a2, type: 3}
   whereISpawned: {fileID: 0}
   HP: 1
   shootRate: 1
@@ -246,6 +247,28 @@ MonoBehaviour:
   audEnemyShoot:
   - {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
   audEnemyShootVol: 0.5
+--- !u!114 &6738825533545923295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704630055685082423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e48f254eed7f8949acca82898a1527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  aimTransform: {fileID: 5010096878474489794}
+  targetOffset: {x: 0, y: 0.5, z: 0}
+  iterations: 10
+  weight: 0.6
+  angleLimit: 90
+  distanceLimit: 1.5
+  humanBones:
+  - bone: 7
+    weight: 1
 --- !u!195 &2494967432448120183
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -408,28 +431,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6738825533545923295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6704630055685082423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e48f254eed7f8949acca82898a1527e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
-  aimTransform: {fileID: 5010096878474489794}
-  targetOffset: {x: 0, y: 0.5, z: 0}
-  iterations: 10
-  weight: 0.6
-  angleLimit: 90
-  distanceLimit: 1.5
-  humanBones:
-  - bone: 7
-    weight: 1
 --- !u!1 &6704630055685082459
 GameObject:
   m_ObjectHideFlags: 0

@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8932537515181356648}
   - component: {fileID: 7108217348967781151}
+  - component: {fileID: 6233706583379524721}
   - component: {fileID: 6429641204698926757}
   - component: {fileID: 7932819293284354408}
   - component: {fileID: 560235029339636465}
@@ -215,6 +216,28 @@ MonoBehaviour:
   audEnemyShoot:
   - {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
   audEnemyShootVol: 0.5
+--- !u!114 &6233706583379524721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431519249827120968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e48f254eed7f8949acca82898a1527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  aimTransform: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
+  iterations: 10
+  weight: 0.6
+  angleLimit: 90
+  distanceLimit: 1.5
+  humanBones:
+  - bone: 7
+    weight: 0
 --- !u!195 &6429641204698926757
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -50,10 +50,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 0}
   agent: {fileID: 0}
+  anim: {fileID: 0}
   shootPos: {fileID: 0}
+  headPos: {fileID: 0}
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
+  aud: {fileID: 0}
+  healthbar: {fileID: 0}
+  whereISpawned: {fileID: 0}
   HP: 1
   shootRate: 0.5
+  gold: 0
+  faceTargetSpeed: 0
+  animSpeedTrans: 0
+  audEnemyHurt: []
+  audEnemyHurtVol: 0
+  audEnemySteps: []
+  audEnemyStepsVol: 0
+  audEnemyShoot: []
+  audEnemyShootVol: 0
 --- !u!33 &7241750206126955138
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -82,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
