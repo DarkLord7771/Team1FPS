@@ -192,10 +192,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1692634873844993852, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002250741751690120, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5039008658583050100, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: eeecffffb98c5a44a889e45e044114fb, type: 3}
+      objectReference: {fileID: 21300000, guid: cfd79a3b3fd191b458e83d01f28b3f72, type: 3}
     - target: {fileID: 5039008658583050100, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -206,7 +214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5039008658583050100, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Color.r
-      value: 0.899371
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5039008658583050100, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x
@@ -523,6 +535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1801644557}
   - component: {fileID: 1801644556}
+  - component: {fileID: 1801644558}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -607,6 +620,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1801644558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801644555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

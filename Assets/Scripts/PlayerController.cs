@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         crouchOrig = controller.height;
-
+        
         SpawnPlayer();
     }
 
