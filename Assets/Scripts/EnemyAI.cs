@@ -63,7 +63,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
 
         healthbar.transform.rotation = Camera.main.transform.rotation;
-        //PursuePlayer();
+        PursuePlayer();
     }
 
     void PursuePlayer()
@@ -116,11 +116,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         Instantiate(Bullet, shootPos.position, shootPos.rotation);
     }
 
-    public void CreateExplosion()
-    {
-        Instantiate(Explosion, transform.position, transform.rotation);
-    }
-
     public void TakeDamage(int amount)
     {
         HP -= amount;
@@ -128,7 +123,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(FlashRed());
         aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
         SetHealthBar();
-        CreateExplosion();
 
         if (HP <= 0)
         {
