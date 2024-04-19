@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class MeleeStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string meleeName;
+    public int cost;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // melee Stats
+    public int meleeDamage;
+    public int meleeDist;
+    public float meleeRate;
+    public int durCur; //dur short for durability
+    public int durMax;
+
+    // Components
+    public GameObject model;
+    public ParticleSystem hitEffect;
+    public AudioClip meleeSound;
+    [Range(0, 2)] public float meleeSoundVolume;
+    public Transform meleeTransform;
 }

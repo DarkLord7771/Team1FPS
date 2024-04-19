@@ -21,6 +21,7 @@ public class gamemanager : MonoBehaviour
     public GameObject menuFullAmmo;
     public GameObject menuNoAmmo;
     public GameObject menuBuyGun;
+    public GameObject menuBuyMelee;
     public GameObject menuNotEnoughGold;
 
     // UI Text
