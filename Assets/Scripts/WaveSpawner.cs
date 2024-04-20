@@ -32,10 +32,13 @@ public class WaveSpawner : MonoBehaviour
 
     public void StartWave()
     {
+        spawnCount = 0;
         numToSpawn = numToSpawn + (2 * diffMod);
         startSpawning = true;
         
         gamemanager.instance.UpdateGameGoal(numToSpawn);
+
+        Debug.Log("Spawn Wave " + WaveManager.instance.waveCurrent);
     }
 
     public IEnumerator Spawn()
