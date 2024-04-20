@@ -8,7 +8,7 @@ public class buttonFunctions : MonoBehaviour
 {
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] menuAud;
-    public GameObject openOptions;
+    
 
     public void StartButton()
     {
