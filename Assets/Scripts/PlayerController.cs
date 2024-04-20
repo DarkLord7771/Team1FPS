@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float reloadSpeed;
     [SerializeField] int totalGunsAllowed;
 
+    [Header("----- Reticle -----")]
+    public Reticle reticle;
+    public float reticleRecoil;
+    public float settleSpeed;
+
     [Header("----- Melee Stats -----")]
     [SerializeField] List<MeleeStats> meleeList = new List<MeleeStats>();
     [SerializeField] GameObject meleeModel;
@@ -79,6 +84,8 @@ public class PlayerController : MonoBehaviour, IDamage
         crouchOrig = controller.height;
         
         SpawnPlayer();
+
+        reticle.SetReturnToCenterSpeed(settleSpeed);
     }
 
     // Update is called once per frame
@@ -224,6 +231,7 @@ public class PlayerController : MonoBehaviour, IDamage
             else
             {
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+                reticle.Expand(reticleRecoil);
             }
         }
 
