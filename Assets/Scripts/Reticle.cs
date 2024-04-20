@@ -37,7 +37,7 @@ public class Reticle : MonoBehaviour
     }
 
     // Shrink the reticle to normal size
-    public void ShrinkReticleToNormal()
+    void ShrinkReticleToNormal()
     {
         if (up.transform.position.y > upDefaultPos.y)
             up.transform.position = new Vector3(up.transform.position.x, up.transform.position.y - returnToCenterSpeed, up.transform.position.z);
