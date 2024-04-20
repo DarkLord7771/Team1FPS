@@ -222,7 +222,7 @@ MonoBehaviour:
   whereISpawned: {fileID: 0}
   HP: 1
   shootRate: 1
-  gold: 100
+  gold: 2
   faceTargetSpeed: 5
   animSpeedTrans: 8
   audEnemyHurt:

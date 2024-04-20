@@ -15,11 +15,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
 
     [Header("----- Player Stats -----")]
-    [Range(0, 25)][SerializeField] int HP;
-    [Range(1, 10)][SerializeField] float speed;
+    [Range(0, 25)] public int HP;
+    [Range(1, 10)] public float speed;
     [Range(1, 3)][SerializeField] float sprintMod;
     [Range(1, 3)][SerializeField] int jumps;
-    [Range(5, 25)][SerializeField] int jumpSpeed;
+    [Range(5, 25)] public int jumpSpeed;
     [Range(-15, -35)][SerializeField] int gravity;
     [SerializeField] int gold;
 
@@ -63,17 +63,19 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] shopSounds;
 
+    public PowerUpEffects powerUp;
+
     int jumpCount;
     Vector3 playerVel;
     Vector3 moveDir;
     bool isShooting;
-    int HPOrig;
+    bool isInvincible;
+    [HideInInspector] public int HPOrig;
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
     bool lowHealth;
     bool flashActive;
-
 
     float crouchOrig;
 
@@ -249,19 +251,22 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
-        HP -= amount;
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        if (!isInvincible)
+        {
+            HP -= amount;
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
-        if ((float)HP/HPOrig > .3f)
-        {
-            StartCoroutine(FlashDamageScreen());
+            if ((float)HP / HPOrig > .3f)
+            {
+                StartCoroutine(FlashDamageScreen());
+            }
+            else
+            {
+                lowHealth = true;
+            }
         }
-        else
-        {
-            lowHealth = true;
-        }
+
         UpdatePlayerUI();
-
         if (HP <= 0)
         {
             gamemanager.instance.PlayerHasLost();
@@ -487,5 +492,16 @@ public class PlayerController : MonoBehaviour, IDamage
             aud.PlayOneShot(shopSounds[1]);
             return false;
         }
+    }
+
+    public void SetInvincible(bool invincible)
+    {
+        isInvincible = invincible;
+    }
+
+    public void BeginPowerUp(PowerUpEffects power, float time)
+    {
+        powerUp = power;
+        StartCoroutine(powerUp.ApplyEffect(time));
     }
 }

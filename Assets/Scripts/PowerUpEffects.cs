@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class PowerUpEffects : ScriptableObject
 {
-    public abstract void ApplyEffect(GameObject target);
+    public abstract IEnumerator ApplyEffect(float time);
 }

@@ -9,6 +9,7 @@ public class AmmoBox : MonoBehaviour
     [SerializeField] Vector3 lidOpenRot;
     [SerializeField] float destroyTime;
     Quaternion lidRot;
+    GameObject fullAmmoMenu;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -25,6 +26,7 @@ public class AmmoBox : MonoBehaviour
     void Start()
     {
         lidRot = lid.transform.rotation;
+        fullAmmoMenu = gamemanager.instance.menuFullAmmo;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,16 +41,16 @@ public class AmmoBox : MonoBehaviour
             
             hasRefilledAmmo = true;
         }
-        else if (gamemanager.instance.playerScript.HasGuns() && !gamemanager.instance.playerScript.HasMissingAmmo())
+        else if (other.CompareTag("Player") && gamemanager.instance.playerScript.HasGuns() && !gamemanager.instance.playerScript.HasMissingAmmo())
         {
             hasRefilledAmmo = false;
-            gamemanager.instance.menuFullAmmo.SetActive(true);
+            gamemanager.instance.SetDisplayMessageActive(fullAmmoMenu);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (hasRefilledAmmo)
+        if (other.CompareTag("Player") && hasRefilledAmmo)
         {
             aud.PlayOneShot(audClose, audCloseVol);
             lid.transform.rotation = lidRot;
@@ -62,9 +64,9 @@ public class AmmoBox : MonoBehaviour
             Destroy(gameObject, destroyTime);
             hasRefilledAmmo = false;
         }
-        else
+        else if (other.CompareTag("Player"))
         {
-            gamemanager.instance.menuFullAmmo.SetActive(false);
+            gamemanager.instance.SetDisplayMessageActive(fullAmmoMenu);
         }
     }
 }
