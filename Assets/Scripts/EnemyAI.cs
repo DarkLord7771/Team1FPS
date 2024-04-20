@@ -127,6 +127,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gamemanager.instance.playerScript.SetGold(gold);
+            gamemanager.instance.UpdateGoldDisplay();
             gamemanager.instance.UpdateGameGoal(-1);
 
             if (whereISpawned)

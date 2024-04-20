@@ -176,6 +176,7 @@ public class gamemanager : MonoBehaviour
     public void UpdateGoldDisplay()
     {
         goldTotalText.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
+        ShopManager.instance.UpdateShopGold();
     }
 
     public void SetWaveCount()

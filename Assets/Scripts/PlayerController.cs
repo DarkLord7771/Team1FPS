@@ -414,7 +414,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void UpgradeHP(int value)
     {
-        HP += value;
+        HPOrig += value;
+        HP = HPOrig;
+        UpdatePlayerUI();
     }
 
     void UpgradeSpeed(int value)

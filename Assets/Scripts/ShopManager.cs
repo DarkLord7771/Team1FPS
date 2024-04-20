@@ -13,6 +13,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] Transform shopContentWindow;
     [SerializeField] GameObject shopPrefab;
     [SerializeField] int upgradeCostMultiplier;
+    [SerializeField] TMP_Text shopGoldDisplay;
 
     void Awake()
     {
@@ -65,5 +66,10 @@ public class ShopManager : MonoBehaviour
 
             upgrade.cost *= upgradeCostMultiplier; 
         }
+    }
+
+    public void UpdateShopGold()
+    {
+        shopGoldDisplay.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
     }
 }

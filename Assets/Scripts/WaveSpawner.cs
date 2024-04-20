@@ -37,8 +37,6 @@ public class WaveSpawner : MonoBehaviour
         startSpawning = true;
         
         gamemanager.instance.UpdateGameGoal(numToSpawn);
-
-        Debug.Log("Spawn Wave " + WaveManager.instance.waveCurrent);
     }
 
     public IEnumerator Spawn()

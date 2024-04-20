@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawners:
   - {fileID: 0}
+  - {fileID: 0}
   timeBetweenSpawns: 3
   waveCurrent: 0
