@@ -6,6 +6,7 @@ using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using UnityEditor.Build.Content;
 using UnityEngine.UI;
+using System.Net.Http.Headers;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -14,14 +15,12 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource aud;
 
     [Header("----- Player Stats -----")]
-    [Range(0, 25)]    [SerializeField] int HP;
-    [Range(1, 10)]    [SerializeField] float speed;
-    [Range(1, 3)]     [SerializeField] float sprintMod;
-    [Range(1, 3)]     [SerializeField] int jumps;
-    [Range(5, 25)]    [SerializeField] int jumpSpeed;
-    [Range(-15, -35)] [SerializeField] int gravity;
-
-    [SerializeField] int damageUpgrade;
+    [Range(0, 25)][SerializeField] int HP;
+    [Range(1, 10)][SerializeField] float speed;
+    [Range(1, 3)][SerializeField] float sprintMod;
+    [Range(1, 3)][SerializeField] int jumps;
+    [Range(5, 25)][SerializeField] int jumpSpeed;
+    [Range(-15, -35)][SerializeField] int gravity;
     [SerializeField] int gold;
 
     [Header("----- Player Max Stats -----")]
@@ -29,12 +28,17 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int maxSpeed;
     [SerializeField] int maxJumpSpeed;
 
+    [Header("----- Player Stat Upgrades -----")]
+    [SerializeField] int damageUpgrade;
+    [SerializeField] int shootRateUpgrade;
+
     [Header("----- Gun Stats -----")]
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
+    [SerializeField] float reloadSpeed;
     [SerializeField] int totalGunsAllowed;
 
     [Header("----- Melee Stats -----")]
@@ -290,43 +294,12 @@ public class PlayerController : MonoBehaviour, IDamage
         gold += amount;
     }
 
-    public void UpgradeHealth(int amount)
-    {
-        if (HPOrig != maxHP)
-        {
-            HPOrig += amount;
-            HP = HPOrig;
-            UpdatePlayerUI();
-        }
-    }
-    public void UpgradeSpeed(float amount)
-    {
-        if (speed != maxSpeed)
-        {
-            speed += amount;
-        }
-    }
-
-    public void UpgradeJumpSpeed(int amount)
-    {
-        if (jumpSpeed != maxJumpSpeed)
-        {
-            jumpSpeed += amount;
-        }
-    }
-
-    public void UpgradeDamage(int amount)
-    {
-        // Increment damage upgrade and increase shoot damage.
-        damageUpgrade += amount;
-        shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
-    }
-
+   
     public void GetGunStats(GunStats gun)
     {
         gunList.Add(gun);
 
-        shootDamage = gun.shootDamage + damageUpgrade;
+        shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
         shootRate = gun.shootRate;
 
@@ -365,7 +338,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void ChangeGun()
     {
-        shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
+        shootDamage = gunList[selectedGun].shootDamage;
         shootDist = gunList[selectedGun].shootDist;
         shootRate = gunList[selectedGun].shootRate;
 
@@ -435,6 +408,69 @@ public class PlayerController : MonoBehaviour, IDamage
         if (gunList.Count >= totalGunsAllowed)
         {
             gunList.RemoveAt(0);
+        }
+    }
+
+    void UpgradeHP(int value)
+    {
+        HP += value;
+    }
+
+    void UpgradeSpeed(int value)
+    {
+        speed += value;
+    }
+
+    void UpgradeJumpDistance(int value)
+    {
+        jumpSpeed += value;
+    }
+
+    void UpgradeDamage(int value)
+    {
+        damageUpgrade += value;
+    }
+
+    public void BoughtUpgrade(Upgrade upgrade)
+    {
+        switch (upgrade.upgradeName){
+            case "HP":
+                UpgradeHP(upgrade.upgradeValue);
+                break;
+            case "Speed":
+                UpgradeSpeed(upgrade.upgradeValue);
+                break;
+            case "Jump Distance":
+                UpgradeJumpDistance(upgrade.upgradeValue);
+                break;
+            case "Damage":
+                UpgradeDamage(upgrade.upgradeValue);
+                break;
+            case "Fire Rate":
+                gunList[selectedGun].shootRate += upgrade.upgradeValue;
+                shootRate = gunList[selectedGun].shootRate;
+                break;
+            case "Reload Speed":
+                reloadSpeed += upgrade.upgradeValue;
+                break;
+            case "Ammo Capacity":
+                gunList[selectedGun].ammoMax += upgrade.upgradeValue;
+                break;
+            default: break;
+        }
+    }
+
+    public bool TrySpendingGold(int upgradeCost)
+    {
+        if (gold >= upgradeCost)
+        {
+            gold -= upgradeCost;
+            gamemanager.instance.UpdateGoldDisplay();
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

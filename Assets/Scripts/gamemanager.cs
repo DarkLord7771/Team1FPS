@@ -163,8 +163,7 @@ public class gamemanager : MonoBehaviour
     public void PlayerBeatWave()
     {
         StatePaused();
-        menuActive = menuShop;
-        menuActive.SetActive(true);
+        SetMenuActive(menuShop);
     }
 
     public void StartCountDown()
