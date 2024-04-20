@@ -88,13 +88,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068817705604981629}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12801717, y: -0.71304965, z: -0.0199273, w: 0.68903905}
-  m_LocalPosition: {x: -1.5180185, y: -0.18791172, z: 0.18201502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.518, y: -0.188, z: 0.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1127521137000467486}
-  m_LocalEulerAnglesHint: {x: 8.511, y: -92.878, z: -12.261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404198689049271837
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +965,6 @@ MonoBehaviour:
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   aud: {fileID: -838749816317150377}
   healthbar: {fileID: 2584856742272822889}
-  Explosion: {fileID: 0}
   whereISpawned: {fileID: 0}
   HP: 2
   shootRate: 2
@@ -1007,8 +1006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
-  aimTransform: {fileID: 8767342134046924975}
-  targetOffset: {x: 0, y: 0.5, z: 0}
+  aimTransform: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
   iterations: 10
   weight: 0.6
   angleLimit: 90

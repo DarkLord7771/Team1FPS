@@ -40,7 +40,7 @@ public class GunPickup : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            gamemanager.instance.SetDisplayMessageActive(buyMenu);
+            gamemanager.instance.SetMenuActive(buyMenu);
             gamemanager.instance.weaponBuyText.text = "Press E to buy " + gun.gunName;
             gamemanager.instance.weaponCostText.text = "[Cost: " + gun.cost + "]";
 

@@ -188,7 +188,6 @@ MonoBehaviour:
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   aud: {fileID: -4069974602146560184}
   healthbar: {fileID: 2810211077740837828}
-  Explosion: {fileID: 0}
   whereISpawned: {fileID: 0}
   HP: 3
   shootRate: 3
@@ -230,15 +229,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 0}
-  aimTransform: {fileID: 3362285230082974189}
-  targetOffset: {x: 0, y: 0.5, z: 0}
+  aimTransform: {fileID: 0}
+  targetOffset: {x: 0, y: 0, z: 0}
   iterations: 10
   weight: 0.6
   angleLimit: 90
   distanceLimit: 1.5
   humanBones:
   - bone: 7
-    weight: 1
+    weight: 0
 --- !u!195 &6429641204698926757
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -778,13 +777,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4618995492389295347}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12801717, y: -0.71304965, z: -0.0199273, w: 0.68903905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.518, y: -0.188, z: 0.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 721789191014381578}
-  m_LocalEulerAnglesHint: {x: 8.511, y: -92.878, z: -12.261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5255592975395617424
 GameObject:
   m_ObjectHideFlags: 0

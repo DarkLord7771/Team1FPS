@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Threading;
-using UnityEditor;
 
 public class gamemanager : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class gamemanager : MonoBehaviour
 
     // UI Menus
     [Header("---- UI Menus -----")]
-    public GameObject menuActive;
+    [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -201,11 +200,6 @@ public class gamemanager : MonoBehaviour
 
     public void SetMenuActive(GameObject menu)
     {
-        if (menuActive != null)
-        {
-            SetMenuInactive();
-        }
-
         menuActive = menu;
         menuActive.SetActive(true);
     }
@@ -219,20 +213,10 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    public void SetDisplayMessageActive(GameObject display)
-    {
-        if (menuActive == null)
-        {
-            menuActive = display;
-            menuActive.SetActive(true);
-        }
-    }
-
     public IEnumerator DisplayMessage(GameObject menu)
     {
-        SetDisplayMessageActive(menu);
+        SetMenuActive(menu);
         yield return new WaitForSeconds(menuDisplayTime);
         SetMenuInactive();
     }
-
 }
