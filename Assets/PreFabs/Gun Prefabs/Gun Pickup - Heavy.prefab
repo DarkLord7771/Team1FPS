@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 189946798970465339}
   - component: {fileID: 1805015456720156994}
   - component: {fileID: 6962877231120574041}
+  - component: {fileID: 6298282849755889472}
   m_Layer: 0
   m_Name: Gun Pickup - Heavy
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: ddb14030c1d0125448950f0ba6649e8b, type: 2}
+  displayTime: 0
 --- !u!33 &6176495539348025122
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -134,3 +136,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 15
   rotationDirection: {x: 0, y: 1, z: 0}
+--- !u!114 &6298282849755889472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957890519902502973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a768ad0d0b63240934aaa3a8eb7ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceVariation: 0.25
+  bounceSpeed: 2

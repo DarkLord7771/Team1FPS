@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Bouncer : MonoBehaviour
 {
-    [SerializeField] float bounceHeight;
-    [SerializeField] float bounceVariation;
-    [SerializeField] float bounceSpeed;
+    [SerializeField] float bounceVariation = 0.25f;
+    [SerializeField] float bounceSpeed = 2;
 
     float startHeight;
     float offsetOfTime;

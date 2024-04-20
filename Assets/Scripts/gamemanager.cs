@@ -38,10 +38,6 @@ public class gamemanager : MonoBehaviour
     [Header("----- UI Variables -----")]
     [SerializeField] float menuDisplayTime;
 
-    // Shop variables
-    [Header("----- Shop -----")]
-    [SerializeField] int cost;
-
     // Wave function
     [Header("----- Wave -----")]
     public int waveCount;
@@ -61,6 +57,8 @@ public class gamemanager : MonoBehaviour
     public bool isPaused;
     public bool isTimerRunning;
 
+    [Header("----- Power Ups -----")]
+    
     // Time
     float timeScaleOrig;
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1833214414124016312}
   - component: {fileID: 7002277433345672606}
   - component: {fileID: 2873327263318398625}
+  - component: {fileID: 2696677523418652748}
   m_Layer: 0
   m_Name: Gun Pickup - Sniper
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: e1a159102bf2ddd4485901c893f3656f, type: 2}
+  displayTime: 0
 --- !u!33 &3469457793413709653
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -134,3 +136,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 15
   rotationDirection: {x: 0, y: 1, z: 0}
+--- !u!114 &2696677523418652748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5923946269443151955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a768ad0d0b63240934aaa3a8eb7ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceVariation: 0.25
+  bounceSpeed: 2

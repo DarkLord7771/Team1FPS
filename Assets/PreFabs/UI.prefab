@@ -439,7 +439,6 @@ MonoBehaviour:
   weaponBuyText: {fileID: 3158268436017655896}
   weaponCostText: {fileID: 2697759983539864127}
   menuDisplayTime: 0
-  cost: 10
   waveCount: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
@@ -11422,7 +11421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &417506542841821068
 Transform:
   m_ObjectHideFlags: 0
@@ -11451,6 +11450,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247b406387dd803479768a4f38206ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shopContentWindow: {fileID: 1141184186622761346}
+  shopPrefab: {fileID: 1044754212417343089, guid: 775d250bc0e64c745a21cbab79e1e0eb, type: 3}
+  shopGoldDisplay: {fileID: 8492659568392450283}
   upgrades:
   - upgradeName: HP
     upgradeValue: 1
@@ -11487,10 +11489,7 @@ MonoBehaviour:
     cost: 10
     purchasedQuantity: 0
     itemRef: {fileID: 0}
-  shopContentWindow: {fileID: 1141184186622761346}
-  shopPrefab: {fileID: 1044754212417343089, guid: 775d250bc0e64c745a21cbab79e1e0eb, type: 3}
   upgradeCostMultiplier: 2
-  shopGoldDisplay: {fileID: 8492659568392450283}
 --- !u!1 &6999754652585607132
 GameObject:
   m_ObjectHideFlags: 0

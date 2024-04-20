@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4065615229061179452}
   - component: {fileID: 2234095226101224735}
   - component: {fileID: 6200650816096636287}
+  - component: {fileID: 2935022849698087831}
   m_Layer: 0
   m_Name: Gun Pickup - SMG
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 6b20f345d1329c54fa5f8f2440cf0158, type: 2}
+  displayTime: 0
 --- !u!33 &3571889194900216617
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -134,3 +136,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 15
   rotationDirection: {x: 0, y: 1, z: 0}
+--- !u!114 &2935022849698087831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135000226420542529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a768ad0d0b63240934aaa3a8eb7ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceVariation: 0.25
+  bounceSpeed: 2

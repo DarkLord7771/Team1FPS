@@ -64,6 +64,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         healthbar.transform.rotation = Camera.main.transform.rotation;
         PursuePlayer();
+        if (!isShooting)
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     void PursuePlayer()
@@ -81,11 +85,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             // If collider is the player start shooting.
             if (hit.collider.CompareTag("Player"))
             {
-                if (!isShooting)
-                {
-                    StartCoroutine(Shoot());
-                }
-                
                 // If remaining distance is less than or equal to stopping distance.
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
@@ -122,7 +121,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
-        SetHealthBar();
+        
 
         if (HP <= 0)
         {
@@ -137,7 +136,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             Destroy(gameObject);
         }
-
+        SetHealthBar();
     }
 
     IEnumerator FlashRed()

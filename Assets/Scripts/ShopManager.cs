@@ -9,11 +9,15 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance;
 
-    public Upgrade[] upgrades;
+    [Header("----- Components -----")]
     [SerializeField] Transform shopContentWindow;
     [SerializeField] GameObject shopPrefab;
-    [SerializeField] int upgradeCostMultiplier;
     [SerializeField] TMP_Text shopGoldDisplay;
+
+    [Header("----- Upgrades -----")]
+    public Upgrade[] upgrades;
+    [SerializeField] int upgradeCostMultiplier;
+    
 
     void Awake()
     {
