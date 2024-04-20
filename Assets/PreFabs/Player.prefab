@@ -439,6 +439,9 @@ MonoBehaviour:
   shootRate: 0.2
   reloadSpeed: 0
   totalGunsAllowed: 2
+  reticle: {fileID: 0}
+  ReticleRecoil: 8
+  settleSpeed: 2
   meleeList: []
   meleeModel: {fileID: 0}
   meleeDamage: 0

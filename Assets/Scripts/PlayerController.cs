@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float reloadSpeed;
     [SerializeField] int totalGunsAllowed;
 
+    [Header("----- Reticle -----")]
+    public Reticle reticle; //UI reticle object into this field in the inspector
+    public float ReticleRecoil;
+    public float settleSpeed;
+
     [Header("----- Melee Stats -----")]
     [SerializeField] List<MeleeStats> meleeList = new List<MeleeStats>();
     [SerializeField] GameObject meleeModel;
@@ -75,10 +80,15 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        HPOrig = HP;
-        crouchOrig = controller.height;
-        
+        // Spawn player at start of game
         SpawnPlayer();
+        // Set player HP
+        HPOrig = HP;
+        // Set player height
+        crouchOrig = controller.height;
+
+        // Set reticle return to center speed
+        reticle.SetReturnToCenterSpeed(settleSpeed);
     }
 
     // Update is called once per frame
@@ -116,7 +126,7 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 StartCoroutine(FlashDamageScreen());
             }
-        }
+        }              
     }
 
     public void SpawnPlayer()
@@ -178,6 +188,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
 
+        // If player is not sprinting, wait longer before playing next step sound.
         if (!isSprinting)
         {
             yield return new WaitForSeconds(0.5f);
@@ -224,6 +235,7 @@ public class PlayerController : MonoBehaviour, IDamage
             else
             {
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+                reticle.Expand(ReticleRecoil);
             }
         }
 
