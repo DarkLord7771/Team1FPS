@@ -7,24 +7,24 @@ using UnityEngine.SceneManagement;
 public class buttonFunctions : MonoBehaviour
 {
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] menuAud;
+    [SerializeField] AudioClip menuAud;
     
 
     public void StartButton()
     {
-        //aud.PlayOneShot(menuAud[0]);
+        aud.PlayOneShot(menuAud);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Resume()
     {
-        //aud.PlayOneShot(menuAud[0]);
+        aud.PlayOneShot(menuAud);
         gamemanager.instance.StateUnPaused();
     }
 
     public void Restart()
     {
-        //aud.PlayOneShot(menuAud[0]);
+        aud.PlayOneShot(menuAud);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gamemanager.instance.StateUnPaused();
     }
@@ -41,7 +41,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void NextWave()
     {
-        //aud.PlayOneShot(menuAud[0]);
+        aud.PlayOneShot(menuAud);
         gamemanager.instance.StateUnPaused();
         gamemanager.instance.StartCountDown();
     }

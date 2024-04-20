@@ -2019,9 +2019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aud: {fileID: 8646979352623130681}
-  menuAud:
-  - {fileID: 8300000, guid: 75e733d88126a114e97edf7669d64482, type: 3}
-  - {fileID: 8300000, guid: c0bab065919cfed46a8a238b32542c5c, type: 3}
+  menuAud: {fileID: 8300000, guid: 75e733d88126a114e97edf7669d64482, type: 3}
 --- !u!82 &8646979352623130681
 AudioSource:
   m_ObjectHideFlags: 0
