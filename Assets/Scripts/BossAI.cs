@@ -10,7 +10,7 @@ public class BossAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent bossAgent;
     [SerializeField] Animator anim;
-    [SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPosB;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject Bullet;
     [SerializeField] AudioSource aud;
@@ -33,7 +33,7 @@ public class BossAI : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audBossHurtVol;
     [SerializeField] AudioClip[] audBossSteps;
     [Range(0, 1)][SerializeField] float audBossStepsVol;
-    [SerializeField] AudioClip[] audEnemyShoot;
+    [SerializeField] AudioClip[] audBossShoot;
     [Range(0, 1)][SerializeField] float audBossShootVol;
 
     bool isShooting;
@@ -50,7 +50,7 @@ public class BossAI : MonoBehaviour, IDamage
         healthbar.gameObject.SetActive(false);
 
         weaponIk = GetComponent<WeaponIk>();
-        weaponIk.SetAimTransform(shootPos);
+        weaponIk.SetAimTransform(shootPosB);
     }
 
     // Update is called once per frame
@@ -83,7 +83,7 @@ public class BossAI : MonoBehaviour, IDamage
             {
                 if (!isShooting)
                 {
-                    StartCoroutine(Shoot());
+                    StartCoroutine(ShootB());
                 }
 
                 // If remaining distance is less than or equal to stopping distance.
@@ -102,18 +102,18 @@ public class BossAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
-    IEnumerator Shoot()
+    IEnumerator ShootB()
     {
         isShooting = true;
         anim.SetTrigger("Firing");
-        aud.PlayOneShot(audEnemyShoot[Random.Range(0, audEnemyShoot.Length)], audBossShootVol);
+        aud.PlayOneShot(audBossShoot[Random.Range(0, audBossShoot.Length)], audBossShootVol);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
-
+    
     public void CreateBullet()
     {
-        Instantiate(Bullet, shootPos.position, shootPos.rotation);
+        Instantiate(Bullet, shootPosB.position, shootPosB.rotation);
     }
 
     public void TakeDamage(int amount)

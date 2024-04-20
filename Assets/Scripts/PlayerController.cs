@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool lowHealth;
     bool flashActive;
 
+
     float crouchOrig;
 
     // Start is called before the first frame update
