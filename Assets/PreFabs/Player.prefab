@@ -426,17 +426,25 @@ MonoBehaviour:
   jumps: 2
   jumpSpeed: 9
   gravity: -15
-  damageUpgrade: 0
   gold: 0
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
+  damageUpgrade: 0
+  shootRateUpgrade: 0
   gunList: []
   gunModel: {fileID: 5505698671203001191}
   shootDamage: 1
   shootDist: 25
   shootRate: 0.2
+  reloadSpeed: 0
   totalGunsAllowed: 2
+  meleeList: []
+  meleeModel: {fileID: 0}
+  meleeDamage: 0
+  meleeDist: 0
+  meleeRate: 0
+  totalmeleesAllowed: 0
   audJump:
   - {fileID: 8300000, guid: d85a44c42001ee84abf0f14c4f772fc7, type: 3}
   - {fileID: 8300000, guid: 1fccee725f5b7d84f9e001048789c563, type: 3}
@@ -461,6 +469,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2ccac76e1ff73f2469bc14140bee9c9f, type: 3}
   - {fileID: 8300000, guid: 27fb701606cdf7d4eb358f2b977962c5, type: 3}
   audStepsVol: 0.25
+  shopSounds:
+  - {fileID: 8300000, guid: c0bab065919cfed46a8a238b32542c5c, type: 3}
+  - {fileID: 8300000, guid: 5acb2ed8ebe40cc4c849e5c8feafd3d0, type: 3}
 --- !u!33 &3774749029946527827
 MeshFilter:
   m_ObjectHideFlags: 0

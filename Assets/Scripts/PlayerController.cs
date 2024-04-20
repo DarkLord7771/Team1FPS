@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audHurtVol;
     [SerializeField] AudioClip[] audSteps;
     [Range(0, 1)][SerializeField] float audStepsVol;
+    [SerializeField] AudioClip[] shopSounds;
 
     int jumpCount;
     Vector3 playerVel;
@@ -466,10 +467,12 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             gold -= upgradeCost;
             gamemanager.instance.UpdateGoldDisplay();
+            aud.PlayOneShot(shopSounds[0]);
             return true;
         }
         else
         {
+            aud.PlayOneShot(shopSounds[1]);
             return false;
         }
     }
