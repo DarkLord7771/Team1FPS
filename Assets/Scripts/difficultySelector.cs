@@ -6,11 +6,14 @@ using UnityEngine;
 public class difficultySelector : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown dropdown;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip menuAud;
 
     public int difficulty;
 
     public void getDropdownValue()
     {
+        aud.PlayOneShot(menuAud);
         difficulty = dropdown.value;
         SaveDifficulty();
         //Debug.Log(difficulty);
