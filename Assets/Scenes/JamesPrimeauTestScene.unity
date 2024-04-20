@@ -186,6 +186,14 @@ PrefabInstance:
       propertyPath: reticle
       value: 
       objectReference: {fileID: 59736741}
+    - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: settleSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: reticleRecoil
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: m_Name
       value: Player

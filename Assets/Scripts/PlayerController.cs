@@ -232,6 +232,7 @@ public class PlayerController : MonoBehaviour, IDamage
             {
                 Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
                 reticle.Expand(reticleRecoil);
+
             }
         }
 
