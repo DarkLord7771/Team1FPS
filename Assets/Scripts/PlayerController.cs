@@ -37,6 +37,14 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] int totalGunsAllowed;
 
+    [Header("----- Melee Stats -----")]
+    [SerializeField] List<MeleeStats> meleeList = new List<MeleeStats>();
+    [SerializeField] GameObject meleeModel;
+    [SerializeField] int meleeDamage;
+    [SerializeField] int meleeDist;
+    [SerializeField] float meleeRate;
+    [SerializeField] int totalmeleesAllowed;
+
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audJump;
     [Range(0, 1)][SerializeField] float audJumpVol;
@@ -330,6 +338,15 @@ public class PlayerController : MonoBehaviour, IDamage
 
         selectedGun = gunList.Count - 1;
         UpdatePlayerUI();
+    }
+
+    public void GetMeleeStats(MeleeStats melee)
+    {
+        meleeList.Add(melee);
+
+        meleeDamage = melee.meleeDamage + damageUpgrade;
+        meleeDist = melee.meleeDist;
+        meleeRate = melee.meleeRate;
     }
 
     void SelectGun()

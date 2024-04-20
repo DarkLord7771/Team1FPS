@@ -8,7 +8,8 @@ public class buttonFunctions : MonoBehaviour
 {
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] menuAud;
-   
+    public GameObject openOptions;
+
     public void StartButton()
     {
         //aud.PlayOneShot(menuAud[0]);
@@ -20,16 +21,6 @@ public class buttonFunctions : MonoBehaviour
         //aud.PlayOneShot(menuAud[0]);
         gamemanager.instance.StateUnPaused();
     }
-
-    /*public void openOptions()
-    {
-
-    }
-
-    public void closeOptions()
-    {
-
-    }*/
 
     public void Restart()
     {
