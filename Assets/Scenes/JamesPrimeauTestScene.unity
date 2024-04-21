@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: c22b9bf52cb07364b9b17d01d4b78794, type: 2}
---- !u!114 &152396021 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3807759262146667361, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-  m_PrefabInstance: {fileID: 924780696}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c30dce9cbde5543b678c010cfc4606, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &404033437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
-      objectReference: {fileID: 152396021}
+      objectReference: {fileID: 501623885}
     - target: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: m_Name
       value: Player
@@ -195,6 +184,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34790a0933b02240a265431401b2b46, type: 3}
+--- !u!114 &501623885 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4095352987110883104, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+  m_PrefabInstance: {fileID: 924780696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c30dce9cbde5543b678c010cfc4606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &749067550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -320,6 +320,14 @@ PrefabInstance:
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x

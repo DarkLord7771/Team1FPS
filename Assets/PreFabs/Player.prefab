@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 9001948008768963193}
   aud: {fileID: 1807330016778002900}
+  powerUp: {fileID: 0}
   HP: 10
   speed: 7
   sprintMod: 1.5
@@ -439,7 +440,7 @@ MonoBehaviour:
   shootRate: 0.2
   reloadSpeed: 0
   totalGunsAllowed: 2
-  reticle: {fileID: 0}
+  reticle: {fileID: 114196371500772810, guid: 025ec2109c7756443babfed53be0e021, type: 3}
   reticleRecoil: 15
   settleSpeed: 1
   meleeList: []
@@ -475,6 +476,9 @@ MonoBehaviour:
   shopSounds:
   - {fileID: 8300000, guid: c0bab065919cfed46a8a238b32542c5c, type: 3}
   - {fileID: 8300000, guid: 5acb2ed8ebe40cc4c849e5c8feafd3d0, type: 3}
+  HPOrig: 0
+  damagePowerUp: 0
+  hasShield: 0
 --- !u!33 &3774749029946527827
 MeshFilter:
   m_ObjectHideFlags: 0
