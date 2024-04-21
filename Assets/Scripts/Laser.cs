@@ -1,20 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    [Header("----- Components -----")]
-    [SerializeField] Rigidbody rb;
+    public LineRenderer beam;
+    public Transform shootPos;
+    public float beamLength;
 
-    [Header("----- Stats -----")]
-    [SerializeField] int speed;
-    [SerializeField] int destroyTime;
-
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        rb.velocity = transform.forward * speed * Time.deltaTime;
-        Destroy(gameObject, destroyTime);
+        beam.enabled = false;
+    }
+
+    void Activate()
+    {
+        beam.enabled = true;
+    }
+
+    void Deactivate()
+    {
+        beam.enabled = false;
+        beam.SetPosition(0, shootPos.position);
+        beam.SetPosition(1, shootPos.position);
+    }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0)) Activate();
+        else if (Input.GetMouseButtonUp(0)) Deactivate();
+    }
+
+    private void FixedUpdate()
+    {
+        if(!beam.enabled) return;
+
+        Ray ray = new Ray(shootPos.position, shootPos.forward);
+        bool cast = Physics.Raycast(ray, out RaycastHit hit, beamLength);
+        Vector3 hitPosition = cast ? hit.point : shootPos.position + shootPos.forward * beamLength;
+
+        beam.SetPosition(0, shootPos.position);
+        beam.SetPosition(0, hitPosition);
     }
 }

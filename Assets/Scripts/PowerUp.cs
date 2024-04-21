@@ -12,11 +12,14 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        powerUpEffect.remainingTime = powerUpEffect.powerUpTime;
+        if (other.CompareTag("Player"))
+        {
+            powerUpEffect.remainingTime = powerUpEffect.powerUpTime;
 
-        gamemanager.instance.PowerUpDisplay.CreateDisplay(powerUpEffect);
+            gamemanager.instance.PowerUpDisplay.CreateDisplay(powerUpEffect);
 
-        gamemanager.instance.playerScript.BeginPowerUp(powerUpEffect);
-        Destroy(gameObject);
+            gamemanager.instance.playerScript.BeginPowerUp(powerUpEffect);
+            Destroy(gameObject);
+        }
     }
 }

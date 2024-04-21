@@ -83,7 +83,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         //Set animator Speed float to lerp to velocity based off of animSpeedTrans.
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
 
-        healthbar.transform.rotation = Camera.main.transform.rotation;
+        if (healthbar != null)
+        {
+            healthbar.transform.rotation = Camera.main.transform.rotation;
+        }
+        
         PursuePlayer();
 
         if (!isShooting && kamikaze == null)
@@ -164,7 +168,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
-        
+        SetHealthBar();
 
         if (HP <= 0)
         {
@@ -187,7 +191,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             
             Destroy(gameObject);
         }
-        SetHealthBar();
     }
 
     IEnumerator FlashRed()
@@ -210,6 +213,9 @@ public class EnemyAI : MonoBehaviour, IDamage
             healthbar.gameObject.SetActive(true);
         }
 
-        healthbar.value = (float)HP / maxHP;
+        if (healthbar != null)
+        {
+            healthbar.value = (float)HP / maxHP;
+        }
     }
 }

@@ -440,7 +440,7 @@ MonoBehaviour:
   weaponCostText: {fileID: 5881638753057009382}
   ammoDisplay: {fileID: 6459329203070818064}
   goldDisplay: {fileID: 2965816527778956922}
-  menuDisplayTime: 0
+  menuDisplayTime: 1
   PowerUpDisplay: {fileID: 8279469764802279687}
   powerUps:
   - {fileID: 4187451117731013062, guid: 3411666eedd9a794684d4927c2221e7f, type: 3}
