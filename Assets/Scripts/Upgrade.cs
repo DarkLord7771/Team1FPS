@@ -6,7 +6,7 @@ using UnityEngine;
 public class Upgrade
 {
     public string upgradeName;
-    public int upgradeValue;
+    public float upgradeValue;
     public int cost;
     [HideInInspector] public int purchasedQuantity;
 }

@@ -6497,6 +6497,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: gold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 2087324209}
@@ -23795,17 +23799,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db3371d587e0924daf060a758dcba6f, type: 3}
---- !u!114 &978514739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 582098161025972096, guid: 8db3371d587e0924daf060a758dcba6f, type: 3}
-  m_PrefabInstance: {fileID: 978514738}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 940939bd36e3c6048b91b3756040bbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &978634340
 GameObject:
   m_ObjectHideFlags: 0
@@ -48233,7 +48226,7 @@ PrefabInstance:
     - target: {fileID: 889400917602182331, guid: 51ed819df9164be488ec3cf1b8ad5f3a, type: 3}
       propertyPath: spawners.Array.data[3]
       value: 
-      objectReference: {fileID: 978514739}
+      objectReference: {fileID: 582098162138569511}
     - target: {fileID: 4700715447356860131, guid: 51ed819df9164be488ec3cf1b8ad5f3a, type: 3}
       propertyPath: m_Name
       value: Wave Manager
@@ -49061,6 +49054,22 @@ PrefabInstance:
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727536547536905639, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: upgrades.Array.data[4].upgradeValue
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727536547536905639, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: upgrades.Array.data[5].upgradeValue
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x

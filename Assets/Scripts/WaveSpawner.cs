@@ -48,6 +48,8 @@ public class WaveSpawner : MonoBehaviour
 
         if(objectSpawned.GetComponent<EnemyAI>())
             objectSpawned.GetComponent<EnemyAI>().whereISpawned = this;
+        else if(objectSpawned.GetComponent<BossAI>())
+            objectSpawned.GetComponent<BossAI>().whereISpawned = this;
 
         yield return new WaitForSeconds(spawnTimer);
         isSpawning = false;

@@ -88,11 +88,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 
         PursuePlayer();
-
-        if (!isShooting && kamikaze == null)
-        {
-            StartCoroutine(Shoot());
-        }
     }
 
     void PursuePlayer()
@@ -110,6 +105,11 @@ public class EnemyAI : MonoBehaviour, IDamage
             // If collider is the player start shooting.
             if (hit.collider.CompareTag("Player"))
             {
+                if (!isShooting && kamikaze == null)
+                {
+                    StartCoroutine(Shoot());
+                }
+
                 // If remaining distance is less than or equal to stopping distance.
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {

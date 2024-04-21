@@ -9620,11 +9620,11 @@ MonoBehaviour:
     cost: 10
     purchasedQuantity: 0
   - upgradeName: Fire Rate
-    upgradeValue: 1
+    upgradeValue: -0.1
     cost: 10
     purchasedQuantity: 0
   - upgradeName: Reload Speed
-    upgradeValue: 1
+    upgradeValue: -0.1
     cost: 10
     purchasedQuantity: 0
   - upgradeName: Ammo Capacity

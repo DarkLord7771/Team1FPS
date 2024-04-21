@@ -564,18 +564,20 @@ MonoBehaviour:
   jumps: 2
   jumpSpeed: 9
   gravity: -15
-  gold: 100
+  gold: 0
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
   damageUpgrade: 0
   shootRateUpgrade: 0
+  ammoCapacityUpgrade: 0
   gunList: []
   gunModel: {fileID: 5505698671203001191}
   shootDamage: 1
   shootDist: 25
   shootRate: 0.2
   reloadSpeed: 0
+  ammoCapacity: 0
   totalGunsAllowed: 2
   beam: {fileID: 0}
   shootPos: {fileID: 3635828597663416159}

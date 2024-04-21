@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.Timeline;
 using Unity.Burst.CompilerServices;
 using UnityEditor;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -33,7 +34,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("----- Player Stat Upgrades -----")]
     public int damageUpgrade;
-    [SerializeField] int shootRateUpgrade;
+    [SerializeField] float shootRateUpgrade;
+    [SerializeField] int ammoCapacityUpgrade;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeField] float reloadSpeed;
+    [SerializeField] int ammoCapacity;
     [SerializeField] int totalGunsAllowed;
 
     [Header("----- Laser Weapon -----")]
@@ -379,7 +382,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             // Update ammo
             gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
-            gamemanager.instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
+            gamemanager.instance.ammoMax.text = ammoCapacity.ToString("F0");
         }
     }
 
@@ -401,6 +404,7 @@ public class PlayerController : MonoBehaviour, IDamage
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
         shootRate = gun.shootRate;
+        ammoCapacity = gun.ammoMax;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -440,6 +444,7 @@ public class PlayerController : MonoBehaviour, IDamage
         shootDamage = gunList[selectedGun].shootDamage;
         shootDist = gunList[selectedGun].shootDist;
         shootRate = gunList[selectedGun].shootRate;
+        ammoCapacity = gunList[selectedGun].ammoMax;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -461,7 +466,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             for (int i = 0; i < gunList.Count; i++)
             {
-                if (gunList[i].ammoCur != gunList[i].ammoMax)
+                if (gunList[i].ammoCur != ammoCapacity)
                 {
                     return true;
                 }
@@ -487,7 +492,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         for (int i = 0; i < gunList.Count; i++)
         {
-            gunList[i].ammoCur = gunList[i].ammoMax;
+            gunList[i].ammoCur = ammoCapacity;
         }
 
         UpdatePlayerUI();
@@ -515,17 +520,22 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeHP(int value)
+    void UpgradeHP(float value)
     {
         if (HPOrig <= maxHP)
         {
-            HPOrig += value;
+            HPOrig += (int)value;
             HP = HPOrig;
             UpdatePlayerUI();
         }
+        
+        if (lowHealth)
+        {
+            lowHealth = false;
+        }
     }
 
-    void UpgradeSpeed(int value)
+    void UpgradeSpeed(float value)
     {
         if (speed <= maxSpeed)
         {
@@ -533,7 +543,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeJumpDistance(int value)
+    void UpgradeJumpDistance(float value)
     {
         if (jumpSpeed <= maxJumpSpeed)
         {
@@ -541,10 +551,26 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeDamage(int value)
+    void UpgradeDamage(float value)
     {
-        damageUpgrade += value;
+        damageUpgrade += (int)value;
         shootDamage += damageUpgrade;
+    }
+
+    void UpgradeFireRate(float value)
+    {
+        shootRate += value;
+    }
+
+    void UpgradeReloadSpeed(float value)
+    {
+        reloadSpeed += value;
+    }
+
+    void UpgradeAmmoCapacity(float value)
+    {
+        ammoCapacity += (int)value;
+        UpdatePlayerUI();
     }
 
     public void ResetDamage()
@@ -579,14 +605,13 @@ public class PlayerController : MonoBehaviour, IDamage
                 UpgradeDamage(upgrade.upgradeValue);
                 break;
             case "Fire Rate":
-                gunList[selectedGun].shootRate += upgrade.upgradeValue;
-                shootRate = gunList[selectedGun].shootRate;
+                UpgradeFireRate(upgrade.upgradeValue);
                 break;
             case "Reload Speed":
-                reloadSpeed += upgrade.upgradeValue;
+                UpgradeReloadSpeed(upgrade.upgradeValue);
                 break;
             case "Ammo Capacity":
-                gunList[selectedGun].ammoMax += upgrade.upgradeValue;
+                UpgradeAmmoCapacity(upgrade.upgradeValue);
                 break;
             default: break;
         }
