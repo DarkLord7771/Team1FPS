@@ -83,7 +83,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         //Set animator Speed float to lerp to velocity based off of animSpeedTrans.
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
 
-        healthbar.transform.rotation = Camera.main.transform.rotation;
+        if (healthbar != null)
+            healthbar.transform.rotation = Camera.main.transform.rotation;
 
 
         PursuePlayer();
@@ -194,6 +195,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 Instantiate(gamemanager.instance.powerUps[Random.Range(0, gamemanager.instance.powerUps.Length - 1)], spawnPosition, transform.rotation);
             }
+
             Destroy(healthbar);
 
             Destroy(gameObject);
