@@ -9,7 +9,6 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip menuAud;
     
-
     public void StartButton()
     {
         aud.PlayOneShot(menuAud);
