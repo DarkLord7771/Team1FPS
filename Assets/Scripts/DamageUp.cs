@@ -7,20 +7,16 @@ public class DamageUp : PowerUpEffects
 {
     [SerializeField] float damageModifier;
 
-    private void Update()
-    {
-
-    }
-
     public override IEnumerator ApplyEffect()
     {
-        if (gamemanager.instance.playerScript.HasGuns())
-        {
-            int startingDamage = gamemanager.instance.playerScript.GetCurrentDamage();
-            gamemanager.instance.playerScript.shootDamage = gamemanager.instance.playerScript.GetCurrentDamage();
-            yield return new WaitForSeconds(powerUpTime);
-            gamemanager.instance.playerScript.shootDamage = gamemanager.instance.playerScript.GetCurrentDamage();
-        }
+        gamemanager.instance.playerScript.damagePowerUp = true;
+        gamemanager.instance.playerScript.SetDamageMultiplier(damageModifier);
+            
+        yield return new WaitForSeconds(powerUpTime);
+        gamemanager.instance.playerScript.damagePowerUp = false;
+        gamemanager.instance.playerScript.SetDamageMultiplier(0);
+        gamemanager.instance.playerScript.ResetDamage();
+        
     }
 
 

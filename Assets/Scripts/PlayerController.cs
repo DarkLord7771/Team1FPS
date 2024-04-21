@@ -8,6 +8,7 @@ using UnityEditor.Build.Content;
 using UnityEngine.UI;
 using System.Net.Http.Headers;
 using System.Linq;
+using UnityEngine.Timeline;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -70,14 +71,16 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 moveDir;
     bool isShooting;
     [HideInInspector] public int HPOrig;
+    public bool damagePowerUp;
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
     bool lowHealth;
     bool flashActive;
     bool isInvincible;
-    public bool hasShield;
-    GameObject shieldRef;
+    [HideInInspector] public bool hasShield;
+    float damageMultiplier;
+
 
     float crouchOrig;
 
@@ -126,6 +129,11 @@ public class PlayerController : MonoBehaviour, IDamage
             if (lowHealth && !flashActive)
             {
                 StartCoroutine(FlashDamageScreen());
+            }
+
+            if (damagePowerUp && gunList.Count > 0)
+            {
+                shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + damageUpgrade) * damageMultiplier);
             }
         }
     }
@@ -471,6 +479,16 @@ public class PlayerController : MonoBehaviour, IDamage
         shootDamage += damageUpgrade;
     }
 
+    public void ResetDamage()
+    {
+        shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
+    }
+
+    public void SetDamageMultiplier(float multiplier)
+    {
+        damageMultiplier = multiplier;
+    }
+
     public void PlayAudio(AudioClip clip, float volume)
     {
         aud.PlayOneShot(clip, volume);
@@ -530,7 +548,6 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         hasShield = !hasShield;
     }
-
 
     public void BeginPowerUp(PowerUpEffects power)
     {
