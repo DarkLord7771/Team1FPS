@@ -6497,10 +6497,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: gold
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 2087324209}
@@ -49054,14 +49050,6 @@ PrefabInstance:
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 5727536547536905639, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-      propertyPath: upgrades.Array.data[4].upgradeValue
-      value: -0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5727536547536905639, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
-      propertyPath: upgrades.Array.data[5].upgradeValue
-      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_SizeDelta.x
