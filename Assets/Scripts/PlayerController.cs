@@ -7,6 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 using UnityEditor.Build.Content;
 using UnityEngine.UI;
 using System.Net.Http.Headers;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int shootRateUpgrade;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] List<GunStats> gunList = new List<GunStats>();
+    public List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     public int shootDamage;
     [SerializeField] int shootDist;
@@ -75,7 +76,8 @@ public class PlayerController : MonoBehaviour, IDamage
     bool lowHealth;
     bool flashActive;
     bool isInvincible;
-    bool hasShield;
+    public bool hasShield;
+    GameObject shieldRef;
 
     float crouchOrig;
 
@@ -251,7 +253,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
-        if (!isInvincible)
+        if (!isInvincible && !hasShield)
         {
             HP -= amount;
             aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
@@ -469,6 +471,11 @@ public class PlayerController : MonoBehaviour, IDamage
         shootDamage += damageUpgrade;
     }
 
+    public void PlayAudio(AudioClip clip, float volume)
+    {
+        aud.PlayOneShot(clip, volume);
+    }
+
     public void BoughtUpgrade(Upgrade upgrade)
     {
         switch (upgrade.upgradeName){
@@ -524,9 +531,12 @@ public class PlayerController : MonoBehaviour, IDamage
         hasShield = !hasShield;
     }
 
+
     public void BeginPowerUp(PowerUpEffects power)
     {
         powerUp = power;
+        aud.PlayOneShot(power.audPowerUp, power.audPowerUpVol);
+        gamemanager.instance.PowerUpDisplay.activePowerUps.Add(powerUp);
         StartCoroutine(powerUp.ApplyEffect());
     }
 

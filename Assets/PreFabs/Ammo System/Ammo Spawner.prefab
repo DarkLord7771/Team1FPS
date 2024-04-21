@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 8037574929528478904}
   - {fileID: 8008589058787769647}
   ammoBox: {fileID: 3735598251166827400, guid: d70bcba7b5696454f8e41dcc25d657af, type: 3}
-  spawnTimer: 10
+  spawnTimer: 30
 --- !u!1001 &3193411021495159589
 PrefabInstance:
   m_ObjectHideFlags: 0

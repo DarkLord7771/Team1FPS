@@ -439,6 +439,7 @@ MonoBehaviour:
   weaponBuyText: {fileID: 2221997800066605025}
   weaponCostText: {fileID: 5881638753057009382}
   menuDisplayTime: 0
+  PowerUpDisplay: {fileID: 8279469764802279687}
   waveCount: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
@@ -11704,37 +11705,30 @@ MonoBehaviour:
     upgradeValue: 1
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   - upgradeName: Speed
     upgradeValue: 1
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   - upgradeName: Jump Distance
     upgradeValue: 1
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   - upgradeName: Damage
     upgradeValue: 1
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   - upgradeName: Fire Rate
     upgradeValue: 1
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   - upgradeName: Reload Speed
     upgradeValue: 1
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   - upgradeName: Ammo Capacity
     upgradeValue: 10
     cost: 10
     purchasedQuantity: 0
-    itemRef: {fileID: 0}
   upgradeCostMultiplier: 2
 --- !u!1 &6999754652585607132
 GameObject:
@@ -13711,6 +13705,7 @@ GameObject:
   - component: {fileID: 6263738382601304727}
   - component: {fileID: 3460693853158756532}
   - component: {fileID: 7895001375108958284}
+  - component: {fileID: 8279469764802279687}
   m_Layer: 5
   m_Name: Power Up Display
   m_TagString: Untagged
@@ -13735,7 +13730,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 94.24548, y: -458.0666}
+  m_AnchoredPosition: {x: 94.245605, y: -458.06665}
   m_SizeDelta: {x: 116.815, y: 744.962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6263738382601304727
@@ -13806,6 +13801,22 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8279469764802279687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424250044063071592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c43eca4eb5c49c43b358442ea5dceb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpContentWindow: {fileID: 5861653504059601345}
+  powerUpPrefab: {fileID: 3207893899305865883, guid: e748c1b95646bb44a8e5427779a8c268, type: 3}
+  powerUpTimer: {fileID: 0}
+  activePowerUps: []
 --- !u!1 &8486248496590059427
 GameObject:
   m_ObjectHideFlags: 0

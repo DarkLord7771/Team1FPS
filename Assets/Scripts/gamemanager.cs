@@ -41,8 +41,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] float menuDisplayTime;
 
     [Header("---- Power Up Components -----")]
-    public Transform powerUpContentWindow;
-    public GameObject powerUpPrefab;
+    public PowerUpDisplay PowerUpDisplay;
 
     // Wave function
     [Header("----- Wave -----")]
@@ -238,33 +237,6 @@ public class gamemanager : MonoBehaviour
         {
             menuActive = display;
             menuActive.SetActive(true);
-        }
-    }
-
-    public void CreatePowerUpDisplay(PowerUpEffects powerUp)
-    {
-        GameObject powerUpDisplay = Instantiate(gamemanager.instance.powerUpPrefab, gamemanager.instance.powerUpContentWindow);
-        Transform powerUpTransform = powerUpDisplay.transform;
-        
-        SetPowerUpSprite(powerUpTransform, powerUp);
-        SetPowerUpText(powerUpTransform, powerUp);
-    }
-
-    private void SetPowerUpSprite(Transform powerUpTransform, PowerUpEffects powerUp)
-    {
-        powerUpTransform.Find("DisplayImage").GetComponent<Image>().sprite = powerUp.powerUpSprite;
-        powerUpTransform.Find("DisplayImage").GetComponent<Image>().color = powerUp.powerUpColor;
-    }
-
-    public void SetPowerUpText(Transform powerUpTransform, PowerUpEffects powerUp)
-    {
-        if (powerUp.powerUpTime > 0)
-        {
-            powerUpTransform.Find("Timer").GetComponent<TMP_Text>().text = powerUp.powerUpTime.ToString("F0") + " s";
-        }
-        else
-        {
-            powerUpTransform.Find("Timer").GetComponent<TMP_Text>().text = string.Empty;
         }
     }
 }

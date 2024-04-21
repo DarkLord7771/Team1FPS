@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f97ad88722df804fb30d2fb5e371511, type: 3}
   m_Name: Damage Up
   m_EditorClassIdentifier: 
-  powerUpSprite: {fileID: 0}
+  audPowerUp: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
+  audPowerUpVol: 0.5
+  powerUpSprite: {fileID: 21300000, guid: b1249f709a3d0af4ea12bd5a9d9865f1, type: 3}
   powerUpColor: {r: 1, g: 0.45150086, b: 0.10849059, a: 1}
-  powerUpTime: 100
-  transformRef: {fileID: 0}
+  powerUpTime: 10
+  powerUpDisplayTransform: {fileID: 0}
+  remainingTime: 78.32725
   damageModifier: 1.5

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 940ca5c764af10e41bc05ec4583095a1, type: 3}
   m_Name: Invincibility
   m_EditorClassIdentifier: 
+  audPowerUp: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
+  audPowerUpVol: 0.5
   powerUpSprite: {fileID: 21300000, guid: bbd3ae698a56d1848a12e5d0176daccc, type: 3}
   powerUpColor: {r: 1, g: 0.92892253, b: 0, a: 1}
   powerUpTime: 5
+  powerUpDisplayTransform: {fileID: 0}
+  timerIsRunning: 0
