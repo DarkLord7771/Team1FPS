@@ -60,9 +60,14 @@ public class BossAI : MonoBehaviour, IDamage
         float animSpeed = bossAgent.velocity.normalized.magnitude;
 
         //Set animator Speed float to lerp to velocity based off of animSpeedTrans.
-        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
+        //anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
 
-        healthbar.transform.rotation = Camera.main.transform.rotation;
+        //healthbar.transform.rotation = Camera.main.transform.rotation;
+        if (!isShooting)
+        {
+            StartCoroutine(ShootB());
+        }
+        
         PursuePlayer();
     }
 
