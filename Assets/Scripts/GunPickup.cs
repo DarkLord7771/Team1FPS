@@ -40,7 +40,7 @@ public class GunPickup : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            gamemanager.instance.SetMenuActive(buyMenu);
+            gamemanager.instance.SetDisplayMessageActive(buyMenu);
             gamemanager.instance.weaponBuyText.text = "Press E to buy " + gun.gunName;
             gamemanager.instance.weaponCostText.text = "[Cost: " + gun.cost + "]";
 
@@ -50,7 +50,11 @@ public class GunPickup : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        gamemanager.instance.SetMenuInactive();
+        if(gamemanager.instance.menuActive == buyMenu)
+        {
+            gamemanager.instance.SetMenuInactive();
+        }
+        
         isNearGun = false;
     }
 }

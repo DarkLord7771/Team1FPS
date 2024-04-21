@@ -44,7 +44,7 @@ public class ShopManager : MonoBehaviour
         GameObject shopButton = Instantiate(shopPrefab, shopContentWindow);
         Transform shopButtonTransform = shopButton.transform;
 
-        upgrade.itemRef = shopButton;
+        //upgrade.itemRef = shopButton;
 
         UpdateButtonText(shopButtonTransform, upgrade);
 

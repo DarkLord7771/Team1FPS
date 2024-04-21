@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Threading;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class gamemanager : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class gamemanager : MonoBehaviour
 
     // UI Menus
     [Header("---- UI Menus -----")]
-    [SerializeField] GameObject menuActive;
+    public GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
@@ -37,6 +39,10 @@ public class gamemanager : MonoBehaviour
 
     [Header("----- UI Variables -----")]
     [SerializeField] float menuDisplayTime;
+
+    [Header("---- Power Up Components -----")]
+    public Transform powerUpContentWindow;
+    public GameObject powerUpPrefab;
 
     // Wave function
     [Header("----- Wave -----")]
@@ -99,6 +105,7 @@ public class gamemanager : MonoBehaviour
                 CountDownComplete();
             }
         }
+
     }
 
     public void StatePaused()
@@ -200,6 +207,11 @@ public class gamemanager : MonoBehaviour
 
     public void SetMenuActive(GameObject menu)
     {
+        if (menuActive != null)
+        {
+            SetMenuInactive();
+        }
+
         menuActive = menu;
         menuActive.SetActive(true);
     }
@@ -218,5 +230,41 @@ public class gamemanager : MonoBehaviour
         SetMenuActive(menu);
         yield return new WaitForSeconds(menuDisplayTime);
         SetMenuInactive();
+    }
+
+    public void SetDisplayMessageActive(GameObject display)
+    {
+        if (menuActive == null)
+        {
+            menuActive = display;
+            menuActive.SetActive(true);
+        }
+    }
+
+    public void CreatePowerUpDisplay(PowerUpEffects powerUp)
+    {
+        GameObject powerUpDisplay = Instantiate(gamemanager.instance.powerUpPrefab, gamemanager.instance.powerUpContentWindow);
+        Transform powerUpTransform = powerUpDisplay.transform;
+        
+        SetPowerUpSprite(powerUpTransform, powerUp);
+        SetPowerUpText(powerUpTransform, powerUp);
+    }
+
+    private void SetPowerUpSprite(Transform powerUpTransform, PowerUpEffects powerUp)
+    {
+        powerUpTransform.Find("DisplayImage").GetComponent<Image>().sprite = powerUp.powerUpSprite;
+        powerUpTransform.Find("DisplayImage").GetComponent<Image>().color = powerUp.powerUpColor;
+    }
+
+    public void SetPowerUpText(Transform powerUpTransform, PowerUpEffects powerUp)
+    {
+        if (powerUp.powerUpTime > 0)
+        {
+            powerUpTransform.Find("Timer").GetComponent<TMP_Text>().text = powerUp.powerUpTime.ToString("F0") + " s";
+        }
+        else
+        {
+            powerUpTransform.Find("Timer").GetComponent<TMP_Text>().text = string.Empty;
+        }
     }
 }

@@ -13,13 +13,14 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
+    [SerializeField] PowerUpEffects powerUp;
 
     [Header("----- Player Stats -----")]
-    [Range(0, 25)][SerializeField] int HP;
-    [Range(1, 10)][SerializeField] float speed;
+    [Range(0, 25)] public int HP;
+    public float speed;
     [Range(1, 3)][SerializeField] float sprintMod;
     [Range(1, 3)][SerializeField] int jumps;
-    [Range(5, 25)][SerializeField] int jumpSpeed;
+    public float jumpSpeed;
     [Range(-15, -35)][SerializeField] int gravity;
     [SerializeField] int gold;
 
@@ -29,13 +30,13 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int maxJumpSpeed;
 
     [Header("----- Player Stat Upgrades -----")]
-    [SerializeField] int damageUpgrade;
+    public int damageUpgrade;
     [SerializeField] int shootRateUpgrade;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
-    [SerializeField] int shootDamage;
+    public int shootDamage;
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     [SerializeField] float reloadSpeed;
@@ -67,13 +68,14 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     Vector3 moveDir;
     bool isShooting;
-    int HPOrig;
+    [HideInInspector] public int HPOrig;
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
     bool lowHealth;
     bool flashActive;
-
+    bool isInvincible;
+    bool hasShield;
 
     float crouchOrig;
 
@@ -249,17 +251,25 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
-        HP -= amount;
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+        if (!isInvincible)
+        {
+            HP -= amount;
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
 
-        if ((float)HP/HPOrig > .3f)
-        {
-            StartCoroutine(FlashDamageScreen());
+            if ((float)HP / HPOrig > .3f)
+            {
+                StartCoroutine(FlashDamageScreen());
+            }
+            else
+            {
+                lowHealth = true;
+            }
         }
-        else
+        else if (hasShield)
         {
-            lowHealth = true;
+            SetShield();
         }
+        
         UpdatePlayerUI();
 
         if (HP <= 0)
@@ -362,6 +372,11 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
     }
 
+    public int GetCurrentDamage()
+    {
+        return gunList[selectedGun].shootDamage + damageUpgrade;
+    }
+
     public bool HasMissingAmmo()
     {
         if (gunList.Count > 0)
@@ -424,24 +439,34 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void UpgradeHP(int value)
     {
-        HPOrig += value;
-        HP = HPOrig;
-        UpdatePlayerUI();
+        if (HPOrig <= maxHP)
+        {
+            HPOrig += value;
+            HP = HPOrig;
+            UpdatePlayerUI();
+        }
     }
 
     void UpgradeSpeed(int value)
     {
-        speed += value;
+        if (speed <= maxSpeed)
+        {
+            speed += value;
+        }
     }
 
     void UpgradeJumpDistance(int value)
     {
-        jumpSpeed += value;
+        if (jumpSpeed <= maxJumpSpeed)
+        {
+            jumpSpeed += value;
+        }
     }
 
     void UpgradeDamage(int value)
     {
         damageUpgrade += value;
+        shootDamage += damageUpgrade;
     }
 
     public void BoughtUpgrade(Upgrade upgrade)
@@ -488,4 +513,22 @@ public class PlayerController : MonoBehaviour, IDamage
             return false;
         }
     }
+
+    public void SetInvincible()
+    {
+        isInvincible = !isInvincible;
+    }
+
+    public void SetShield()
+    {
+        hasShield = !hasShield;
+    }
+
+    public void BeginPowerUp(PowerUpEffects power)
+    {
+        powerUp = power;
+        StartCoroutine(powerUp.ApplyEffect());
+    }
+
+    
 }

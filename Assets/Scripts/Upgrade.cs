@@ -9,5 +9,5 @@ public class Upgrade
     public int upgradeValue;
     public int cost;
     [HideInInspector] public int purchasedQuantity;
-    [HideInInspector] public GameObject itemRef;
+    //[HideInInspector] public GameObject itemRef;
 }
