@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void FixedUpdate()
     {
-        if (beam.enabled)
+        if (beam.enabled && gunList[selectedGun].ammoCur > 0)
         {
             aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume);
             gunList[selectedGun].ammoCur--;
