@@ -42,13 +42,13 @@ public class WaveSpawner : MonoBehaviour
     public IEnumerator Spawn()
     {
         isSpawning = true;
+        spawnCount++;
         int arrayPos = Random.Range(0, spawnPos.Length);
         GameObject objectSpawned = Instantiate(objectToSpawn, spawnPos[arrayPos].transform.position, spawnPos[arrayPos].transform.rotation);
 
         if(objectSpawned.GetComponent<EnemyAI>())
             objectSpawned.GetComponent<EnemyAI>().whereISpawned = this;
 
-        spawnCount++;
         yield return new WaitForSeconds(spawnTimer);
         isSpawning = false;
     }
@@ -61,6 +61,7 @@ public class WaveSpawner : MonoBehaviour
             if(numberKilled >= numToSpawn)
             {
                 startSpawning = false;
+                
                 StartCoroutine(WaveManager.instance.StartWave());
             }
         }

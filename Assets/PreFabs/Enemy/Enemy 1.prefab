@@ -218,10 +218,13 @@ MonoBehaviour:
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   aud: {fileID: 7271575603810649764}
   healthbar: {fileID: 7926742597593473157}
+  Explosion: {fileID: 0}
   whereISpawned: {fileID: 0}
   HP: 10
   shootRate: 1
   gold: 2
+  dropRate: 2
+  offset: 1.5
   faceTargetSpeed: 5
   animSpeedTrans: 8
   audEnemyHurt:

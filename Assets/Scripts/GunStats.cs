@@ -15,6 +15,7 @@ public class GunStats : ScriptableObject
     public float shootRate;
     public int ammoCur;
     public int ammoMax;
+    public bool isLaserWeapon;
 
     // Components
     public GameObject model;

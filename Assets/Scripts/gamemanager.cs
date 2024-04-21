@@ -37,11 +37,16 @@ public class gamemanager : MonoBehaviour
     public TMP_Text weaponBuyText;
     public TMP_Text weaponCostText;
 
+    [Header("----- UI Elements -----")]
+    public GameObject ammoDisplay;
+    [SerializeField] GameObject goldDisplay;
+
     [Header("----- UI Variables -----")]
     [SerializeField] float menuDisplayTime;
 
     [Header("---- Power Up Components -----")]
     public PowerUpDisplay PowerUpDisplay;
+    public GameObject[] powerUps;
 
     // Wave function
     [Header("----- Wave -----")]
@@ -131,6 +136,11 @@ public class gamemanager : MonoBehaviour
         // Update enemy count and text.
         enemyCount += amount;
         enemyCountText.text = enemyCount.ToString("F0");
+
+        if (amount < 0 && !goldDisplay.activeSelf)
+        {
+            goldDisplay.SetActive(true);
+        }
 
         // Update Gold Display.
         UpdateGoldDisplay();

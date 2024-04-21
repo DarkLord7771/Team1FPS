@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int shootRateUpgrade;
 
     [Header("----- Gun Stats -----")]
-    public List<GunStats> gunList = new List<GunStats>();
+    [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     public int shootDamage;
     [SerializeField] int shootDist;
@@ -309,6 +309,11 @@ public class PlayerController : MonoBehaviour, IDamage
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         if (gunList.Count > 0)
         {
+            if (!gamemanager.instance.ammoDisplay.activeSelf)
+            {
+                gamemanager.instance.ammoDisplay.SetActive(true);
+            }
+
             // Update ammo
             gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
             gamemanager.instance.ammoMax.text = gunList[selectedGun].ammoMax.ToString("F0");
@@ -537,6 +542,15 @@ public class PlayerController : MonoBehaviour, IDamage
             aud.PlayOneShot(shopSounds[1]);
             return false;
         }
+    }
+    
+    public bool IsNotLaserWeapon()
+    {
+        if (!gunList[selectedGun].isLaserWeapon)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void SetInvincible()

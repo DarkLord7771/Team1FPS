@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -15,7 +16,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject Bullet;
     [SerializeField] AudioSource aud;
     [SerializeField] Slider healthbar;
-    [SerializeField] GameObject Explosion;
     public WaveSpawner whereISpawned;
 
     [Header("----- Enemy Stats -----")]
@@ -23,6 +23,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     int maxHP;
     [SerializeField] float shootRate;
     [SerializeField] int gold;
+    [SerializeField] int dropRate;
+    [SerializeField] float offset;
+    [SerializeField] int raycastDistance;
 
     [Header("----- Enemy Locomotion -----")]
     [SerializeField] int faceTargetSpeed;
@@ -39,6 +42,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool isShooting;
     Vector3 playerDir;
     WeaponIk weaponIk;
+    Kamikaze kamikaze;
+    Heavy heavy;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +56,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         weaponIk = GetComponent<WeaponIk>();
         weaponIk.SetAimTransform(shootPos);
+
+        TryGetComponent<Kamikaze>(out kamikaze);
+        if (kamikaze != null)
+        {
+            raycastDistance = (int)agent.stoppingDistance;
+        }
+
+        TryGetComponent<Heavy>(out heavy);
     }
 
     // Update is called once per frame
@@ -64,7 +77,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         healthbar.transform.rotation = Camera.main.transform.rotation;
         PursuePlayer();
-        if (!isShooting)
+
+        if (!isShooting && kamikaze == null)
         {
             StartCoroutine(Shoot());
         }
@@ -80,7 +94,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         // Get raycast hit and from head position to player direction and store it in hit.
         RaycastHit hit;
-        if(Physics.Raycast(headPos.position, playerDir, out hit, 15))
+        if(Physics.Raycast(headPos.position, playerDir, out hit, raycastDistance))
         {
             // If collider is the player start shooting.
             if (hit.collider.CompareTag("Player"))
@@ -89,6 +103,14 @@ public class EnemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     FaceTarget();
+                }
+
+                if (kamikaze != null)
+                {
+                    kamikaze.Explode();
+                    gamemanager.instance.playerScript.PlayAudio(kamikaze.explosionClip, kamikaze.volume);
+                    hit.collider.GetComponent<IDamage>().TakeDamage(kamikaze.explosionDamage);
+                    TakeDamage(HP);
                 }
             }
         }
@@ -117,6 +139,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
+        if (heavy != null && !heavy.IsLaserShot())
+        {
+            amount = (int)Mathf.Ceil(amount * 0.5f);
+        }
+
         HP -= amount;
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
@@ -134,6 +161,14 @@ public class EnemyAI : MonoBehaviour, IDamage
                 whereISpawned.UpdateEnemyNumber();
             }
 
+            if (Random.Range(0, dropRate) % dropRate == 0)
+            {
+                Vector3 spawnPosition = transform.position;
+                spawnPosition.y = offset;
+
+                Instantiate(gamemanager.instance.powerUps[Random.Range(0, gamemanager.instance.powerUps.Length - 1)], spawnPosition, transform.rotation);
+            }
+            
             Destroy(gameObject);
         }
         SetHealthBar();

@@ -438,8 +438,17 @@ MonoBehaviour:
   ammoMax: {fileID: 5086765939205960965}
   weaponBuyText: {fileID: 2221997800066605025}
   weaponCostText: {fileID: 5881638753057009382}
+  ammoDisplay: {fileID: 6459329203070818064}
+  goldDisplay: {fileID: 2965816527778956922}
   menuDisplayTime: 0
   PowerUpDisplay: {fileID: 8279469764802279687}
+  powerUps:
+  - {fileID: 4187451117731013062, guid: 3411666eedd9a794684d4927c2221e7f, type: 3}
+  - {fileID: 6612513976172269390, guid: 8d8245e34a56b644e9a1fffa32823ded, type: 3}
+  - {fileID: 1433157850009775954, guid: 4a1bed2623446a9409910de1314d35ed, type: 3}
+  - {fileID: 8495360441620662091, guid: 757b7c3095e3c6a408ac15f72738f8be, type: 3}
+  - {fileID: 3332834584955575502, guid: 2496a0c6a27f7f449a287ee82e232a72, type: 3}
+  - {fileID: 8265989444555657867, guid: 45f204fccd55eab439654f5e24440e18, type: 3}
   waveCount: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
@@ -4221,7 +4230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8708359490054070943
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10930,7 +10939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7152379303480632806
 RectTransform:
   m_ObjectHideFlags: 0

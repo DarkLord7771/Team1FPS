@@ -1,0 +1,502 @@
+fileFormatVersion: 2
+guid: beb471716407de54fb5df4a955a4bbed
+timeCreated: 1490197504
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bip001
+    100002: Bip001 Head
+    100004: Bip001 L Calf
+    100006: Bip001 L Clavicle
+    100008: Bip001 L Foot
+    100010: Bip001 L Forearm
+    100012: Bip001 L Hand
+    100014: Bip001 L Thigh
+    100016: Bip001 L Toe0
+    100018: Bip001 L UpperArm
+    100020: Bip001 Neck
+    100022: Bip001 Pelvis
+    100024: Bip001 R Calf
+    100026: Bip001 R Clavicle
+    100028: Bip001 R Foot
+    100030: Bip001 R Forearm
+    100032: Bip001 R Hand
+    100034: Bip001 R Thigh
+    100036: Bip001 R Toe0
+    100038: Bip001 R UpperArm
+    100040: Bip001 Spine
+    100042: British_infantry_Body
+    100044: British_infantry_head_B
+    100046: Object001
+    100048: //RootNode
+    100050: weapon_springfield
+    100052: WeaponContainer
+    100054: British_infantry_head_A
+    100056: weapon_springfield_scoped
+    100058: weapon_sten
+    100060: Bip001 Footsteps
+    100062: Bip001 HeadNub
+    100064: Bip001 L Toe0Nub
+    100066: Bip001 R Toe0Nub
+    100068: British_infantry_head_C
+    100070: Backpack_container
+    100072: British_body_infantry
+    100074: British_body_medic
+    100076: British_equip_infantry
+    100078: British_equip_medic
+    100080: British_head
+    100082: British_head_brass
+    100084: British_head_medic
+    100086: British_head_officer
+    100088: British_head_soldier
+    100090: British_head_gasmask
+    100092: WeaponContainer_L
+    400000: Bip001
+    400002: Bip001 Head
+    400004: Bip001 L Calf
+    400006: Bip001 L Clavicle
+    400008: Bip001 L Foot
+    400010: Bip001 L Forearm
+    400012: Bip001 L Hand
+    400014: Bip001 L Thigh
+    400016: Bip001 L Toe0
+    400018: Bip001 L UpperArm
+    400020: Bip001 Neck
+    400022: Bip001 Pelvis
+    400024: Bip001 R Calf
+    400026: Bip001 R Clavicle
+    400028: Bip001 R Foot
+    400030: Bip001 R Forearm
+    400032: Bip001 R Hand
+    400034: Bip001 R Thigh
+    400036: Bip001 R Toe0
+    400038: Bip001 R UpperArm
+    400040: Bip001 Spine
+    400042: British_infantry_Body
+    400044: British_infantry_head_B
+    400046: Object001
+    400048: //RootNode
+    400050: weapon_springfield
+    400052: WeaponContainer
+    400054: British_infantry_head_A
+    400056: weapon_springfield_scoped
+    400058: weapon_sten
+    400060: Bip001 Footsteps
+    400062: Bip001 HeadNub
+    400064: Bip001 L Toe0Nub
+    400066: Bip001 R Toe0Nub
+    400068: British_infantry_head_C
+    400070: Backpack_container
+    400072: British_body_infantry
+    400074: British_body_medic
+    400076: British_equip_infantry
+    400078: British_equip_medic
+    400080: British_head
+    400082: British_head_brass
+    400084: British_head_medic
+    400086: British_head_officer
+    400088: British_head_soldier
+    400090: British_head_gasmask
+    400092: WeaponContainer_L
+    2300000: Object001
+    2300002: weapon_springfield
+    2300004: weapon_springfield_scoped
+    2300006: weapon_sten
+    3300000: Object001
+    3300002: weapon_springfield
+    3300004: weapon_springfield_scoped
+    3300006: weapon_sten
+    4300000: weapon_springfield
+    4300002: Object001
+    4300004: British_infantry_Body
+    4300006: British_infantry_head_B
+    4300008: British_infantry_head_A
+    4300010: weapon_springfield_scoped
+    4300012: weapon_sten
+    4300014: British_infantry_head_C
+    4300016: British_body_infantry
+    4300018: British_head_soldier
+    4300020: British_head_officer
+    4300022: British_head
+    4300024: British_equip_infantry
+    4300026: British_head_medic
+    4300028: British_equip_medic
+    4300030: British_body_medic
+    4300032: British_head_brass
+    4300034: British_head_gasmask
+    9500000: //RootNode
+    13700000: British_infantry_Body
+    13700002: British_infantry_head_B
+    13700004: British_infantry_head_A
+    13700006: British_infantry_head_C
+    13700008: British_body_infantry
+    13700010: British_body_medic
+    13700012: British_equip_infantry
+    13700014: British_equip_medic
+    13700016: British_head
+    13700018: British_head_brass
+    13700020: British_head_medic
+    13700022: British_head_officer
+    13700024: British_head_soldier
+    13700026: British_head_gasmask
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Bip001 Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 L Toe0
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip001 R Toe0
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: ToonSoldier_WW2_Brit_Infantry(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Bip001
+      position: {x: -0.0000000015575574, y: 1.2235097, z: -0.035632763}
+      rotation: {x: -0.50000036, y: 0.49999964, z: 0.49999964, w: 0.50000036}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      transformModified: 1
+    - name: Bip001 Pelvis
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -0.5, y: 0.5, z: 0.4999993, w: 0.5000007}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: Bip001 L Thigh
+      position: {x: 0.00000029067994, y: 0.00000031793118, z: 0.18964642}
+      rotation: {x: -0.018307237, y: 0.9997613, z: -0.00059398776, w: 0.0119095305}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+      transformModified: 1
+    - name: Bip001 L Calf
+      position: {x: -0.6094277, y: 0, z: 0}
+      rotation: {x: -4.8417294e-11, y: 9.3006314e-10, z: 0.051987674, w: 0.99864775}
+      scale: {x: 1, y: 1.0000002, z: 1}
+      transformModified: 1
+    - name: Bip001 L Foot
+      position: {x: -0.42799026, y: 0, z: 0.000000024223327}
+      rotation: {x: 0.000026681035, y: 0.011924975, z: -0.03369277, w: 0.9993611}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: Bip001 L Toe0
+      position: {x: -0.18122193, y: 0.27282667, z: 0}
+      rotation: {x: 0.00000001545435, y: -0.000000015454269, z: -0.70710677, w: 0.7071068}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: Bip001 R Thigh
+      position: {x: -0.00000029067994, y: -0.0000002089262, z: -0.18964642}
+      rotation: {x: -0.01830722, y: 0.9997613, z: 0.00059262826, w: -0.011911031}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+      transformModified: 1
+    - name: Bip001 R Calf
+      position: {x: -0.6094277, y: 0, z: 0}
+      rotation: {x: 1.5496353e-10, y: -0.0000000018571001, z: 0.051987678, w: 0.99864775}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+      transformModified: 1
+    - name: Bip001 R Foot
+      position: {x: -0.42799026, y: 0, z: 0.000000024223327}
+      rotation: {x: -0.000026684054, y: -0.011925061, z: -0.033692773, w: 0.9993611}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: Bip001 R Toe0
+      position: {x: -0.18122193, y: 0.27282667, z: 0}
+      rotation: {x: -0.00000001545431, y: 0.00000001545431, z: -0.7071068, w: 0.7071068}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+      transformModified: 1
+    - name: Bip001 Spine
+      position: {x: -0.16117437, y: -0.00047135568, z: 0.0000002241702}
+      rotation: {x: -0.0000020895977, y: 0.00000070293004, z: -0.0138396, w: 0.9999043}
+      scale: {x: 1, y: 1, z: 0.99999994}
+      transformModified: 1
+    - name: Bip001 L Clavicle
+      position: {x: -0.5700798, y: 0.0006133286, z: 0.12735398}
+      rotation: {x: -0.66463333, y: -0.041312627, z: 0.7451422, w: 0.036317963}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Bip001 L UpperArm
+      position: {x: -0.24968553, y: -0.000000006055832, z: 0}
+      rotation: {x: 0.041812375, y: 0.019144958, z: 0.044521544, w: 0.9979495}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+      transformModified: 1
+    - name: Bip001 L Forearm
+      position: {x: -0.4044886, y: -0.000000024223327, z: -0.00000019378662}
+      rotation: {x: -0.001009657, y: 0.016383352, z: 0.039168905, w: 0.9990978}
+      scale: {x: 1.0000002, y: 1, z: 1}
+      transformModified: 1
+    - name: Bip001 L Hand
+      position: {x: -0.34167933, y: 0, z: 0}
+      rotation: {x: -0.7068252, y: -0.0000000013165645, z: 0.0000000013176134, w: 0.7073883}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Bip001 Neck
+      position: {x: -0.6330967, y: 0.005227303, z: 0.0000000056535367}
+      rotation: {x: -2.5382543e-14, y: 0.0000003401339, z: -0.12263264, w: 0.99245214}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      transformModified: 1
+    - name: Bip001 Head
+      position: {x: -0.12508887, y: 0.000000048446655, z: 0}
+      rotation: {x: -3.488248e-13, y: -0.0000003781971, z: 0.13635668, w: 0.99065983}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Bip001 R Clavicle
+      position: {x: -0.5700798, y: 0.0006140371, z: -0.12735397}
+      rotation: {x: 0.66463345, y: 0.041310567, z: 0.74514234, w: 0.036316104}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      transformModified: 1
+    - name: Bip001 R UpperArm
+      position: {x: -0.24968551, y: 0.000000006055832, z: 0}
+      rotation: {x: -0.0418124, y: -0.019143596, z: 0.044521317, w: 0.9979495}
+      scale: {x: 1, y: 0.99999994, z: 1.0000002}
+      transformModified: 1
+    - name: Bip001 R Forearm
+      position: {x: -0.4044885, y: 0, z: 0.00000019378662}
+      rotation: {x: 0.0010096726, y: -0.016382854, z: 0.0391693, w: 0.9990978}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+      transformModified: 1
+    - name: Bip001 R Hand
+      position: {x: -0.34167925, y: 0, z: -0.00000019378662}
+      rotation: {x: 0.70681936, y: -0.003165527, z: 0.0026063574, w: 0.7073822}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+      transformModified: 1
+    - name: WeaponContainer
+      position: {x: -0.22053517, y: 0.024589777, z: 0.14772432}
+      rotation: {x: -0.079513475, y: 0.663656, z: 0.74313986, w: -0.031328555}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      transformModified: 1
+    - name: Object001
+      position: {x: -0.00000009689331, y: -0.000000048446655, z: 0}
+      rotation: {x: 0.00000006332993, y: 0.0000000055879426, z: 0.00000011350494,
+        w: 1}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+      transformModified: 1
+    - name: weapon_springfield
+      position: {x: 0.00000009689331, y: -0.00000009689331, z: -0.00000058135987}
+      rotation: {x: 1.0733599e-17, y: 0.00000001117587, z: -9.604263e-10, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+      transformModified: 1
+    - name: British_infantry_Body
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: British_infantry_head_B
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

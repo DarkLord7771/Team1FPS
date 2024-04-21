@@ -1,0 +1,1 @@
+To use this weapons on any ToonSoldier, just drag and drop it into the WeaponContainer bone, and set all transform and rotation values to 0.
