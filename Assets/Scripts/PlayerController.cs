@@ -8,6 +8,7 @@ using UnityEditor.Build.Content;
 using UnityEngine.UI;
 using UnityEngine.Timeline;
 using Unity.Burst.CompilerServices;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -70,19 +71,20 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(0, 1)][SerializeField] float audStepsVol;
     [SerializeField] AudioClip[] shopSounds;
 
+    [HideInInspector] public int HPOrig;
+    [HideInInspector] public bool damagePowerUp;
+    [HideInInspector] public bool hasShield;
+    [HideInInspector] public bool lowHealth;
     int jumpCount;
     Vector3 playerVel;
     Vector3 moveDir;
     bool isShooting;
-    [HideInInspector] public int HPOrig;
-    public bool damagePowerUp;
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
-    bool lowHealth;
     bool flashActive;
     bool isInvincible;
-    [HideInInspector] public bool hasShield;
+
     float damageMultiplier;
 
     float crouchOrig;
@@ -96,6 +98,12 @@ public class PlayerController : MonoBehaviour, IDamage
         SpawnPlayer();
 
         reticle.SetReturnToCenterSpeed(settleSpeed);
+
+        beam = GetComponentInChildren<LineRenderer>();
+        beam.enabled = false;
+        beam.SetPosition(0, shootPos.position);
+        beam.SetPosition(1, shootPos.position);
+
     }
 
     // Update is called once per frame
@@ -111,13 +119,27 @@ public class PlayerController : MonoBehaviour, IDamage
 
             SelectGun();
 
-            if (gunList.Count > 0 && Input.GetButton("Fire1") && !isShooting && gunList[selectedGun].ammoCur > 0)
+            if (gunList.Count > 0 && !gunList[selectedGun].isLaserWeapon)
             {
-                StartCoroutine(Shoot());
+                if (Input.GetButton("Fire1") && !isShooting && gunList[selectedGun].ammoCur > 0)
+                {
+                    StartCoroutine(Shoot());
+                }
+                else if (gunList.Count > 0 && Input.GetButtonDown("Fire1") && !isShooting && gunList[selectedGun].ammoCur <= 0)
+                {
+                    StartCoroutine(NoAmmoFlash());
+                }
             }
-            else if (gunList.Count > 0 && Input.GetButtonDown("Fire1") && !isShooting && gunList[selectedGun].ammoCur <= 0)
+            else if (gunList.Count > 0 && gunList[selectedGun].isLaserWeapon && beam != null)
             {
-                StartCoroutine(NoAmmoFlash());
+                if (Input.GetButton("Fire1"))
+                {
+                    ActivateBeam();
+                }
+                if (Input.GetButtonUp("Fire1"))
+                {
+                    DeactivateBeam();
+                }
             }
 
             if ((controller.collisionFlags & CollisionFlags.Above) != 0)
@@ -135,6 +157,48 @@ public class PlayerController : MonoBehaviour, IDamage
                 shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + damageUpgrade) * damageMultiplier);
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (beam.enabled)
+        {
+            aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume);
+            gunList[selectedGun].ammoCur--;
+            UpdatePlayerUI();
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, shootDist))
+            {
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+                if (hit.transform != transform && dmg != null && !hit.collider.CompareTag("Player"))
+                {
+                    dmg.TakeDamage(shootDamage);
+                }
+                else
+                {
+                    Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
+                    reticle.Expand(reticleRecoil);
+
+                }
+            }
+
+            beam.SetPosition(0, shootPos.position);
+            beam.SetPosition(1, shootPos.position + shootPos.forward * beamLength);
+        }
+    }
+    
+    private void ActivateBeam()
+    {
+        beam.enabled = true;
+    }
+
+    private void DeactivateBeam()
+    {
+        beam.enabled = false;
+
+        beam.SetPosition(0, shootPos.position);
+        beam.SetPosition(1, shootPos.position);
     }
 
     public void SpawnPlayer()

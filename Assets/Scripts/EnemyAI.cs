@@ -83,11 +83,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         //Set animator Speed float to lerp to velocity based off of animSpeedTrans.
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, animSpeedTrans * Time.deltaTime));
 
-        if (healthbar != null)
-        {
-            healthbar.transform.rotation = Camera.main.transform.rotation;
-        }
-        
+        healthbar.transform.rotation = Camera.main.transform.rotation;
+
+
         PursuePlayer();
 
         if (!isShooting && kamikaze == null)
@@ -106,7 +104,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         // Get raycast hit and from head position to player direction and store it in hit.
         RaycastHit hit;
-        if(Physics.Raycast(headPos.position, playerDir, out hit, raycastDistance))
+        if (Physics.Raycast(headPos.position, playerDir, out hit, raycastDistance))
         {
             // If collider is the player start shooting.
             if (hit.collider.CompareTag("Player"))
@@ -155,20 +153,28 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             amount = (int)Mathf.Ceil(amount * 0.5f);
         }
-        else if (isShielded && !gamemanager.instance.playerScript.IsNotLaserWeapon())
+        else if (isShielded)
         {
-            amount *= 2;
+            if (!gamemanager.instance.playerScript.IsNotLaserWeapon())
+            {
+                amount *= 2;
+            }
+            else
+            {
+                amount /= 2;
+            }
         }
-        else if (isShielded && !gamemanager.instance.playerScript.IsNotLaserWeapon())
-        {
-            amount /= 2;
-        }
+
 
         HP -= amount;
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
-        SetHealthBar();
+
+        if (healthbar != null)
+        {
+            SetHealthBar();
+        }
 
         if (HP <= 0)
         {
@@ -188,7 +194,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 Instantiate(gamemanager.instance.powerUps[Random.Range(0, gamemanager.instance.powerUps.Length - 1)], spawnPosition, transform.rotation);
             }
-            
+            Destroy(healthbar);
+
             Destroy(gameObject);
         }
     }
@@ -213,9 +220,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             healthbar.gameObject.SetActive(true);
         }
 
-        if (healthbar != null)
-        {
-            healthbar.value = (float)HP / maxHP;
-        }
+        healthbar.value = (float)HP / maxHP;
     }
 }

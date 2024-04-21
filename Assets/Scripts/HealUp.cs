@@ -16,6 +16,11 @@ public class HealUp : MonoBehaviour
             gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.HPOrig;
             gamemanager.instance.playerScript.UpdatePlayerUI();
 
+            if (gamemanager.instance.playerScript.lowHealth)
+            {
+                gamemanager.instance.playerScript.lowHealth = false;
+            }
+
             Destroy(gameObject);
         }
     }
