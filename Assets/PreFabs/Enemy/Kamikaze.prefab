@@ -1343,6 +1343,7 @@ MonoBehaviour:
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   aud: {fileID: 8669247816760302645}
   healthbar: {fileID: 4747334566031872064}
+  shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}
   whereISpawned: {fileID: 0}
   HP: 1
   shootRate: 0
@@ -1350,6 +1351,7 @@ MonoBehaviour:
   dropRate: 17
   offset: 0
   raycastDistance: 0
+  isShielded: 0
   faceTargetSpeed: 5
   animSpeedTrans: 8
   audEnemyHurt:

@@ -265,7 +265,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -286,6 +286,37 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &4913473390425492866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3635828597663416159}
+  m_Layer: 6
+  m_Name: Shoot Pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3635828597663416159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913473390425492866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0.694}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5727256360581765017}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5505698671203001191
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +347,8 @@ Transform:
   m_LocalPosition: {x: 0.242, y: -0.487, z: 1.07}
   m_LocalScale: {x: 2.61, y: 1.65, z: 2.86}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3635828597663416159}
   m_Father: {fileID: 6096385356382716046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4875634354784556692
@@ -421,6 +453,7 @@ MonoBehaviour:
   controller: {fileID: 9001948008768963193}
   aud: {fileID: 1807330016778002900}
   powerUp: {fileID: 0}
+  shootPos: {fileID: 4913473390425492866}
   HP: 10
   speed: 7
   sprintMod: 1.5
@@ -440,6 +473,7 @@ MonoBehaviour:
   shootRate: 0.2
   reloadSpeed: 0
   totalGunsAllowed: 2
+  laserEffect: {fileID: 695472323560070290, guid: 0f5f621725b56534abbfa83a367ae3a1, type: 3}
   reticle: {fileID: 114196371500772810, guid: 025ec2109c7756443babfed53be0e021, type: 3}
   reticleRecoil: 15
   settleSpeed: 1

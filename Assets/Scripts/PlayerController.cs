@@ -6,9 +6,8 @@ using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using UnityEditor.Build.Content;
 using UnityEngine.UI;
-using System.Net.Http.Headers;
-using System.Linq;
 using UnityEngine.Timeline;
+using Unity.Burst.CompilerServices;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -44,6 +43,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float reloadSpeed;
     [SerializeField] int totalGunsAllowed;
 
+    [Header("----- Laser Weapon -----")]
+    [SerializeField] LineRenderer beam;
+    [SerializeField] private Transform shootPos;
+    [SerializeField] private float beamLength;
+    
     [Header("----- Reticle -----")]
     public Reticle reticle;
     public float reticleRecoil;
@@ -81,7 +85,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [HideInInspector] public bool hasShield;
     float damageMultiplier;
 
-
     float crouchOrig;
 
     // Start is called before the first frame update
@@ -89,7 +92,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         crouchOrig = controller.height;
-        
+
         SpawnPlayer();
 
         reticle.SetReturnToCenterSpeed(settleSpeed);
@@ -98,10 +101,6 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        #if UNITY_EDITOR
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        #endif
-
         if (!gamemanager.instance.isPaused)
         {
             Sprint();
@@ -179,7 +178,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Sprint()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed *= sprintMod;
             isSprinting = true;
@@ -231,12 +230,11 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
 
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-            
 
-            if (hit.transform != transform && dmg != null)
+            if (hit.transform != transform && dmg != null && !hit.collider.CompareTag("Player"))
             {
                 dmg.TakeDamage(shootDamage);
             }
@@ -251,6 +249,7 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
+
 
     IEnumerator NoAmmoFlash()
     {
@@ -279,7 +278,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             SetShield();
         }
-        
+
         UpdatePlayerUI();
 
         if (HP <= 0)
@@ -330,7 +329,7 @@ public class PlayerController : MonoBehaviour, IDamage
         gold += amount;
     }
 
-   
+
     public void GetGunStats(GunStats gun)
     {
         gunList.Add(gun);
@@ -396,7 +395,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (gunList.Count > 0)
         {
-            for  (int i = 0; i < gunList.Count; i++)
+            for (int i = 0; i < gunList.Count; i++)
             {
                 if (gunList[i].ammoCur != gunList[i].ammoMax)
                 {
@@ -422,7 +421,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void RefillAmmo()
     {
-        for (int i = 0;i < gunList.Count; i++)
+        for (int i = 0; i < gunList.Count; i++)
         {
             gunList[i].ammoCur = gunList[i].ammoMax;
         }
@@ -501,7 +500,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void BoughtUpgrade(Upgrade upgrade)
     {
-        switch (upgrade.upgradeName){
+        switch (upgrade.upgradeName)
+        {
             case "HP":
                 UpgradeHP(upgrade.upgradeValue);
                 break;
@@ -543,7 +543,7 @@ public class PlayerController : MonoBehaviour, IDamage
             return false;
         }
     }
-    
+
     public bool IsNotLaserWeapon()
     {
         if (!gunList[selectedGun].isLaserWeapon)
@@ -571,5 +571,5 @@ public class PlayerController : MonoBehaviour, IDamage
         StartCoroutine(powerUp.ApplyEffect());
     }
 
-    
+
 }

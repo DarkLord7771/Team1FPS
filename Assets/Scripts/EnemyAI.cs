@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
@@ -16,6 +17,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject Bullet;
     [SerializeField] AudioSource aud;
     [SerializeField] Slider healthbar;
+    [SerializeField] GameObject shield;
     public WaveSpawner whereISpawned;
 
     [Header("----- Enemy Stats -----")]
@@ -26,6 +28,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int dropRate;
     [SerializeField] float offset;
     [SerializeField] int raycastDistance;
+    [SerializeField] bool isShielded;
 
     [Header("----- Enemy Locomotion -----")]
     [SerializeField] int faceTargetSpeed;
@@ -64,6 +67,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
 
         TryGetComponent<Heavy>(out heavy);
+
+        if (isShielded)
+        {
+            Instantiate(shield, transform);
+        }
     }
 
     // Update is called once per frame
@@ -142,6 +150,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (heavy != null && !heavy.IsLaserShot())
         {
             amount = (int)Mathf.Ceil(amount * 0.5f);
+        }
+        else if (isShielded && !gamemanager.instance.playerScript.IsNotLaserWeapon())
+        {
+            amount *= 2;
+        }
+        else if (isShielded && !gamemanager.instance.playerScript.IsNotLaserWeapon())
+        {
+            amount /= 2;
         }
 
         HP -= amount;
