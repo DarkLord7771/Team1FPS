@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
-using Unity.VisualScripting.Dependencies.Sqlite;
+// using TMPro.EditorUtilities;
+// using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
