@@ -18,12 +18,12 @@ MonoBehaviour:
   shootSoundVolume: 0.5
   gunTransform: {fileID: 6260362319205163398, guid: 5d58863f31079fe458906602de73350c, type: 3}
   gunName: Laser Pistol
-  cost: 15
+  cost: 50
   isLaserWeapon: 1
-  baseDamage: 2
+  baseDamage: 1
   baseShootDist: 30
   baseFireRate: 0.3
-  shootDamage: 0
+  shootDamage: 2
   shootDist: 30
   fireRate: 0.3
   ammoCur: 350

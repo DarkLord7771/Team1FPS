@@ -18,13 +18,13 @@ MonoBehaviour:
   shootSoundVolume: 2
   gunTransform: {fileID: 1685143986250811442, guid: 30f5f16191de66840a2b9db902f2a6dc, type: 3}
   gunName: Sniper
-  cost: 35
+  cost: 75
   isLaserWeapon: 0
   baseDamage: 7
   baseShootDist: 1000
   baseFireRate: 5
-  shootDamage: 0
-  shootDist: 0
-  fireRate: 0
+  shootDamage: 7
+  shootDist: 1000
+  fireRate: 5
   ammoCur: 30
   ammoMax: 30
