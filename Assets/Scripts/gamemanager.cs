@@ -73,7 +73,7 @@ public class gamemanager : MonoBehaviour
     float timeScaleOrig;
 
     // Start is called before the first frame update
-    void Awake()
+    void Awake() //Initial startup
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -112,7 +112,7 @@ public class gamemanager : MonoBehaviour
 
     }
 
-    public void StatePaused()
+    public void StatePaused() //Sets game to paused state
     {
         isPaused = !isPaused;
         Time.timeScale = 0;
@@ -122,7 +122,7 @@ public class gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void StateUnPaused()
+    public void StateUnPaused() //Sets game to unpaused state
     {
         isPaused = !isPaused;
         Time.timeScale = timeScaleOrig;
@@ -131,7 +131,7 @@ public class gamemanager : MonoBehaviour
         SetMenuInactive();
     }
 
-    public void UpdateGameGoal(int amount)
+    public void UpdateGameGoal(int amount) //Sets enemy count, updates enemy count UI, updates gold display, checks for wave completion and start
     {
         // Update enemy count and text.
         enemyCount += amount;
@@ -162,7 +162,7 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    public void PlayerHasLost()
+    public void PlayerHasLost() //Triggers when player has lost
     {
         StatePaused();
         SetMenuActive(menuLose);
@@ -172,34 +172,34 @@ public class gamemanager : MonoBehaviour
     {
         StatePaused();
         SetMenuActive(menuWin);
-    }
+    } //Triggers when player has won
 
-    public void PlayerBeatWave()
+    public void PlayerBeatWave() //Opens shop at end of wave
     {
         StatePaused();
         SetMenuActive(menuShop);
     }
 
-    public void StartCountDown()
+    public void StartCountDown() //Starts countdown for next wave after button is pressed
     {
         SetMenuActive(menuWaveTimer);
         timeLeft = WaveManager.instance.timeBetweenSpawns;
         isTimerRunning = true;
     }
 
-    public void UpdateGoldDisplay()
+    public void UpdateGoldDisplay() //Updates gold display in UI
     {
         goldTotalText.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
         ShopManager.instance.UpdateShopGold();
     }
 
-    public void SetWaveCount()
+    public void SetWaveCount() //Sets wave count and updates wave count UI
     {
         waveCount = WaveManager.instance.spawners.Length - 1;
         waveCountText.text = waveCount.ToString("F0");
     }
 
-    void UpdateTimer(float currentTime)
+    void UpdateTimer(float currentTime) //Updates countdown timer
     {
         currentTime += 1;
 
@@ -212,7 +212,7 @@ public class gamemanager : MonoBehaviour
     {
         isTimerRunning = false;
         SetMenuInactive();
-    }
+    }//Turns off timer popup when timer is done
 
     public void SetMenuActive(GameObject menu)
     {
@@ -223,7 +223,7 @@ public class gamemanager : MonoBehaviour
 
         menuActive = menu;
         menuActive.SetActive(true);
-    }
+    } //Sets passed in menu to active
 
     public void SetMenuInactive()
     {
@@ -232,16 +232,16 @@ public class gamemanager : MonoBehaviour
             menuActive.SetActive(false);
             menuActive = null;
         }
-    }
+    } //Sets current active menu to inactive
 
-    public IEnumerator DisplayMessage(GameObject menu)
+    public IEnumerator DisplayMessage(GameObject menu) //Displays message on screen for set amount of time
     {
         SetMenuActive(menu);
         yield return new WaitForSeconds(menuDisplayTime);
         SetMenuInactive();
     }
 
-    public void SetDisplayMessageActive(GameObject display)
+    public void SetDisplayMessageActive(GameObject display)  //Turns on Display menu for countdown timer
     {
         if (menuActive == null)
         {

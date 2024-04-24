@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public void SpawnPlayer()
+    public void SpawnPlayer() //Spawns player 
     {
         HP = HPOrig;
         UpdatePlayerUI();
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.enabled = true;
     }
 
-    void Movement()
+    void Movement() //Movement controller
     {
         if (controller.isGrounded)
         {
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void Sprint()
+    void Sprint() //Sprint action
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator PlaySteps()
+    IEnumerator PlaySteps() //Plays step sounds to audio
     {
         playingSteps = true;
 
@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour, IDamage
         playingSteps = false;
     }
 
-    void Crouch()
+    void Crouch() //Crouch action
     {
         if (Input.GetKey(KeyCode.C))
         {
@@ -216,14 +216,14 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator NoAmmoFlash()
+    IEnumerator NoAmmoFlash() //Flashes when player has no ammo
     {
         gamemanager.instance.menuNoAmmo.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         gamemanager.instance.menuNoAmmo.SetActive(false);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount) //Take damage function
     {
         if (!isInvincible && !hasShield)
         {
@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator FlashDamageScreen()
+    IEnumerator FlashDamageScreen() //Flashes effects when damage is taken
     {
         flashActive = true;
 
@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour, IDamage
         flashActive = false;
     }
 
-    public void UpdatePlayerUI()
+    public void UpdatePlayerUI() //Updates Plyaer HP and Ammo UI
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         if (gunList.Count > 0)
@@ -284,17 +284,17 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public int GetGold()
+    public int GetGold() //Gold getter
     {
         return gold;
     }
 
-    public void SetGold(int amount)
+    public void SetGold(int amount) //Gold setter
     {
         gold += amount;
     }
 
-    public void GetGunStats(GunStats gun)
+    public void GetGunStats(GunStats gun) //Get gun stats function for when weapon is picked up
     {
         gunList.Add(gun);
 
@@ -313,7 +313,7 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
     }
 
-    public void GetMeleeStats(MeleeStats melee)
+    public void GetMeleeStats(MeleeStats melee) //Gets melee stats for melee weapon
     {
         meleeList.Add(melee);
 
@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour, IDamage
         meleeRate = melee.meleeRate;
     }
 
-    void SelectGun()
+    void SelectGun() //Gun selection
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
         {
@@ -336,7 +336,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void ChangeGun()
+    void ChangeGun() //Changes gun stats when new weapon is selected
     {
         shootDamage = gunList[selectedGun].shootDamage;
         shootDist = gunList[selectedGun].shootDist;
@@ -352,12 +352,12 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
     }
 
-    public int GetCurrentDamage()
+    public int GetCurrentDamage() //Gives current damage from gun and modifiers
     {
         return (int)gunList[selectedGun].shootDamage + damageUpgrade;
     }
 
-    public bool HasMissingAmmo()
+    public bool HasMissingAmmo() //checks to see if weapons in inventory are empty
     {
         if (gunList.Count > 0)
         {
@@ -373,7 +373,7 @@ public class PlayerController : MonoBehaviour, IDamage
         return false;
     }
 
-    public bool HasGuns()
+    public bool HasGuns() //Checks to make sure player has weapons
     {
         if (gunList.Count > 0)
         {
@@ -385,7 +385,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public void RefillAmmo()
+    public void RefillAmmo() //Refills ammo when triggered
     {
         for (int i = 0; i < gunList.Count; i++)
         {
@@ -395,7 +395,7 @@ public class PlayerController : MonoBehaviour, IDamage
         UpdatePlayerUI();
     }
 
-    public bool BuyGun(GunStats gun)
+    public bool BuyGun(GunStats gun) //Buy gun from world
     {
         if (gold >= gun.cost)
         {
@@ -409,7 +409,7 @@ public class PlayerController : MonoBehaviour, IDamage
         return false;
     }
 
-    void RemoveGun()
+    void RemoveGun() //Removes first gun when more than allowed are picked up
     {
         if (gunList.Count >= totalGunsAllowed)
         {
@@ -417,7 +417,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeHP(float value)
+    void UpgradeHP(float value) //Upgrades player HP
     {
         if (HPOrig <= maxHP)
         {
@@ -432,7 +432,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeSpeed(float value)
+    void UpgradeSpeed(float value) //Upgrades player Speed
     {
         if (speed <= maxSpeed)
         {
@@ -440,7 +440,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeJumpDistance(float value)
+    void UpgradeJumpDistance(float value) //Upgrades player Jump Distance
     {
         if (jumpSpeed <= maxJumpSpeed)
         {
@@ -448,44 +448,44 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    void UpgradeDamage(float value)
+    void UpgradeDamage(float value) //Upgrades player Damage
     {
         damageUpgrade += (int)value;
         shootDamage += damageUpgrade;
     }
 
-    void UpgradeFireRate(float value)
+    void UpgradeFireRate(float value) //Upgrades player Fire Rate
     {
         shootRate += value;
     }
 
-    void UpgradeReloadSpeed(float value)
+    void UpgradeReloadSpeed(float value) //Upgrades player Reload Speed
     {
         reloadSpeed += value;
     }
 
-    void UpgradeAmmoCapacity(float value)
+    void UpgradeAmmoCapacity(float value) //Upgrades player ammo capacity
     {
         ammoCapacity += (int)value;
         UpdatePlayerUI();
     }
 
-    public void ResetDamage()
+    public void ResetDamage() //Updates weapon damage
     {
         shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
     }
 
-    public void SetDamageMultiplier(float multiplier)
+    public void SetDamageMultiplier(float multiplier) //Sets damage multiplier
     {
         damageMultiplier = multiplier;
     }
 
-    public void PlayAudio(AudioClip clip, float volume)
+    public void PlayAudio(AudioClip clip, float volume) //Plays passed audio clip
     {
         aud.PlayOneShot(clip, volume);
     }
 
-    public void BoughtUpgrade(Upgrade upgrade)
+    public void BoughtUpgrade(Upgrade upgrade)  //Determines which upgrade has been purchased
     {
         switch (upgrade.upgradeName)
         {
@@ -514,7 +514,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public bool TrySpendingGold(int upgradeCost)
+    public bool TrySpendingGold(int upgradeCost) //Checks to see if gold can be spent
     {
         if (gold >= upgradeCost)
         {
@@ -530,7 +530,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public bool IsNotLaserWeapon()
+    public bool IsNotLaserWeapon()  //Checks to see if weapon is laser weapon
     {
         if (!gunList[selectedGun].isLaserWeapon)
         {
@@ -539,17 +539,17 @@ public class PlayerController : MonoBehaviour, IDamage
         return false;
     }
 
-    public void SetInvincible()
+    public void SetInvincible() //Sets the player temporarily invincible
     {
         isInvincible = !isInvincible;
     }
 
-    public void SetShield()
+    public void SetShield() //Give player a shield
     {
         hasShield = !hasShield;
     }
 
-    public void BeginPowerUp(PowerUpEffects power)
+    public void BeginPowerUp(PowerUpEffects power) //Sets active power up on pickup
     {
         powerUp = power;
         aud.PlayOneShot(power.audPowerUp, power.audPowerUpVol);
