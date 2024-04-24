@@ -113,7 +113,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
             SelectGun();
 
-            gun.FireWeapon(aud, gunList[selectedGun], gunList.Count);
+            if (gunList.Count > 0)
+            {
+                gun.FireWeapon(aud, gunList[selectedGun], gunList.Count);
+            }
+
             UpdatePlayerUI();
 
             if ((controller.collisionFlags & CollisionFlags.Above) != 0)

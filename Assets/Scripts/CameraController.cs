@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] int sensitivity;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
-    [SerializeField] GameObject gunObj;
 
     float rotX;
 
@@ -33,8 +32,6 @@ public class CameraController : MonoBehaviour
         rotX = Mathf.Clamp(rotX, lockVertMin, lockVertMax);
 
         transform.localRotation = Quaternion.Euler(rotX, 0, 0);
-        //gunObj.transform.rotation = Quaternion.Euler(rotX, 0, 0);
-
 
         transform.parent.Rotate(Vector3.up * mouseX);
     }

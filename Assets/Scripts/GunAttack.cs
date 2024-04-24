@@ -11,16 +11,14 @@ public class GunAttack : MonoBehaviour
 
     public void FireWeapon(AudioSource source, GunStats gun, int gunCount)
     {
-        if (gunCount > 0)
+
+        if (Input.GetButton("Fire1") && !isShooting && gun.ammoCur > 0)
         {
-            if (Input.GetButton("Fire1") && !isShooting && gun.ammoCur > 0)
-            {
-                StartCoroutine(Shoot(source, gun));
-            }
-            else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
-            {
-                //StartCoroutine(NoAmmoFlash());
-            }
+            StartCoroutine(Shoot(source, gun));
+        }
+        else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
+        {
+            //StartCoroutine(NoAmmoFlash());
         }
     }
 

@@ -18,7 +18,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuShop;
-    [SerializeField] GameObject menuStart;
+    //[SerializeField] GameObject menuStart;
     [SerializeField] GameObject menuWaveTimer;
     public GameObject menuFullAmmo;
     public GameObject menuNoAmmo;

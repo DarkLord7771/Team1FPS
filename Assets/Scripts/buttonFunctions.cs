@@ -28,7 +28,7 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.StateUnPaused();
     }
 
-    public void Quit()
+    public void Exit()
     {
         PlayerPrefs.DeleteKey("Difficulty");
     #if UNITY_EDITOR
@@ -36,6 +36,12 @@ public class buttonFunctions : MonoBehaviour
     #else
         Application.Quit();
     #endif
+    }
+
+    public void QuitToMenu()
+    {
+        aud.PlayOneShot(menuAud);
+        SceneManager.LoadScene(0);
     }
 
     public void NextWave()
