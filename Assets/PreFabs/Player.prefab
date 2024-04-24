@@ -107,7 +107,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -328,6 +328,8 @@ GameObject:
   - component: {fileID: 5727256360581765017}
   - component: {fileID: 4875634354784556692}
   - component: {fileID: 2205369062290094447}
+  - component: {fileID: 6781782391145008139}
+  - component: {fileID: 4171242967695071732}
   - component: {fileID: 2349272196234506760}
   m_Layer: 6
   m_Name: Gun Model
@@ -402,6 +404,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6781782391145008139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505698671203001191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc2f1773f9856d4589e51d7f5432015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laser: {fileID: 4171242967695071732}
+  shootPos: {fileID: 3635828597663416159}
+  isShooting: 0
+--- !u!114 &4171242967695071732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505698671203001191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b1af69e87420b4da6ce92734fd6488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beam: {fileID: 0}
+  beamDisplayTime: 0.025
 --- !u!120 &2349272196234506760
 LineRenderer:
   serializedVersion: 2
@@ -516,7 +547,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1803175517322764891}
   - component: {fileID: 6467950498167673251}
-  - component: {fileID: 2448074087435500542}
   - component: {fileID: 3774749029946527827}
   - component: {fileID: 688489229017537685}
   - component: {fileID: 9001948008768963193}
@@ -565,7 +595,7 @@ MonoBehaviour:
   jumps: 2
   jumpSpeed: 9
   gravity: -15
-  gold: 0
+  gold: 20
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
@@ -580,7 +610,7 @@ MonoBehaviour:
   reloadSpeed: 0
   ammoCapacity: 0
   totalGunsAllowed: 2
-  gun: {fileID: 2448074087435500542}
+  gun: {fileID: 6781782391145008139}
   reticle: {fileID: 0}
   reticleRecoil: 15
   settleSpeed: 1
@@ -621,22 +651,6 @@ MonoBehaviour:
   damagePowerUp: 0
   hasShield: 0
   lowHealth: 0
---- !u!114 &2448074087435500542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9006794672349309869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccc2f1773f9856d4589e51d7f5432015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beam: {fileID: 0}
-  shootPos: {fileID: 0}
-  beamLength: 50
-  isShooting: 0
 --- !u!33 &3774749029946527827
 MeshFilter:
   m_ObjectHideFlags: 0
