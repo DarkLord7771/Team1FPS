@@ -669,7 +669,7 @@ MonoBehaviour:
   healthbar: {fileID: 9196928070825378259}
   shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}
   whereISpawned: {fileID: 0}
-  HP: 3
+  HP: 5
   shootRate: 1
   gold: 5
   dropRate: 7
@@ -1225,7 +1225,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1dcd4ea457239f049875b7a7c8f9509e, type: 2}
+  - {fileID: 2100000, guid: 7d4d4e55acd3d724ead91e11a0e1825f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

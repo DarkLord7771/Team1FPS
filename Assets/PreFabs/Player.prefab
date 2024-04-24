@@ -423,7 +423,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 75b82b89b5abb6e4e857ce3de2737220, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -516,6 +516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1803175517322764891}
   - component: {fileID: 6467950498167673251}
+  - component: {fileID: 2448074087435500542}
   - component: {fileID: 3774749029946527827}
   - component: {fileID: 688489229017537685}
   - component: {fileID: 9001948008768963193}
@@ -579,9 +580,7 @@ MonoBehaviour:
   reloadSpeed: 0
   ammoCapacity: 0
   totalGunsAllowed: 2
-  beam: {fileID: 0}
-  shootPos: {fileID: 3635828597663416159}
-  beamLength: 50
+  gun: {fileID: 2448074087435500542}
   reticle: {fileID: 0}
   reticleRecoil: 15
   settleSpeed: 1
@@ -622,6 +621,22 @@ MonoBehaviour:
   damagePowerUp: 0
   hasShield: 0
   lowHealth: 0
+--- !u!114 &2448074087435500542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006794672349309869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc2f1773f9856d4589e51d7f5432015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beam: {fileID: 0}
+  shootPos: {fileID: 0}
+  beamLength: 50
+  isShooting: 0
 --- !u!33 &3774749029946527827
 MeshFilter:
   m_ObjectHideFlags: 0

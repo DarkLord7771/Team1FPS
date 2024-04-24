@@ -3,45 +3,42 @@ using System.Collections.Generic;
 // using TMPro.EditorUtilities;
 // using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Laser : MonoBehaviour
 {
-    public LineRenderer beam;
-    public Transform shootPos;
-    public float beamLength;
+    [SerializeField] LineRenderer beam;
+    [SerializeField] float beamDisplayTime;
 
     void Awake()
     {
+        beam = GetComponentInChildren<LineRenderer>();
         beam.enabled = false;
     }
 
     void Activate()
     {
+        // Enable line renderer.
         beam.enabled = true;
     }
 
-    void Deactivate()
+    void Deactivate(Transform shootPos)
     {
+        // Disable line renderer and reset shoot position.
         beam.enabled = false;
         beam.SetPosition(0, shootPos.position);
         beam.SetPosition(1, shootPos.position);
     }
 
-    private void Update()
+    public IEnumerator ShootBeam(GunStats gun, Transform shootPos)
     {
-        if(Input.GetMouseButtonDown(0)) Activate();
-        else if (Input.GetMouseButtonUp(0)) Deactivate();
-    }
+        Activate();
+        
+        // Set beam start to shoot position and shoot position forward.
+        beam.SetPosition(0, shootPos.position + shootPos.forward * Time.deltaTime);
+        beam.SetPosition(1, shootPos.position + shootPos.forward * gun.shootDist);
 
-    private void FixedUpdate()
-    {
-        if(!beam.enabled) return;
-
-        Ray ray = new Ray(shootPos.position, shootPos.forward);
-        bool cast = Physics.Raycast(ray, out RaycastHit hit, beamLength);
-        Vector3 hitPosition = cast ? hit.point : shootPos.position + shootPos.forward * beamLength;
-
-        beam.SetPosition(0, shootPos.position);
-        beam.SetPosition(0, hitPosition);
+        yield return new WaitForSeconds(beamDisplayTime);
+        Deactivate(shootPos);
     }
 }

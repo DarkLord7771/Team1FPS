@@ -13,7 +13,8 @@ public class GunPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gun.ammoCur = gun.ammoMax;
+        SetBaseStats();
+
         buyMenu = gamemanager.instance.menuBuyGun;
         notEnoughMenu = gamemanager.instance.menuNotEnoughGold;
     }
@@ -33,6 +34,14 @@ public class GunPickup : MonoBehaviour
                 StartCoroutine(gamemanager.instance.DisplayMessage(notEnoughMenu));
             }
         }
+    }
+
+    void SetBaseStats()
+    {
+        gun.shootDamage = gun.baseDamage;
+        gun.shootDist = gun.baseShootDist;
+        gun.fireRate = gun.baseFireRate;
+        gun.ammoCur = gun.ammoMax;
     }
 
     void OnTriggerEnter(Collider other)

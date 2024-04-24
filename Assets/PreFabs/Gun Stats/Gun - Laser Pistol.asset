@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4a5109b1cf1d9a41aaea7a8cd679311, type: 3}
-  m_Name: Gun - Sniper
+  m_Name: Gun - Laser Pistol
   m_EditorClassIdentifier: 
-  model: {fileID: 919132149155446097, guid: 6c4bf6ac7b934e84996ec899ee0fc016, type: 3}
+  model: {fileID: 138408, guid: a66d64962dad7b441b895147b3616981, type: 3}
   hitEffect: {fileID: 8796357564163452080, guid: 345ad314e763e2c41b1904b892610767, type: 3}
-  shootSound: {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
-  shootSoundVolume: 2
-  gunTransform: {fileID: 1685143986250811442, guid: 30f5f16191de66840a2b9db902f2a6dc, type: 3}
-  gunName: Sniper
-  cost: 35
-  isLaserWeapon: 0
-  baseDamage: 7
-  baseShootDist: 1000
-  baseFireRate: 5
+  shootSound: {fileID: 8300000, guid: fe0517963bab1f2408ed3ea853166bbb, type: 3}
+  shootSoundVolume: 0.5
+  gunTransform: {fileID: 6260362319205163398, guid: 5d58863f31079fe458906602de73350c, type: 3}
+  gunName: Laser Pistol
+  cost: 15
+  isLaserWeapon: 1
+  baseDamage: 2
+  baseShootDist: 30
+  baseFireRate: 0.3
   shootDamage: 0
-  shootDist: 0
-  fireRate: 0
-  ammoCur: 30
-  ammoMax: 30
+  shootDist: 30
+  fireRate: 0.3
+  ammoCur: 350
+  ammoMax: 350

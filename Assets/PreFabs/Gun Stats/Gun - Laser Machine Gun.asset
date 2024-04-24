@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4a5109b1cf1d9a41aaea7a8cd679311, type: 3}
-  m_Name: Gun - Pistol
+  m_Name: Gun - Laser Machine Gun
   m_EditorClassIdentifier: 
-  model: {fileID: 5494625650325380441, guid: 944f765b84e4c4012876d61f4dfc7b5a, type: 3}
+  model: {fileID: 101050, guid: 2c3055a11cb8f8540a181490a4c34b7c, type: 3}
   hitEffect: {fileID: 8796357564163452080, guid: 345ad314e763e2c41b1904b892610767, type: 3}
-  shootSound: {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
-  shootSoundVolume: 2
-  gunTransform: {fileID: 7171945351083091572, guid: 10668c7806fdfa54dafb736c3d5c2c29, type: 3}
-  gunName: Pistol
-  cost: 0
-  isLaserWeapon: 0
-  baseDamage: 3
+  shootSound: {fileID: 8300000, guid: fe0517963bab1f2408ed3ea853166bbb, type: 3}
+  shootSoundVolume: 0.5
+  gunTransform: {fileID: 1368787358746379083, guid: 65f19e6914298764f99ab1b84eda82ef, type: 3}
+  gunName: Laser Machine Gun
+  cost: 20
+  isLaserWeapon: 1
+  baseDamage: 1
   baseShootDist: 50
-  baseFireRate: 1
-  shootDamage: 1
+  baseFireRate: 0.1
+  shootDamage: 0
   shootDist: 50
-  fireRate: 1
-  ammoCur: 46
-  ammoMax: 48
+  fireRate: 0.1
+  ammoCur: 250
+  ammoMax: 250

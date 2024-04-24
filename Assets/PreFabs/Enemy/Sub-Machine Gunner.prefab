@@ -882,7 +882,7 @@ MonoBehaviour:
   healthbar: {fileID: 2926648243753305101}
   shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}
   whereISpawned: {fileID: 0}
-  HP: 2
+  HP: 3
   shootRate: 0.8
   gold: 3
   dropRate: 13

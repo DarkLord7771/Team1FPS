@@ -15,6 +15,7 @@ public class MeleePickup : MonoBehaviour
         melee.ammoCur = melee.ammoMax;
         buyMenu = gamemanager.instance.menuBuyMelee;
         notEnoughMenu = gamemanager.instance.menuNotEnoughGold;
+        isNearMelee = false;
     }
 
     // Update is called once per frame

@@ -41,16 +41,14 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] List<GunStats> gunList = new List<GunStats>();
     [SerializeField] GameObject gunModel;
     public int shootDamage;
-    [SerializeField] int shootDist;
+    [SerializeField] float shootDist;
     [SerializeField] float shootRate;
     [SerializeField] float reloadSpeed;
     [SerializeField] int ammoCapacity;
     [SerializeField] int totalGunsAllowed;
 
     [Header("----- Laser Weapon -----")]
-    [SerializeField] LineRenderer beam;
-    [SerializeField] private Transform shootPos;
-    [SerializeField] private float beamLength;
+    [SerializeField] GunAttack gun;
     
     [Header("----- Reticle -----")]
     public Reticle reticle;
@@ -81,7 +79,6 @@ public class PlayerController : MonoBehaviour, IDamage
     int jumpCount;
     Vector3 playerVel;
     Vector3 moveDir;
-    bool isShooting;
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
@@ -101,12 +98,6 @@ public class PlayerController : MonoBehaviour, IDamage
         SpawnPlayer();
 
         reticle.SetReturnToCenterSpeed(settleSpeed);
-
-        beam = GetComponentInChildren<LineRenderer>();
-        beam.enabled = false;
-        beam.SetPosition(0, shootPos.position);
-        beam.SetPosition(1, shootPos.position);
-
     }
 
     // Update is called once per frame
@@ -122,28 +113,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
             SelectGun();
 
-            if (gunList.Count > 0 && !gunList[selectedGun].isLaserWeapon)
-            {
-                if (Input.GetButton("Fire1") && !isShooting && gunList[selectedGun].ammoCur > 0)
-                {
-                    StartCoroutine(Shoot());
-                }
-                else if (gunList.Count > 0 && Input.GetButtonDown("Fire1") && !isShooting && gunList[selectedGun].ammoCur <= 0)
-                {
-                    StartCoroutine(NoAmmoFlash());
-                }
-            }
-            else if (gunList.Count > 0 && gunList[selectedGun].isLaserWeapon && beam != null)
-            {
-                if (Input.GetButton("Fire1"))
-                {
-                    ActivateBeam();
-                }
-                if (Input.GetButtonUp("Fire1"))
-                {
-                    DeactivateBeam();
-                }
-            }
+            gun.FireWeapon(aud, gunList[selectedGun], gunList.Count);
+            UpdatePlayerUI();
 
             if ((controller.collisionFlags & CollisionFlags.Above) != 0)
             {
@@ -160,48 +131,6 @@ public class PlayerController : MonoBehaviour, IDamage
                 shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + damageUpgrade) * damageMultiplier);
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-        if (beam.enabled && gunList[selectedGun].ammoCur > 0)
-        {
-            aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume);
-            gunList[selectedGun].ammoCur--;
-            UpdatePlayerUI();
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, shootDist))
-            {
-                IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-                if (hit.transform != transform && dmg != null && !hit.collider.CompareTag("Player"))
-                {
-                    dmg.TakeDamage(shootDamage);
-                }
-                else
-                {
-                    Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
-                    reticle.Expand(reticleRecoil);
-
-                }
-            }
-
-            beam.SetPosition(0, shootPos.position);
-            beam.SetPosition(1, shootPos.position + shootPos.forward * beamLength);
-        }
-    }
-    
-    private void ActivateBeam()
-    {
-        beam.enabled = true;
-    }
-
-    private void DeactivateBeam()
-    {
-        beam.enabled = false;
-
-        beam.SetPosition(0, shootPos.position);
-        beam.SetPosition(1, shootPos.position);
     }
 
     public void SpawnPlayer()
@@ -287,37 +216,6 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator Shoot()
-    {
-        isShooting = true;
-        aud.PlayOneShot(gunList[selectedGun].shootSound, gunList[selectedGun].shootSoundVolume);
-
-        // Update Ammo Count
-        gunList[selectedGun].ammoCur--;
-        UpdatePlayerUI();
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-        {
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (hit.transform != transform && dmg != null && !hit.collider.CompareTag("Player"))
-            {
-                dmg.TakeDamage(shootDamage);
-            }
-            else
-            {
-                Instantiate(gunList[selectedGun].hitEffect, hit.point, gunList[selectedGun].hitEffect.transform.rotation);
-                reticle.Expand(reticleRecoil);
-
-            }
-        }
-
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
-    }
-
-
     IEnumerator NoAmmoFlash()
     {
         gamemanager.instance.menuNoAmmo.SetActive(true);
@@ -396,14 +294,13 @@ public class PlayerController : MonoBehaviour, IDamage
         gold += amount;
     }
 
-
     public void GetGunStats(GunStats gun)
     {
         gunList.Add(gun);
 
         shootDamage = gun.shootDamage;
         shootDist = gun.shootDist;
-        shootRate = gun.shootRate;
+        shootRate = gun.fireRate;
         ammoCapacity = gun.ammoMax;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
@@ -443,7 +340,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         shootDamage = gunList[selectedGun].shootDamage;
         shootDist = gunList[selectedGun].shootDist;
-        shootRate = gunList[selectedGun].shootRate;
+        shootRate = gunList[selectedGun].fireRate;
         ammoCapacity = gunList[selectedGun].ammoMax;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
@@ -457,7 +354,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public int GetCurrentDamage()
     {
-        return gunList[selectedGun].shootDamage + damageUpgrade;
+        return (int)gunList[selectedGun].shootDamage + damageUpgrade;
     }
 
     public bool HasMissingAmmo()
