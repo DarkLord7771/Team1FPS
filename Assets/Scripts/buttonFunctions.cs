@@ -12,7 +12,7 @@ public class buttonFunctions : MonoBehaviour
     public void StartButton()
     {
         aud.PlayOneShot(menuAud);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Prototype 2 Map");
     }
 
     public void Resume()

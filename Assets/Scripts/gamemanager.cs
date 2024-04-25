@@ -195,7 +195,7 @@ public class gamemanager : MonoBehaviour
 
     public void SetWaveCount() //Sets wave count and updates wave count UI
     {
-        waveCount = WaveManager.instance.spawners.Length - 1;
+        waveCount = WaveManager.instance.spawners.Length;
         waveCountText.text = waveCount.ToString("F0");
     }
 

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881078823651809854}
-  - component: {fileID: 8080432946976364879}
   - component: {fileID: 6251126739678344490}
   - component: {fileID: 4001022238776668889}
   - component: {fileID: 8437640336110333634}
@@ -36,24 +35,6 @@ Transform:
   - {fileID: 543619251364455058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8080432946976364879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2389688218710471397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca40fb8be2c89c4c8e6daaa75de1694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy1: {fileID: 6704630055685082423, guid: 020909f2d3ce1b84ba047ae854619328, type: 3}
-  enemy2: {fileID: 8224396561651298955, guid: e74c086d550acbb4095c0e9b99bf6aa4, type: 3}
-  enemy3: {fileID: 1431519249827120968, guid: 8424db8f93f74fc4c8eee8f1cea862ec, type: 3}
-  spawnPoint: {fileID: 6578891616138228785}
-  spawnDelay: 1
-  enemyCount: 3
 --- !u!33 &6251126739678344490
 MeshFilter:
   m_ObjectHideFlags: 0
