@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Prototype 1/Level 1.unity
     guid: 415b8b64f917bfe4b93dd3e791fa7a92
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FINAL BUILD/Main Menu.unity
     guid: b3aa8447ecd67114284b04f78a7d79de
   - enabled: 1
@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FINAL BUILD/Credits.unity
     guid: c783c1ececc0bb243b16f9909c7b4c56
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FINAL BUILD/Main Menu.unity
     guid: b3aa8447ecd67114284b04f78a7d79de
   - enabled: 0
