@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] AudioSource aud;
     [SerializeField] PowerUpEffects powerUp;
 
     [Header("----- Player Stats -----")]
@@ -63,15 +62,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float meleeRate;
     [SerializeField] int totalmeleesAllowed;
 
-    [Header("----- Audio -----")]
-    [SerializeField] AudioClip[] audJump;
-    [Range(0, 1)][SerializeField] float audJumpVol;
-    [SerializeField] AudioClip[] audHurt;
-    [Range(0, 1)][SerializeField] float audHurtVol;
-    [SerializeField] AudioClip[] audSteps;
-    [Range(0, 1)][SerializeField] float audStepsVol;
-    [SerializeField] AudioClip[] shopSounds;
-
     [HideInInspector] public int HPOrig;
     [HideInInspector] public bool damagePowerUp;
     [HideInInspector] public bool hasShield;
@@ -115,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (gunList.Count > 0)
             {
-                gun.FireWeapon(aud, gunList[selectedGun], gunList.Count);
+                gun.FireWeapon(AudioManager.instance.aud, gunList[selectedGun], gunList.Count);
             }
 
             UpdatePlayerUI();
@@ -164,7 +154,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
-            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
+            AudioManager.instance.PlayJumpSound();
         }
 
         playerVel.y += gravity * Time.deltaTime;
@@ -194,7 +184,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         playingSteps = true;
 
-        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], audStepsVol);
+        AudioManager.instance.PlayFootSteps();
 
         if (!isSprinting)
         {
@@ -232,7 +222,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (!isInvincible && !hasShield)
         {
             HP -= amount;
-            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            AudioManager.instance.PlayHurtSound();
 
             if ((float)HP / HPOrig > .3f)
             {
@@ -484,11 +474,6 @@ public class PlayerController : MonoBehaviour, IDamage
         damageMultiplier = multiplier;
     }
 
-    public void PlayAudio(AudioClip clip, float volume) //Plays passed audio clip
-    {
-        aud.PlayOneShot(clip, volume);
-    }
-
     public void BoughtUpgrade(Upgrade upgrade)  //Determines which upgrade has been purchased
     {
         switch (upgrade.upgradeName)
@@ -524,12 +509,12 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             gold -= upgradeCost;
             gamemanager.instance.UpdateGoldDisplay();
-            aud.PlayOneShot(shopSounds[0]);
+            AudioManager.instance.PlayShopGoodSound();
             return true;
         }
         else
         {
-            aud.PlayOneShot(shopSounds[1]);
+            AudioManager.instance.PlayShopBadSound();
             return false;
         }
     }
@@ -556,7 +541,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void BeginPowerUp(PowerUpEffects power) //Sets active power up on pickup
     {
         powerUp = power;
-        aud.PlayOneShot(power.audPowerUp, power.audPowerUpVol);
+        AudioManager.instance.PlayPowerUpSound();
         gamemanager.instance.PowerUpDisplay.activePowerUps.Add(powerUp);
         StartCoroutine(powerUp.ApplyEffect());
     }

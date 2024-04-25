@@ -194,21 +194,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.15925926
-        functionName: PlayWalkingAudio
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 270c57b8adc992a41b3dc387e51623f7, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.66481483
-        functionName: PlayWalkingAudio
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 270c57b8adc992a41b3dc387e51623f7, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1

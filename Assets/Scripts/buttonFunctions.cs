@@ -6,24 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip menuAud;
     
     public void StartButton()
     {
-        aud.PlayOneShot(menuAud);
+        AudioManager.instance.PlayMenuSound();
         SceneManager.LoadScene("Prototype 2 Map");
     }
 
     public void Resume()
     {
-        aud.PlayOneShot(menuAud);
+        AudioManager.instance.PlayMenuSound();
         gamemanager.instance.StateUnPaused();
     }
 
     public void Restart()
     {
-        aud.PlayOneShot(menuAud);
+        AudioManager.instance.PlayMenuSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gamemanager.instance.StateUnPaused();
     }
@@ -40,20 +38,20 @@ public class buttonFunctions : MonoBehaviour
 
     public void QuitToMenu()
     {
-        aud.PlayOneShot(menuAud);
+        AudioManager.instance.PlayMenuSound();
         SceneManager.LoadScene(0);
     }
 
     public void NextWave()
     {
-        aud.PlayOneShot(menuAud);
+        AudioManager.instance.PlayMenuSound();
         gamemanager.instance.StateUnPaused();
         gamemanager.instance.StartCountDown();
     }
 
     public void CreditsButton()
-    { 
-        aud.PlayOneShot(menuAud);
+    {
+        AudioManager.instance.PlayMenuSound();
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
         // SceneManager.LoadScene(3);
         SceneManager.LoadScene("Credits");

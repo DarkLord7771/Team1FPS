@@ -72,6 +72,8 @@ public class gamemanager : MonoBehaviour
     // Time
     float timeScaleOrig;
 
+    bool backgroundMusic;
+
     // Start is called before the first frame update
     void Awake() //Initial startup
     {

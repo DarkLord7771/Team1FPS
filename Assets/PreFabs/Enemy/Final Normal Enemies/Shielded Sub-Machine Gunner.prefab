@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 1396505542713169348}
   - component: {fileID: 3240824845771880191}
   - component: {fileID: 6310703296609814133}
-  - component: {fileID: 1477233800792974833}
+  - component: {fileID: -5803063948716072264}
   m_Layer: 0
   m_Name: Shielded Sub-Machine Gunner
   m_TagString: Enemy
@@ -1842,9 +1842,9 @@ MonoBehaviour:
   shootPos: {fileID: 3380173099522103934}
   headPos: {fileID: 7827981253963147449}
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
-  aud: {fileID: 1477233800792974833}
   healthbar: {fileID: 2636161595369740224}
   shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}
+  aud: {fileID: -5803063948716072264}
   whereISpawned: {fileID: 0}
   HP: 2
   shootRate: 0.8
@@ -1855,15 +1855,7 @@ MonoBehaviour:
   isShielded: 1
   faceTargetSpeed: 5
   animSpeedTrans: 8
-  audEnemyHurt:
-  - {fileID: 8300000, guid: 6a83780baa2d2c54e862d0b99f8e11db, type: 3}
-  - {fileID: 8300000, guid: d601728128f937742b18b1e310d9d016, type: 3}
-  - {fileID: 8300000, guid: 2c00b595315f67c4d80600d757d6bf30, type: 3}
-  - {fileID: 8300000, guid: ba102c17d247da04c91954c2126051de, type: 3}
-  - {fileID: 8300000, guid: 6e53687310730054cafec9bfed515248, type: 3}
-  - {fileID: 8300000, guid: d653640796e191d4c9aaed46f9624baa, type: 3}
-  audEnemyHurtVol: 0.5
-  audEnemySteps:
+  enemyFootSteps:
   - {fileID: 8300000, guid: 2382d28ddb151204fb137fa15cdf5cb4, type: 3}
   - {fileID: 8300000, guid: 7b33cfde6ca7c5b489b7f85a91a13889, type: 3}
   - {fileID: 8300000, guid: cd51d1e359bc10147ba5d5e6dcfec021, type: 3}
@@ -1873,10 +1865,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5717f62968d83fb43b3e2ac4bc01ee55, type: 3}
   - {fileID: 8300000, guid: 2ccac76e1ff73f2469bc14140bee9c9f, type: 3}
   - {fileID: 8300000, guid: 27fb701606cdf7d4eb358f2b977962c5, type: 3}
-  audEnemyStepsVol: 0.5
-  audEnemyShoot:
-  - {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
-  audEnemyShootVol: 0.5
+  enemyShoot: {fileID: 8300000, guid: 6bc59592947a3ca4b9ca47da0357fc91, type: 3}
+  enemyHurt:
+  - {fileID: 8300000, guid: 6a83780baa2d2c54e862d0b99f8e11db, type: 3}
+  - {fileID: 8300000, guid: d601728128f937742b18b1e310d9d016, type: 3}
+  - {fileID: 8300000, guid: 2c00b595315f67c4d80600d757d6bf30, type: 3}
+  - {fileID: 8300000, guid: ba102c17d247da04c91954c2126051de, type: 3}
+  - {fileID: 8300000, guid: 6e53687310730054cafec9bfed515248, type: 3}
+  - {fileID: 8300000, guid: d653640796e191d4c9aaed46f9624baa, type: 3}
+  enemySFXVol: 0.362
 --- !u!114 &5878233074995605128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,7 +1962,7 @@ CapsuleCollider:
   m_Height: 2.25
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
---- !u!82 &1477233800792974833
+--- !u!82 &-5803063948716072264
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2021,7 +2018,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

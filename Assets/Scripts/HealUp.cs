@@ -12,7 +12,7 @@ public class HealUp : MonoBehaviour
     {
         if (other.CompareTag("Player") && gamemanager.instance.playerScript.HP != gamemanager.instance.playerScript.HPOrig)
         {
-            gamemanager.instance.playerScript.PlayAudio(healClip, healClipVol);
+            AudioManager.instance.PlayHealSound();
             gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.HPOrig;
             gamemanager.instance.playerScript.UpdatePlayerUI();
 

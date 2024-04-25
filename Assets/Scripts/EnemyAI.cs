@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,9 +16,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject Bullet;
-    [SerializeField] AudioSource aud;
     [SerializeField] Slider healthbar;
     [SerializeField] GameObject shield;
+    [SerializeField] AudioSource aud;
     public WaveSpawner whereISpawned;
 
     [Header("----- Enemy Stats -----")]
@@ -34,15 +35,15 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int faceTargetSpeed;
     [SerializeField] float animSpeedTrans;
 
-    [Header("----- Audio -----")]
-    [SerializeField] AudioClip[] audEnemyHurt;
-    [Range(0, 1)][SerializeField] float audEnemyHurtVol;
-    [SerializeField] AudioClip[] audEnemySteps;
-    [Range(0, 1)][SerializeField] float audEnemyStepsVol;
-    [SerializeField] AudioClip[] audEnemyShoot;
-    [Range(0, 1)][SerializeField] float audEnemyShootVol;
+    [Header("-----Enemy Sounds-----")]
+    [SerializeField] AudioClip[] enemyFootSteps;
+    [SerializeField] AudioClip enemyShoot;
+    [SerializeField] AudioClip[] enemyHurt;
+
+    [Range(0, 1)][SerializeField] float enemySFXVol;
 
     bool isShooting;
+    bool walking;
     Vector3 playerDir;
     WeaponIk weaponIk;
     Kamikaze kamikaze;
@@ -93,6 +94,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     void PursuePlayer()
     {
         agent.SetDestination(gamemanager.instance.player.transform.position);
+        if (!walking)
+            StartCoroutine(PlayWalkingAudio());
 
         // Get players direction.
         playerDir = gamemanager.instance.player.transform.position - headPos.position;
@@ -119,7 +122,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 if (kamikaze != null)
                 {
                     kamikaze.Explode();
-                    gamemanager.instance.playerScript.PlayAudio(kamikaze.explosionClip, kamikaze.volume);
+                    //gamemanager.instance.playerScript.PlayAudio(kamikaze.explosionClip, kamikaze.volume);
                     hit.collider.GetComponent<IDamage>().TakeDamage(kamikaze.explosionDamage);
                     TakeDamage(HP);
                 }
@@ -138,7 +141,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         anim.SetTrigger("Shoot");
-        aud.PlayOneShot(audEnemyShoot[Random.Range(0, audEnemyShoot.Length)], audEnemyShootVol);
+        aud.PlayOneShot(enemyShoot, enemySFXVol);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -170,7 +173,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         HP -= amount;
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
-        aud.PlayOneShot(audEnemyHurt[Random.Range(0, audEnemyHurt.Length)], audEnemyHurtVol);
+        aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemySFXVol);
 
         if (healthbar != null)
         {
@@ -209,9 +212,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.white;
     }
 
-    public void PlayWalkingAudio()
+    public IEnumerator PlayWalkingAudio()
     {
-        aud.PlayOneShot(audEnemySteps[Random.Range(0, audEnemySteps.Length)], audEnemyStepsVol);
+        walking = true;
+        aud.PlayOneShot(enemyFootSteps[Random.Range(0, enemyFootSteps.Length)], enemySFXVol);
+        yield return new WaitForSeconds(.5f);
+        walking = false;
     }
 
     void SetHealthBar()
