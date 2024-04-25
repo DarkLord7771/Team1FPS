@@ -51,15 +51,12 @@ public class buttonFunctions : MonoBehaviour
         gamemanager.instance.StartCountDown();
     }
 
-    public void MainMenuButton()
-    {
-        aud.PlayOneShot(menuAud);
-        SceneManager.LoadScene(0);
-    }
-
     public void CreditsButton()
     { 
         aud.PlayOneShot(menuAud);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        // SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Credits");
+
     }
 }

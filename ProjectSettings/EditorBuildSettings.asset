@@ -5,15 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Prototype 1/Start Menu.unity
-    guid: f4fcd48fcec167646ada7435c5096066
-  - enabled: 0
-    path: Assets/Scenes/Prototype 1/Level 0.unity
-    guid: 95d35196da0d189418d07770b6281ddb
-  - enabled: 0
-    path: Assets/Scenes/Prototype 1/Level 1.unity
-    guid: 415b8b64f917bfe4b93dd3e791fa7a92
   - enabled: 1
     path: Assets/Scenes/FINAL BUILD/Main Menu.unity
     guid: b3aa8447ecd67114284b04f78a7d79de
@@ -23,19 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FINAL BUILD/Prototype 3 Map.unity
     guid: 75d69e4f91f157f4fa070b04f5b15350
-  - enabled: 0
-    path: Assets/Scenes/Prototype 2/Level1.unity
-    guid: 0eeaf0b986f203c419feb8f5fe30b3d5
   - enabled: 1
     path: Assets/Scenes/FINAL BUILD/Credits.unity
     guid: c783c1ececc0bb243b16f9909c7b4c56
-  - enabled: 0
-    path: Assets/Scenes/FINAL BUILD/Main Menu.unity
-    guid: b3aa8447ecd67114284b04f78a7d79de
-  - enabled: 0
-    path: Assets/Scenes/FINAL BUILD/Level 1.unity
-    guid: 48b081da8ad82b340b5aeee680d0c51f
-  - enabled: 0
-    path: Assets/Scenes/FINAL BUILD/Level 2.unity
-    guid: f7a2a4240977ab540b3b9ad0dfb29ef7
   m_configObjects: {}
