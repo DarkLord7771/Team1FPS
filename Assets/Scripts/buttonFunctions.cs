@@ -39,7 +39,7 @@ public class buttonFunctions : MonoBehaviour
     public void QuitToMenu()
     {
         AudioManager.instance.PlayMenuSound();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void NextWave()
@@ -52,9 +52,6 @@ public class buttonFunctions : MonoBehaviour
     public void CreditsButton()
     {
         AudioManager.instance.PlayMenuSound();
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
-        // SceneManager.LoadScene(3);
         SceneManager.LoadScene("Credits");
-
     }
 }
