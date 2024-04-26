@@ -145,12 +145,12 @@ public class PlayerController : MonoBehaviour, IDamage
             playerVel = Vector3.zero;
         }
 
-        moveDir = Input.GetAxis("Horizontal") * transform.right
-                + Input.GetAxis("Vertical") * transform.forward;
+        moveDir = InputManager.instance.moveDirection.x * transform.right
+                + InputManager.instance.moveDirection.y * transform.forward;
 
         controller.Move(moveDir * speed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && jumpCount < jumps)
+        if (InputManager.instance.jump.action.WasPressedThisFrame() && jumpCount < jumps)
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
@@ -168,12 +168,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Sprint() //Sprint action
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (InputManager.instance.SprintPressedInput)
         {
             speed *= sprintMod;
             isSprinting = true;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (InputManager.instance.SprintReleasedInput)
         {
             speed /= sprintMod;
             isSprinting = false;
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Crouch() //Crouch action
     {
-        if (Input.GetKey(KeyCode.C))
+        if (InputManager.instance.crouch.action.IsPressed())
         {
             controller.height = 1;
         }

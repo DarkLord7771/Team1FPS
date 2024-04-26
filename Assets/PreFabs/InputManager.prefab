@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8981389085649656087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2566507058628726336}
+  - component: {fileID: 4147196709324969000}
+  - component: {fileID: 7147854883632591117}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2566507058628726336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981389085649656087}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 964.02167, y: 572.85596, z: 89.530846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4147196709324969000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981389085649656087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e62454be5301147884f36306ee7057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pause: {fileID: -5097012907574220785, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  move: {fileID: -2838716150499013663, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  look: {fileID: -466418625916468405, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  fire: {fileID: 2961331487656816025, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  interact: {fileID: -6930346130096218901, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  jump: {fileID: -4952041680533241420, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  crouch: {fileID: -706627733086817910, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  sprint: {fileID: 8141609519425170931, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  moveDirection: {x: 0, y: 0}
+  lookDirection: {x: 0, y: 0}
+--- !u!114 &7147854883632591117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8981389085649656087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

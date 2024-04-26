@@ -21,7 +21,7 @@ public class GunPickup : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isNearGun)
+        if (InputManager.instance.interact.action.WasPressedThisFrame() && isNearGun)
         {
             gamemanager.instance.SetMenuInactive();
 

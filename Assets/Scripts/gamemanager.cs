@@ -6,6 +6,8 @@ using TMPro;
 using System.Threading;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class gamemanager : MonoBehaviour
 {
@@ -18,7 +20,6 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuShop;
-    //[SerializeField] GameObject menuStart;
     [SerializeField] GameObject menuWaveTimer;
     public GameObject menuFullAmmo;
     public GameObject menuNoAmmo;
@@ -68,7 +69,8 @@ public class gamemanager : MonoBehaviour
     public bool isTimerRunning;
 
     [Header("----- Power Ups -----")]
-    
+    public GameObject startingObject;
+
     // Time
     float timeScaleOrig;
 
@@ -88,16 +90,28 @@ public class gamemanager : MonoBehaviour
         {
             SetWaveCount();
         }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && menuActive == null)
+        if (InputManager.instance.MenuOpenCloseInput)
         {
-            StatePaused();
-            SetMenuActive(menuPause);
+            if(!isPaused)
+            {
+                StatePaused();
+                SetMenuActive(menuPause);
+
+                EventSystem.current.SetSelectedGameObject(startingObject);
+            }
+            else
+            {
+                StateUnPaused();
+            }
         }
+
 
         if (isTimerRunning)
         {

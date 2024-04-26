@@ -12,7 +12,7 @@ public class GunAttack : MonoBehaviour
     public void FireWeapon(AudioSource source, GunStats gun, int gunCount)
     {
 
-        if (Input.GetButton("Fire1") && !isShooting && gun.ammoCur > 0)
+        if (InputManager.instance.FireInput && !isShooting && gun.ammoCur > 0)
         {
             StartCoroutine(Shoot(source, gun));
         }

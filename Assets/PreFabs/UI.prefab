@@ -295,8 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f2af85b91388b4891224249721ada3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aud: {fileID: 7698727473776498633}
-  menuAud: {fileID: 8300000, guid: 75e733d88126a114e97edf7669d64482, type: 3}
 --- !u!114 &35607878198858558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +318,7 @@ MonoBehaviour:
   menuBuyGun: {fileID: 4896392089742843613}
   menuBuyMelee: {fileID: 0}
   menuNotEnoughGold: {fileID: 1225111205012335556}
+  mouseOver: {fileID: 0}
   enemyCountText: {fileID: 6462652585879559474}
   waveCountText: {fileID: 7027316747620074990}
   waveTimerText: {fileID: 8036798969996007042}
@@ -1678,6 +1677,12 @@ RectTransform:
   - {fileID: 1838856227740725874}
   - {fileID: 4234161829622724311}
   - {fileID: 4260933732523760187}
+  - {fileID: 5529166368305621740}
+  - {fileID: 1660820250527615277}
+  - {fileID: 8230116398970423337}
+  - {fileID: 612081969368437777}
+  - {fileID: 7152379303480632806}
+  - {fileID: 8708359490054070943}
   - {fileID: 2892644609800704245}
   - {fileID: 1229335703623380300}
   - {fileID: 8691943217030796779}
@@ -1685,12 +1690,6 @@ RectTransform:
   - {fileID: 417506542841821068}
   - {fileID: 3027978103209720759}
   - {fileID: 8211784886079943627}
-  - {fileID: 8230116398970423337}
-  - {fileID: 7152379303480632806}
-  - {fileID: 8708359490054070943}
-  - {fileID: 1660820250527615277}
-  - {fileID: 5529166368305621740}
-  - {fileID: 612081969368437777}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
