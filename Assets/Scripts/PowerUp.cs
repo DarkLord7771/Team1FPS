@@ -16,7 +16,7 @@ public class PowerUp : MonoBehaviour
         {
             powerUpEffect.remainingTime = powerUpEffect.powerUpTime;
 
-            gamemanager.instance.PowerUpDisplay.CreateDisplay(powerUpEffect);
+            gamemanager.instance.playerUI.PowerUpDisplay.CreateDisplay(powerUpEffect);
 
             gamemanager.instance.playerScript.BeginPowerUp(powerUpEffect);
             Destroy(gameObject);

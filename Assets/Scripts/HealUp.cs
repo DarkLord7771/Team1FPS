@@ -14,7 +14,7 @@ public class HealUp : MonoBehaviour
         {
             AudioManager.instance.PlayHealSound();
             gamemanager.instance.playerScript.HP = gamemanager.instance.playerScript.HPOrig;
-            gamemanager.instance.playerScript.UpdatePlayerUI();
+            gamemanager.instance.playerUI.UpdateHP();
 
             if (gamemanager.instance.playerScript.lowHealth)
             {

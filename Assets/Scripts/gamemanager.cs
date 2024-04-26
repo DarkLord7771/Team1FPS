@@ -21,6 +21,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuShop;
     [SerializeField] GameObject menuWaveTimer;
+
+    [Header("----- UI Messages -----")]
     public GameObject menuFullAmmo;
     public GameObject menuNoAmmo;
     public GameObject menuBuyGun;
@@ -32,21 +34,13 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text waveCountText;
     [SerializeField] TMP_Text waveTimerText;
-    [SerializeField] TMP_Text goldTotalText;
-    public TMP_Text ammoCurrent;
-    public TMP_Text ammoMax;
     public TMP_Text weaponBuyText;
     public TMP_Text weaponCostText;
-
-    [Header("----- UI Elements -----")]
-    public GameObject ammoDisplay;
-    [SerializeField] GameObject goldDisplay;
 
     [Header("----- UI Variables -----")]
     [SerializeField] float menuDisplayTime;
 
     [Header("---- Power Up Components -----")]
-    public PowerUpDisplay PowerUpDisplay;
     public GameObject[] powerUps;
 
     // Wave function
@@ -59,9 +53,8 @@ public class gamemanager : MonoBehaviour
     [Header("----- Player -----")]
     public GameObject player;
     public PlayerController playerScript;
-    public GameObject playerDamageFlash;
-    public Image playerHPBar;
     public GameObject playerStartPos;
+    public PlayerUI playerUI;
 
     // Pause
     [Header("----- Game State -----")]
@@ -90,8 +83,6 @@ public class gamemanager : MonoBehaviour
         {
             SetWaveCount();
         }
-
-        
     }
 
     // Update is called once per frame
@@ -147,19 +138,25 @@ public class gamemanager : MonoBehaviour
         SetMenuInactive();
     }
 
+    public void StateMainMenu()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = timeScaleOrig;
+    }
+
     public void UpdateGameGoal(int amount) //Sets enemy count, updates enemy count UI, updates gold display, checks for wave completion and start
     {
         // Update enemy count and text.
         enemyCount += amount;
         enemyCountText.text = enemyCount.ToString("F0");
 
-        if (amount < 0 && !goldDisplay.activeSelf)
+        if (amount < 0)
         {
-            goldDisplay.SetActive(true);
+            playerUI.DisplayGold();
         }
 
         // Update Gold Display.
-        UpdateGoldDisplay();
+        playerUI.UpdateGold();
 
         if (enemyCount <= 0)
         {
@@ -201,12 +198,6 @@ public class gamemanager : MonoBehaviour
         SetMenuActive(menuWaveTimer);
         timeLeft = WaveManager.instance.timeBetweenSpawns;
         isTimerRunning = true;
-    }
-
-    public void UpdateGoldDisplay() //Updates gold display in UI
-    {
-        goldTotalText.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
-        ShopManager.instance.UpdateShopGold();
     }
 
     public void SetWaveCount() //Sets wave count and updates wave count UI
@@ -252,7 +243,7 @@ public class gamemanager : MonoBehaviour
 
     public IEnumerator DisplayMessage(GameObject menu) //Displays message on screen for set amount of time
     {
-        SetMenuActive(menu);
+        SetDisplayMessageActive(menu);
         yield return new WaitForSeconds(menuDisplayTime);
         SetMenuInactive();
     }

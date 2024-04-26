@@ -38,6 +38,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void QuitToMenu()
     {
+        gamemanager.instance.StateMainMenu();
         AudioManager.instance.PlayMenuSound();
         SceneManager.LoadScene("Main Menu");
     }

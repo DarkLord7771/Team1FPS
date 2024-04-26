@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour, IDamage
     int selectedGun;
     bool playingSteps;
     bool isSprinting;
-    bool flashActive;
     bool isInvincible;
 
     float damageMultiplier;
@@ -106,18 +105,17 @@ public class PlayerController : MonoBehaviour, IDamage
             if (gunList.Count > 0)
             {
                 gun.FireWeapon(AudioManager.instance.aud, gunList[selectedGun], gunList.Count);
+                gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
             }
-
-            UpdatePlayerUI();
 
             if ((controller.collisionFlags & CollisionFlags.Above) != 0)
             {
                 playerVel.y = -1;
             }
 
-            if (lowHealth && !flashActive)
+            if (lowHealth && !gamemanager.instance.playerUI.flashActive)
             {
-                StartCoroutine(FlashDamageScreen());
+                StartCoroutine(gamemanager.instance.playerUI.FlashDamageScreen());
             }
 
             if (damagePowerUp && gunList.Count > 0)
@@ -130,7 +128,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void SpawnPlayer() //Spawns player 
     {
         HP = HPOrig;
-        UpdatePlayerUI();
+        gamemanager.instance.playerUI.UpdateHP();
 
         controller.enabled = false;
         transform.position = gamemanager.instance.playerStartPos.transform.position;
@@ -226,7 +224,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if ((float)HP / HPOrig > .3f)
             {
-                StartCoroutine(FlashDamageScreen());
+                StartCoroutine(gamemanager.instance.playerUI.FlashDamageScreen());
             }
             else
             {
@@ -238,43 +236,11 @@ public class PlayerController : MonoBehaviour, IDamage
             SetShield();
         }
 
-        UpdatePlayerUI();
+        gamemanager.instance.playerUI.UpdateHP();
 
         if (HP <= 0)
         {
             gamemanager.instance.PlayerHasLost();
-        }
-    }
-
-    IEnumerator FlashDamageScreen() //Flashes effects when damage is taken
-    {
-        flashActive = true;
-
-        if (gamemanager.instance.playerDamageFlash.GetComponent<Image>().color.a >= .0001f)
-            gamemanager.instance.playerDamageFlash.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-
-        for (float i = .5f; i >= 0; i -= Time.deltaTime)
-        {
-            gamemanager.instance.playerDamageFlash.GetComponent<Image>().color = new Color(1, 1, 1, i);
-            yield return new WaitForSeconds(.005f);
-        }
-
-        flashActive = false;
-    }
-
-    public void UpdatePlayerUI() //Updates Plyaer HP and Ammo UI
-    {
-        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-        if (gunList.Count > 0)
-        {
-            if (!gamemanager.instance.ammoDisplay.activeSelf)
-            {
-                gamemanager.instance.ammoDisplay.SetActive(true);
-            }
-
-            // Update ammo
-            gamemanager.instance.ammoCurrent.text = gunList[selectedGun].ammoCur.ToString("F0");
-            gamemanager.instance.ammoMax.text = ammoCapacity.ToString("F0");
         }
     }
 
@@ -304,7 +270,8 @@ public class PlayerController : MonoBehaviour, IDamage
         gunModel.GetComponent<Transform>().localScale = gun.gunTransform.localScale;
 
         selectedGun = gunList.Count - 1;
-        UpdatePlayerUI();
+        gamemanager.instance.playerUI.DisplayAmmo();
+        gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
     public void GetMeleeStats(MeleeStats melee) //Gets melee stats for melee weapon
@@ -343,7 +310,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //Set scale of gun model based off of gun's transform.
         gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
 
-        UpdatePlayerUI();
+        gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
     public int GetCurrentDamage() //Gives current damage from gun and modifiers
@@ -386,7 +353,7 @@ public class PlayerController : MonoBehaviour, IDamage
             gunList[i].ammoCur = ammoCapacity;
         }
 
-        UpdatePlayerUI();
+        gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
     public bool BuyGun(GunStats gun) //Buy gun from world
@@ -417,7 +384,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             HPOrig += (int)value;
             HP = HPOrig;
-            UpdatePlayerUI();
+            gamemanager.instance.playerUI.UpdateHP();
         }
         
         if (lowHealth)
@@ -461,7 +428,7 @@ public class PlayerController : MonoBehaviour, IDamage
     void UpgradeAmmoCapacity(float value) //Upgrades player ammo capacity
     {
         ammoCapacity += (int)value;
-        UpdatePlayerUI();
+        gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
     public void ResetDamage() //Updates weapon damage
@@ -508,7 +475,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (gold >= upgradeCost)
         {
             gold -= upgradeCost;
-            gamemanager.instance.UpdateGoldDisplay();
+            gamemanager.instance.playerUI.UpdateGold();
             AudioManager.instance.PlayShopGoodSound();
             return true;
         }
@@ -542,9 +509,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         powerUp = power;
         AudioManager.instance.PlayPowerUpSound();
-        gamemanager.instance.PowerUpDisplay.activePowerUps.Add(powerUp);
+        gamemanager.instance.playerUI.PowerUpDisplay.activePowerUps.Add(powerUp);
         StartCoroutine(powerUp.ApplyEffect());
     }
-
-
 }
