@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e62454be5301147884f36306ee7057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   pause: {fileID: -5097012907574220785, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
   move: {fileID: -2838716150499013663, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
   look: {fileID: -466418625916468405, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}

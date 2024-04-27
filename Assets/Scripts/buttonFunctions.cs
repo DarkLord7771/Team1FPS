@@ -10,6 +10,7 @@ public class buttonFunctions : MonoBehaviour
     public void StartButton()
     {
         AudioManager.instance.PlayMenuSound();
+        InputManager.instance.playerInput.enabled = true;
         SceneManager.LoadScene("Prototype 2 Map");
     }
 
@@ -38,7 +39,11 @@ public class buttonFunctions : MonoBehaviour
 
     public void QuitToMenu()
     {
-        gamemanager.instance.StateMainMenu();
+        if (gamemanager.instance != null)
+        {
+            gamemanager.instance.StateMainMenu();
+        }
+        
         AudioManager.instance.PlayMenuSound();
         SceneManager.LoadScene("Main Menu");
     }

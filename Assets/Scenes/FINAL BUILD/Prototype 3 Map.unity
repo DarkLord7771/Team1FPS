@@ -568,30 +568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1807330016778002900, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902378083499164557, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 514595461}
-    - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: shootPos
-      value: 
-      objectReference: {fileID: 1654787812}
-    - target: {fileID: 9001948008768963193, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9001948008768963193, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: m_StepOffset
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: m_Name
       value: Player
@@ -601,11 +581,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34790a0933b02240a265431401b2b46, type: 3}
---- !u!4 &1654787812 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3635828597663416159, guid: c34790a0933b02240a265431401b2b46, type: 3}
-  m_PrefabInstance: {fileID: 1654787811}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1849929777
 PrefabInstance:
   m_ObjectHideFlags: 0

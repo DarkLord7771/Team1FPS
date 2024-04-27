@@ -1,13 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using System.Threading;
-using Unity.VisualScripting;
-using System.Linq;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class gamemanager : MonoBehaviour
 {
@@ -72,7 +66,16 @@ public class gamemanager : MonoBehaviour
     // Start is called before the first frame update
     void Awake() //Initial startup
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         timeScaleOrig = Time.timeScale;
@@ -121,12 +124,14 @@ public class gamemanager : MonoBehaviour
 
     public void StatePaused() //Sets game to paused state
     {
+        
         isPaused = !isPaused;
         Time.timeScale = 0;
         Cursor.visible = true;
 
         // .None OR .Confined
         Cursor.lockState = CursorLockMode.None;
+        InputManager.instance.playerInput.enabled = false;
     }
 
     public void StateUnPaused() //Sets game to unpaused state
@@ -136,11 +141,12 @@ public class gamemanager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         SetMenuInactive();
+        InputManager.instance.playerInput.enabled = true;
     }
 
     public void StateMainMenu()
     {
-        isPaused = !isPaused;
+        isPaused = false;
         Time.timeScale = timeScaleOrig;
     }
 

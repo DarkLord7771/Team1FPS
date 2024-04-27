@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
     public AudioSource aud;
+    [SerializeField] AudioSource musicSource;
+    [SerializeField] AudioSource sfxSource;
 
     [Header("-----BackGround Music-----")]
     [SerializeField] AudioClip[] musicAud;
@@ -53,53 +56,53 @@ public class AudioManager : MonoBehaviour
     {
         playingSong = true;
         int songChoice = Random.Range(0, musicAud.Length);
-        aud.PlayOneShot(musicAud[songChoice], musicVol);
+        musicSource.PlayOneShot(musicAud[songChoice]);
         yield return new WaitForSeconds(musicAud[songChoice].length);
         playingSong = false;
     }
 
     public void PlayFootSteps() //Player Footsteps
     {
-        aud.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], gameSFXVol);
+        sfxSource.PlayOneShot(audSteps[Random.Range(0, audSteps.Length)], gameSFXVol);
     }
 
     public void PlayHurtSound() //Player Hurt Sounds
     {
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], gameSFXVol);
+        sfxSource.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], gameSFXVol);
     }
 
     public void PlayJumpSound() //Player Jump Sounds
     {
-        aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], gameSFXVol);
+        sfxSource.PlayOneShot(audJump[Random.Range(0, audJump.Length)], gameSFXVol);
     }
 
     public void PlayShootSound()
     {
-        aud.PlayOneShot(audShoot, gameSFXVol);
+        sfxSource.PlayOneShot(audShoot, gameSFXVol);
     }
 
     public void PlayPowerUpSound()
     {
-        aud.PlayOneShot(audPowerUp, gameSFXVol);
+        sfxSource.PlayOneShot(audPowerUp, gameSFXVol);
     }
 
     public void PlayHealSound()
     {
-        aud.PlayOneShot(audHeal, gameSFXVol);
+        sfxSource.PlayOneShot(audHeal, gameSFXVol);
     }
 
     public void PlayShopGoodSound() //Plays successful buy sound
     {
-        aud.PlayOneShot(shopGoodAud, menuSFXVol);
+        sfxSource.PlayOneShot(shopGoodAud, menuSFXVol);
     }
 
     public void PlayShopBadSound() //Plays unsuccessful buy sound
     {
-        aud.PlayOneShot(shopBadAud, menuSFXVol);
+        sfxSource.PlayOneShot(shopBadAud, menuSFXVol);
     }
 
     public void PlayMenuSound() //Plays menu sound
     {
-        aud.PlayOneShot(menuAud, menuSFXVol);
+        sfxSource.PlayOneShot(menuAud, menuSFXVol);
     }
 }

@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47e2e9cb4e69ea479c9cab0b03dae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 300
+  sensitivity: 200
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
@@ -586,13 +586,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 9001948008768963193}
   powerUp: {fileID: 0}
+  playerUI: {fileID: 0}
   HP: 10
   speed: 7
   sprintMod: 1.5
   jumps: 2
   jumpSpeed: 9
   gravity: -15
-  gold: 20
+  gold: 0
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
@@ -693,7 +694,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Composites;
 
 public class InputManager : MonoBehaviour
 {
     [Header("----- Components -----")]
     public static InputManager instance;
 
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
     private InputAction menuOpenClose;
+
 
     [Header("----- Input Actions -----")]
     public InputActionReference pause;
@@ -22,10 +22,12 @@ public class InputManager : MonoBehaviour
     public InputActionReference jump;
     public InputActionReference crouch;
     public InputActionReference sprint;
+    private InputAction navigationAction;
 
     [Header("---- Input Directions -----")]
     public Vector2 moveDirection;
     public Vector2 lookDirection;
+    public Vector2 navigationInput { get; set; }
 
     public bool MenuOpenCloseInput { get; private set; }
     public bool FireInput { get; private set; }
@@ -40,6 +42,11 @@ public class InputManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
         playerInput = GetComponent<PlayerInput>();
