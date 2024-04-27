@@ -19,11 +19,18 @@ public class OpenDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (gamemanager.instance.waveCount == 0)
+            OpenTheDoor();
+    }
+
+
+    void OpenTheDoor()
+    {
         if (Door.transform.position.y < risingMax)
         {
             Door.transform.Translate(0f, openSpeed * Time.deltaTime, 0f);
         }
     }
-
 
 }
