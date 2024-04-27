@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class MeleeStats : MonoBehaviour
 {
-    public string meleeName;
-    public int cost;
-
-    // melee Stats
-    public int meleeDamage;
-    public int meleeDist;
-    public float meleeRate;
-    public int durCur; //dur short for durability
-    public int durMax;
-
-    // Components
+    [Header("----- Components -----")]
     public GameObject model;
     public ParticleSystem hitEffect;
     public AudioClip meleeSound;
     [Range(0, 2)] public float meleeSoundVolume;
     public Transform meleeTransform;
+
+    [Header("----- Melee Details -----")]
+    public string meleeName;
+    public int cost;
+
+    [Header("----- Base Stats -----")]
+    public int baseMeleeDamage;
+    public int baseMeleeDist;
+    public float baseMeleeSpeed;
+
+    [Header("----- Current Stats -----")]
+    public int meleeDamage;
+    public int meleeDist;
+    public float meleeSpeed;
+
+    [Header("----- Durability Stats -----")]
+    public int durabilityCur;
+    public int durabilityMax;
 }

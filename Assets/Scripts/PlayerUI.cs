@@ -16,6 +16,8 @@ public class PlayerUI : MonoBehaviour
     [Header("----- UI Text Elements -----")]
     [SerializeField] TMP_Text ammoCurrent;
     [SerializeField] TMP_Text ammoMax;
+    [SerializeField] TMP_Text durabilityCur;
+    [SerializeField] TMP_Text durabilityMax;
     [SerializeField] TMP_Text goldTotalText;
 
     [Header("----- Damage Flash Elements -----")]
@@ -53,6 +55,12 @@ public class PlayerUI : MonoBehaviour
     {
         ammoCurrent.text = gun.ammoCur.ToString("F0");
         ammoMax.text = gun.ammoMax.ToString("F0");
+    }
+
+    public void UpdateDur(MeleeStats melee)
+    {
+        durabilityCur.text = melee.durabilityCur.ToString("F0");
+        durabilityMax.text = melee.durabilityMax.ToString("F0");
     }
 
     public IEnumerator FlashDamageScreen() //Flashes effects when damage is taken

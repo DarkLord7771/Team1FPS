@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
+    Animator anim;
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] PowerUpEffects powerUp;
@@ -49,10 +50,11 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Melee Stats -----")]
     [SerializeField] List<MeleeStats> meleeList = new List<MeleeStats>();
     [SerializeField] GameObject meleeModel;
-    [SerializeField] int meleeDamage;
-    [SerializeField] int meleeDist;
-    [SerializeField] float meleeRate;
-    [SerializeField] int totalmeleesAllowed;
+    public int meleeDamage;
+    [SerializeField] float meleeDist;
+    [SerializeField] float meleeSpeed;
+    [SerializeField] int durabilityCap;
+    [SerializeField] int totalMeleesAllowed;
 
     [HideInInspector] public int HPOrig;
     [HideInInspector] public bool damagePowerUp;
@@ -62,6 +64,7 @@ public class PlayerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     Vector3 moveDir;
     int selectedGun;
+    int selectedMelee;
     bool playingSteps;
     bool isSprinting;
     bool isInvincible;
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         HPOrig = HP;
         crouchOrig = controller.height;
 
@@ -110,9 +114,10 @@ public class PlayerController : MonoBehaviour, IDamage
                 StartCoroutine(playerUI.FlashDamageScreen());
             }
 
-            if (damagePowerUp && gunList.Count > 0)
+            if (damagePowerUp && gunList.Count > 0 && meleeList.Count > 0)
             {
                 shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + damageUpgrade) * damageMultiplier);
+                meleeDamage = (int)Mathf.Ceil((meleeList[selectedMelee].meleeDamage + damageUpgrade) * damageMultiplier);
             }
         }
     }
@@ -273,7 +278,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
         meleeDamage = melee.meleeDamage + damageUpgrade;
         meleeDist = melee.meleeDist;
-        meleeRate = melee.meleeRate;
+        meleeSpeed = melee.meleeSpeed;
+        durabilityCap = melee.durabilityMax;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = melee.model.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = melee.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        // Set scale of gun model based off of gun's transform.
+        meleeModel.GetComponent<Transform>().localScale = melee.meleeTransform.localScale;
+
+        selectedMelee = meleeList.Count - 1;
     }
 
     void SelectGun() //Gun selection
@@ -287,6 +301,20 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             selectedGun--;
             ChangeGun();
+        }
+    }
+
+    void SelectMelee() //Gun selection
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedMelee < meleeList.Count - 1)
+        {
+            selectedMelee++;
+            ChangeMelee();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedMelee > 0)
+        {
+            selectedMelee--;
+            ChangeMelee();
         }
     }
 
@@ -306,9 +334,27 @@ public class PlayerController : MonoBehaviour, IDamage
         playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
+    void ChangeMelee()
+    {
+        meleeDamage =  meleeList[selectedMelee].meleeDamage;
+        meleeDist = meleeList[selectedMelee].meleeDist;
+        meleeSpeed = meleeList[selectedMelee].meleeSpeed;
+        durabilityCap = meleeList[selectedMelee].durabilityMax;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeList[selectedMelee].model.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeList[selectedMelee].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        meleeModel.GetComponent<Transform>().localScale = meleeList[selectedMelee].meleeTransform.localScale;
+    }
+
     public int GetCurrentDamage() //Gives current damage from gun and modifiers
     {
         return (int)gunList[selectedGun].shootDamage + damageUpgrade;
+    }
+
+    public int GetMeleeCurrentDamage()
+    {
+        return (int)meleeList[selectedMelee].meleeDamage + damageUpgrade;
     }
 
     public bool HasMissingAmmo() //checks to see if weapons in inventory are empty
@@ -318,6 +364,22 @@ public class PlayerController : MonoBehaviour, IDamage
             for (int i = 0; i < gunList.Count; i++)
             {
                 if (gunList[i].ammoCur != ammoCapacity)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasMissingDur() //checks to see if weapons in inventory are empty
+    {
+        if (meleeList.Count > 0)
+        {
+            for (int i = 0; i < meleeList.Count; i++)
+            {
+                if (meleeList[i].durabilityCur != durabilityCap)
                 {
                     return true;
                 }
@@ -339,6 +401,18 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
+    public bool HasMelees() //Checks to make sure player has weapons
+    {
+        if (meleeList.Count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void RefillAmmo() //Refills ammo when triggered
     {
         for (int i = 0; i < gunList.Count; i++)
@@ -347,6 +421,16 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         playerUI.UpdateAmmo(gunList[selectedGun]);
+    }
+
+    public void RefillDur() //Refills ammo when triggered
+    {
+        for (int i = 0; i < meleeList.Count; i++)
+        {
+            meleeList[i].durabilityCur = durabilityCap;
+        }
+
+        gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
     public bool BuyGun(GunStats gun) //Buy gun from world
@@ -363,11 +447,33 @@ public class PlayerController : MonoBehaviour, IDamage
         return false;
     }
 
+    public bool BuyMelee(MeleeStats melee)
+    {
+        if (gold >= melee.cost)
+        {
+            RemoveMelee();
+            GetMeleeStats(melee);
+            gold -= melee.cost;
+
+            return true;
+        }
+
+        return false;
+    }
+
     void RemoveGun() //Removes first gun when more than allowed are picked up
     {
         if (gunList.Count >= totalGunsAllowed)
         {
             gunList.RemoveAt(0);
+        }
+    }
+
+    void RemoveMelee()
+    {
+        if (meleeList.Count >= totalMeleesAllowed)
+        {
+            meleeList.RemoveAt(0);
         }
     }
 
@@ -424,9 +530,16 @@ public class PlayerController : MonoBehaviour, IDamage
         playerUI.UpdateAmmo(gunList[selectedGun]);
     }
 
+    void UpgradeMeleeDur(float value) //Upgrades player melee durability
+    {
+        durabilityCap += (int)value;
+        gamemanager.instance.playerUI.UpdateDur(meleeList[selectedMelee]);
+    }
+
     public void ResetDamage() //Updates weapon damage
     {
         shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
+        meleeDamage = meleeList[selectedMelee].meleeDamage + damageUpgrade;
     }
 
     public void SetDamageMultiplier(float multiplier) //Sets damage multiplier
@@ -458,6 +571,9 @@ public class PlayerController : MonoBehaviour, IDamage
                 break;
             case "Ammo Capacity":
                 UpgradeAmmoCapacity(upgrade.upgradeValue);
+                break;
+            case "Durability":
+                UpgradeMeleeDur(upgrade.upgradeValue);
                 break;
             default: break;
         }

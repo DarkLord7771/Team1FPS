@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class MeleePickup : MonoBehaviour
 {
-    [SerializeField] GunStats melee;
+    [SerializeField] MeleeStats melee;
     [SerializeField] float displayTime;
     GameObject buyMenu;
     GameObject notEnoughMenu;
     bool isNearMelee;
+
     // Start is called before the first frame update
     void Start()
     {
-        melee.ammoCur = melee.ammoMax;
+        SetBaseMeleeStats();
+
         buyMenu = gamemanager.instance.menuBuyMelee;
         notEnoughMenu = gamemanager.instance.menuNotEnoughGold;
-        isNearMelee = false;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class MeleePickup : MonoBehaviour
         {
             gamemanager.instance.SetMenuInactive();
 
-            if (gamemanager.instance.playerScript.BuyGun(melee))
+            if (gamemanager.instance.playerScript.BuyMelee(melee))
             {
                 Destroy(gameObject);
             }
@@ -34,5 +35,36 @@ public class MeleePickup : MonoBehaviour
                 StartCoroutine(gamemanager.instance.DisplayMessage(notEnoughMenu));
             }
         }
+    }
+
+    void SetBaseMeleeStats()
+    {
+        melee.meleeDamage = melee.baseMeleeDamage;
+        melee.meleeDist = melee.baseMeleeDist;
+        melee.meleeSpeed = melee.baseMeleeSpeed;
+        melee.durabilityCur = melee.durabilityMax;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Player"))
+        {
+            gamemanager.instance.SetDisplayMessageActive(buyMenu);
+            gamemanager.instance.weaponBuyText.text = "Press E to buy " + melee.meleeName;
+            gamemanager.instance.weaponCostText.text = "[Cost: " + melee.cost + "]";
+
+            isNearMelee = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (gamemanager.instance.menuActive == buyMenu)
+        {
+            gamemanager.instance.SetMenuInactive();
+        }
+
+        isNearMelee = false;
     }
 }
