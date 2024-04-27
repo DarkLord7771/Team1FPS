@@ -9,6 +9,7 @@ public class GunStats : ScriptableObject
     [Header("----- Components -----")]
     public GameObject model;
     public ParticleSystem hitEffect;
+    public ParticleSystem bloodEffect;
     public AudioClip shootSound;
     [Range(0, 2)] public float shootSoundVolume;
     public Transform gunTransform;

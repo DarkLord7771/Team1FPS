@@ -37,9 +37,15 @@ public class GunAttack : MonoBehaviour
             {
                 IDamage dmg = hit.collider.GetComponent<IDamage>();
 
+                // If object hit is not the player, deal damage to object.
                 if (hit.transform != transform && dmg != null && !hit.collider.CompareTag("Player"))
                 {
+                    // Deal damage to object
                     dmg.TakeDamage(gun.shootDamage);
+
+                    // Instantiate blood effect and expand reticle.
+                    Instantiate(gun.bloodEffect, hit.point, gun.bloodEffect.transform.rotation);
+                    gamemanager.instance.playerScript.reticle.Expand(gamemanager.instance.playerScript.reticleRecoil);
                 }
                 else
                 {
