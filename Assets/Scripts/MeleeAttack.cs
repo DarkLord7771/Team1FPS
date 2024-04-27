@@ -22,7 +22,6 @@ public class MeleeAttack : MonoBehaviour
 
         if(melee.durabilityCur > 0)
         {
-            aud.PlayOneShot(melee.meleeSound, melee.meleeSoundVolume);
             melee.durabilityCur--;
         }
 

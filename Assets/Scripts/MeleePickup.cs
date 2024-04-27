@@ -22,7 +22,7 @@ public class MeleePickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isNearMelee)
+        if (InputManager.instance.interact.action.WasPressedThisFrame() && isNearMelee)
         {
             gamemanager.instance.SetMenuInactive();
 

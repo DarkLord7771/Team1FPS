@@ -7,7 +7,6 @@ public class MeleeStats : MonoBehaviour
     [Header("----- Components -----")]
     public GameObject model;
     public ParticleSystem hitEffect;
-    public AudioClip meleeSound;
     [Range(0, 2)] public float meleeSoundVolume;
     public Transform meleeTransform;
 
