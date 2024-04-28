@@ -17286,7 +17286,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1720866152}
   m_SourcePrefab: {fileID: 100100000, guid: c34790a0933b02240a265431401b2b46, type: 3}
 --- !u!4 &427132686 stripped
 Transform:
@@ -37601,11 +37604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3524269328289259743, guid: 80490b2cd20d0a746b6a1bdf93a95205, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8880996
+      value: -0.882
       objectReference: {fileID: 0}
     - target: {fileID: 3524269328289259743, guid: 80490b2cd20d0a746b6a1bdf93a95205, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.523333
+      value: -13.51
       objectReference: {fileID: 0}
     - target: {fileID: 3524269328289259743, guid: 80490b2cd20d0a746b6a1bdf93a95205, type: 3}
       propertyPath: m_LocalPosition.z
@@ -85182,6 +85185,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cbc26fa4eb08af43b5d775780fd2a80, type: 3}
+--- !u!1 &1720866151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
+  m_PrefabInstance: {fileID: 422985629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1720866152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720866151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f22a28d87f10994990eb634f45c5d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: -12
 --- !u!4 &1733913645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 925999055805086331, guid: 4cbc26fa4eb08af43b5d775780fd2a80, type: 3}
