@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     public static InputManager instance;
 
     public PlayerInput playerInput;
-    private InputAction menuOpenClose;
+    public GameObject LastSelected { get; set; }
 
 
     [Header("----- Input Actions -----")]
@@ -22,12 +22,10 @@ public class InputManager : MonoBehaviour
     public InputActionReference jump;
     public InputActionReference crouch;
     public InputActionReference sprint;
-    private InputAction navigationAction;
 
     [Header("---- Input Directions -----")]
     public Vector2 moveDirection;
     public Vector2 lookDirection;
-    public Vector2 navigationInput { get; set; }
 
     public bool MenuOpenCloseInput { get; private set; }
     public bool FireInput { get; private set; }

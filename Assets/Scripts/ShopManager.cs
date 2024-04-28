@@ -16,21 +16,13 @@ public class ShopManager : MonoBehaviour
     [Header("----- Upgrades -----")]
     public Upgrade[] upgrades;
     [SerializeField] int upgradeCostMultiplier;
-    [HideInInspector] public List<GameObject> buttons = new List<GameObject>();
-
-    public GameObject LastSelectedButton {  get; set; }
-    public int LastSelectedIndex {  get; set; }
-
-    [SerializeField] int newIndex;
-
-
+    public List<GameObject> buttons = new List<GameObject>();
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -44,11 +36,6 @@ public class ShopManager : MonoBehaviour
         {
             CreateButton(upgrades[i], i);
         }
-    }
-
-    private void Update()
-    {
-
     }
 
     private void CreateButton(Upgrade upgrade, int index)
@@ -65,11 +52,6 @@ public class ShopManager : MonoBehaviour
         });
 
         buttons.Add(shopButton);
-
-        if (index == 0)
-        {
-            EventSystem.current.SetSelectedGameObject(shopButton);
-        }
     }
 
     private void UpdateButtonText(Transform buttonTransform, Upgrade upgrade)
@@ -91,16 +73,5 @@ public class ShopManager : MonoBehaviour
     public void UpdateShopGold()
     {
         shopGoldDisplay.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
-    }
-
-    private void HandleNextButtonSelected(int addition)
-    {
-        if (EventSystem.current.currentSelectedGameObject == null && LastSelectedButton != null)
-        {
-            newIndex = LastSelectedIndex + addition;
-            newIndex = Mathf.Clamp(newIndex, 0, buttons.Count - 1);
-
-            EventSystem.current.SetSelectedGameObject(buttons[newIndex]);
-        }
     }
 }

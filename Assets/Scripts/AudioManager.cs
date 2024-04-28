@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource aud;
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
+    [SerializeField] AudioSource menuSource;
 
     [Header("-----BackGround Music-----")]
     [SerializeField] AudioClip[] musicAud;

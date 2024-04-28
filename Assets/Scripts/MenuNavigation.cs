@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDeselectHandler
 {
-
     public GameObject firstSelectedObject;
 
     // Start is called before the first frame update
@@ -20,7 +20,14 @@ public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame && EventSystem.current.currentSelectedGameObject == null)
         {
-            EventSystem.current.SetSelectedGameObject(firstSelectedObject);
+            if (InputManager.instance.LastSelected != null)
+            {
+                EventSystem.current.SetSelectedGameObject(InputManager.instance.LastSelected);
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(firstSelectedObject);
+            }
         }
     }
 
@@ -31,15 +38,16 @@ public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        
         eventData.selectedObject = null;
     }
 
+
     public void OnDeselect(BaseEventData eventData)
     {
-        if(eventData.selectedObject == null)
+        if (!Gamepad.current.wasUpdatedThisFrame && EventSystem.current.currentSelectedGameObject == null)
         {
-            eventData.selectedObject = firstSelectedObject;
+            eventData.selectedObject = InputManager.instance.LastSelected;
         }
     }
-
 }
