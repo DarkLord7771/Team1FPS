@@ -101,9 +101,6 @@ public class gamemanager : MonoBehaviour
         {
             difficultyMod = 1;
         }
-
-        if (!player)
-            DontDestroyOnLoad(player);
     }
 
     // Update is called once per frame
