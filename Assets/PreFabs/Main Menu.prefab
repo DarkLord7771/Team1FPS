@@ -986,6 +986,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3805026013688166390}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!95 &4050602951287592850
 Animator:
   serializedVersion: 5
@@ -1072,7 +1084,7 @@ RectTransform:
   m_GameObject: {fileID: 2393027683279483335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9803922, y: 0.9803922, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9040631949816122467}
@@ -1081,11 +1093,11 @@ RectTransform:
   - {fileID: 6739409023157708789}
   - {fileID: 5381995774685355982}
   - {fileID: 4981262511146083362}
-  m_Father: {fileID: 5658297818408528304}
+  m_Father: {fileID: 5387583577660491250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.2364287}
+  m_AnchoredPosition: {x: 0, y: 2.2811065}
   m_SizeDelta: {x: 700, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3398980952994284928
@@ -1808,7 +1820,6 @@ RectTransform:
   - {fileID: 6470825125459521603}
   - {fileID: 7899959932573578191}
   - {fileID: 1154683589747751760}
-  - {fileID: 6895035081916481790}
   m_Father: {fileID: 5387583577660491250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5311,6 +5322,7 @@ RectTransform:
   - {fileID: 3052452074385726885}
   - {fileID: 4203971475273117322}
   - {fileID: 5658297818408528304}
+  - {fileID: 6895035081916481790}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

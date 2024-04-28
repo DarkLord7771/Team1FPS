@@ -53,7 +53,7 @@ public class PowerUpDisplay : MonoBehaviour
                     Destroy(power.powerUpRef);
                 }
             }
-            else if (!gamemanager.instance.playerScript.hasShield)
+            else if (!gamemanager.instance.playerScript.HasShield)
             {
                 activePowerUps.Remove(power);
                 Destroy(power.powerUpRef);

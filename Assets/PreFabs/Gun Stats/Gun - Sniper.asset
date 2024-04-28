@@ -24,6 +24,7 @@ MonoBehaviour:
   baseDamage: 7
   baseShootDist: 1000
   baseFireRate: 5
+  baseMaxAmmo: 30
   shootDamage: 7
   shootDist: 1000
   fireRate: 5

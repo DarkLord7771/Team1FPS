@@ -17,59 +17,41 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int jumps;
     public float jumpSpeed;
     [Range(-15, -35)][SerializeField] int gravity;
-    [SerializeField] int gold;
+    public int Gold { get; set; }
 
     [Header("----- Player Max Stats -----")]
-    [SerializeField] int maxHP;
-    [SerializeField] int maxSpeed;
-    [SerializeField] int maxJumpSpeed;
+    public int maxHP;
+    public int maxSpeed;
+    public int maxJumpSpeed;
 
-    [Header("----- Player Stat Upgrades -----")]
-    public int damageUpgrade;
-    [SerializeField] float shootRateUpgrade;
-    [SerializeField] int ammoCapacityUpgrade;
-
-    [Header("----- Gun Stats -----")]
-    [SerializeField] List<GunStats> gunList = new List<GunStats>();
-    [SerializeField] GameObject gunModel;
-    public int shootDamage;
-    [SerializeField] float shootDist;
-    [SerializeField] float shootRate;
-    [SerializeField] float reloadSpeed;
-    [SerializeField] int ammoCapacity;
-    [SerializeField] int totalGunsAllowed;
-
-    [Header("----- Laser Weapon -----")]
-    [SerializeField] GunAttack gun;
+    [Header("----- Weapon Management -----")]
+    public GunHandler gunHandler;
+    public MeleeHandler meleeHandler;
     
     [Header("----- Reticle -----")]
     public Reticle reticle;
     public float reticleRecoil;
     public float settleSpeed;
 
-    [Header("----- Melee Stats -----")]
-    [SerializeField] List<MeleeStats> meleeList = new List<MeleeStats>();
-    [SerializeField] GameObject meleeModel;
-    public int meleeDamage;
-    [SerializeField] float meleeDist;
-    [SerializeField] float meleeSpeed;
-    [SerializeField] int durabilityCap;
-    [SerializeField] int totalMeleesAllowed;
-
     [HideInInspector] public int HPOrig;
     [HideInInspector] public bool damagePowerUp;
-    [HideInInspector] public bool hasShield;
     [HideInInspector] public bool lowHealth;
+
+    public int DamageUpgrade { get; set; }
+    public float FireRateUpgrade { get; set; }
+    public int AmmoCapacityUpgrade { get; set; }
+
+    public float DamageMultiplier {  get; set; }
+    public bool HasShield {  get; set; }
+    public bool IsInvincible {  get; set; }
+
     int jumpCount;
     Vector3 playerVel;
     Vector3 moveDir;
-    int selectedGun;
     int selectedMelee;
     bool playingSteps;
     bool isSprinting;
-    bool isInvincible;
-
-    float damageMultiplier;
+    
 
     float crouchOrig;
 
@@ -96,14 +78,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
             Movement();
 
-            SelectGun();
-
-            if (gunList.Count > 0)
-            {
-                gun.FireWeapon(AudioManager.instance.aud, gunList[selectedGun], gunList.Count);
-                playerUI.UpdateAmmo(gunList[selectedGun]);
-            }
-
             if ((controller.collisionFlags & CollisionFlags.Above) != 0)
             {
                 playerVel.y = -1;
@@ -112,12 +86,6 @@ public class PlayerController : MonoBehaviour, IDamage
             if (lowHealth && !playerUI.flashActive)
             {
                 StartCoroutine(playerUI.FlashDamageScreen());
-            }
-
-            if (damagePowerUp && gunList.Count > 0 && meleeList.Count > 0)
-            {
-                shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + damageUpgrade) * damageMultiplier);
-                meleeDamage = (int)Mathf.Ceil((meleeList[selectedMelee].meleeDamage + damageUpgrade) * damageMultiplier);
             }
         }
     }
@@ -133,6 +101,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.enabled = true;
     }
 
+    #region Locomotion Methods
     void Movement() //Movement controller
     {
         if (controller.isGrounded)
@@ -176,6 +145,19 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
+    void Crouch() //Crouch action
+    {
+        if (InputManager.instance.crouch.action.IsPressed())
+        {
+            controller.height = 1;
+        }
+        else
+        {
+            controller.height = crouchOrig;
+        }
+    }
+    #endregion
+
     IEnumerator PlaySteps() //Plays step sounds to audio
     {
         playingSteps = true;
@@ -194,28 +176,9 @@ public class PlayerController : MonoBehaviour, IDamage
         playingSteps = false;
     }
 
-    void Crouch() //Crouch action
-    {
-        if (InputManager.instance.crouch.action.IsPressed())
-        {
-            controller.height = 1;
-        }
-        else
-        {
-            controller.height = crouchOrig;
-        }
-    }
-
-    IEnumerator NoAmmoFlash() //Flashes when player has no ammo
-    {
-        gamemanager.instance.menuNoAmmo.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        gamemanager.instance.menuNoAmmo.SetActive(false);
-    }
-
     public void TakeDamage(int amount) //Take damage function
     {
-        if (!isInvincible && !hasShield)
+        if (!IsInvincible && !HasShield)
         {
             HP -= amount;
             AudioManager.instance.PlayHurtSound();
@@ -229,9 +192,9 @@ public class PlayerController : MonoBehaviour, IDamage
                 lowHealth = true;
             }
         }
-        else if (hasShield)
+        else if (HasShield)
         {
-            SetShield();
+            HasShield = false;
         }
 
         playerUI.UpdateHP();
@@ -242,348 +205,11 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public int GetGold() //Gold getter
-    {
-        return gold;
-    }
-
-    public void SetGold(int amount) //Gold setter
-    {
-        gold += amount;
-    }
-
-    public void GetGunStats(GunStats gun) //Get gun stats function for when weapon is picked up
-    {
-        gunList.Add(gun);
-
-        shootDamage = gun.shootDamage;
-        shootDist = gun.shootDist;
-        shootRate = gun.fireRate;
-        ammoCapacity = gun.ammoMax;
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        // Set scale of gun model based off of gun's transform.
-        gunModel.GetComponent<Transform>().localScale = gun.gunTransform.localScale;
-
-        selectedGun = gunList.Count - 1;
-        playerUI.DisplayAmmo();
-        playerUI.UpdateAmmo(gunList[selectedGun]);
-    }
-
-    public void GetMeleeStats(MeleeStats melee) //Gets melee stats for melee weapon
-    {
-        meleeList.Add(melee);
-
-        meleeDamage = melee.meleeDamage + damageUpgrade;
-        meleeDist = melee.meleeDist;
-        meleeSpeed = melee.meleeSpeed;
-        durabilityCap = melee.durabilityMax;
-
-        meleeModel.GetComponent<MeshFilter>().sharedMesh = melee.model.GetComponent<MeshFilter>().sharedMesh;
-        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = melee.model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        // Set scale of gun model based off of gun's transform.
-        meleeModel.GetComponent<Transform>().localScale = melee.meleeTransform.localScale;
-
-        selectedMelee = meleeList.Count - 1;
-    }
-
-    void SelectGun() //Gun selection
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
-        {
-            selectedGun++;
-            ChangeGun();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-        {
-            selectedGun--;
-            ChangeGun();
-        }
-    }
-
-    void SelectMelee() //Gun selection
-    {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedMelee < meleeList.Count - 1)
-        {
-            selectedMelee++;
-            ChangeMelee();
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedMelee > 0)
-        {
-            selectedMelee--;
-            ChangeMelee();
-        }
-    }
-
-    void ChangeGun() //Changes gun stats when new weapon is selected
-    {
-        shootDamage = gunList[selectedGun].shootDamage;
-        shootDist = gunList[selectedGun].shootDist;
-        shootRate = gunList[selectedGun].fireRate;
-        ammoCapacity = gunList[selectedGun].ammoMax;
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        //Set scale of gun model based off of gun's transform.
-        gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
-
-        playerUI.UpdateAmmo(gunList[selectedGun]);
-    }
-
-    void ChangeMelee()
-    {
-        meleeDamage =  meleeList[selectedMelee].meleeDamage;
-        meleeDist = meleeList[selectedMelee].meleeDist;
-        meleeSpeed = meleeList[selectedMelee].meleeSpeed;
-        durabilityCap = meleeList[selectedMelee].durabilityMax;
-
-        meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeList[selectedMelee].model.GetComponent<MeshFilter>().sharedMesh;
-        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeList[selectedMelee].model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        meleeModel.GetComponent<Transform>().localScale = meleeList[selectedMelee].meleeTransform.localScale;
-    }
-
-    public int GetCurrentDamage() //Gives current damage from gun and modifiers
-    {
-        return (int)gunList[selectedGun].shootDamage + damageUpgrade;
-    }
-
-    public int GetMeleeCurrentDamage()
-    {
-        return (int)meleeList[selectedMelee].meleeDamage + damageUpgrade;
-    }
-
-    public bool HasMissingAmmo() //checks to see if weapons in inventory are empty
-    {
-        if (gunList.Count > 0)
-        {
-            for (int i = 0; i < gunList.Count; i++)
-            {
-                if (gunList[i].ammoCur != ammoCapacity)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public bool HasMissingDur() //checks to see if weapons in inventory are empty
-    {
-        if (meleeList.Count > 0)
-        {
-            for (int i = 0; i < meleeList.Count; i++)
-            {
-                if (meleeList[i].durabilityCur != durabilityCap)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public bool HasGuns() //Checks to make sure player has weapons
-    {
-        if (gunList.Count > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool HasMelees() //Checks to make sure player has weapons
-    {
-        if (meleeList.Count > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public void RefillAmmo() //Refills ammo when triggered
-    {
-        for (int i = 0; i < gunList.Count; i++)
-        {
-            gunList[i].ammoCur = ammoCapacity;
-        }
-
-        playerUI.UpdateAmmo(gunList[selectedGun]);
-    }
-
-    public void RefillDur() //Refills ammo when triggered
-    {
-        for (int i = 0; i < meleeList.Count; i++)
-        {
-            meleeList[i].durabilityCur = durabilityCap;
-        }
-
-        gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
-    }
-
-    public bool BuyGun(GunStats gun) //Buy gun from world
-    {
-        if (gold >= gun.cost)
-        {
-            RemoveGun();
-            GetGunStats(gun);
-            gold -= gun.cost;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    public bool BuyMelee(MeleeStats melee)
-    {
-        if (gold >= melee.cost)
-        {
-            RemoveMelee();
-            GetMeleeStats(melee);
-            gold -= melee.cost;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    void RemoveGun() //Removes first gun when more than allowed are picked up
-    {
-        if (gunList.Count >= totalGunsAllowed)
-        {
-            gunList.RemoveAt(0);
-        }
-    }
-
-    void RemoveMelee()
-    {
-        if (meleeList.Count >= totalMeleesAllowed)
-        {
-            meleeList.RemoveAt(0);
-        }
-    }
-
-    void UpgradeHP(float value) //Upgrades player HP
-    {
-        if (HPOrig <= maxHP)
-        {
-            HPOrig += (int)value;
-            HP = HPOrig;
-            playerUI.UpdateHP();
-        }
-        
-        if (lowHealth)
-        {
-            lowHealth = false;
-        }
-    }
-
-    void UpgradeSpeed(float value) //Upgrades player Speed
-    {
-        if (speed <= maxSpeed)
-        {
-            speed += value;
-        }
-    }
-
-    void UpgradeJumpDistance(float value) //Upgrades player Jump Distance
-    {
-        if (jumpSpeed <= maxJumpSpeed)
-        {
-            jumpSpeed += value;
-        }
-    }
-
-    void UpgradeDamage(float value) //Upgrades player Damage
-    {
-        damageUpgrade += (int)value;
-        shootDamage += damageUpgrade;
-    }
-
-    void UpgradeFireRate(float value) //Upgrades player Fire Rate
-    {
-        shootRate += value;
-    }
-
-    void UpgradeReloadSpeed(float value) //Upgrades player Reload Speed
-    {
-        reloadSpeed += value;
-    }
-
-    void UpgradeAmmoCapacity(float value) //Upgrades player ammo capacity
-    {
-        ammoCapacity += (int)value;
-        playerUI.UpdateAmmo(gunList[selectedGun]);
-    }
-
-    void UpgradeMeleeDur(float value) //Upgrades player melee durability
-    {
-        durabilityCap += (int)value;
-        gamemanager.instance.playerUI.UpdateDur(meleeList[selectedMelee]);
-    }
-
-    public void ResetDamage() //Updates weapon damage
-    {
-        shootDamage = gunList[selectedGun].shootDamage + damageUpgrade;
-        meleeDamage = meleeList[selectedMelee].meleeDamage + damageUpgrade;
-    }
-
-    public void SetDamageMultiplier(float multiplier) //Sets damage multiplier
-    {
-        damageMultiplier = multiplier;
-    }
-
-    public void BoughtUpgrade(Upgrade upgrade)  //Determines which upgrade has been purchased
-    {
-        switch (upgrade.upgradeName)
-        {
-            case "HP":
-                UpgradeHP(upgrade.upgradeValue);
-                break;
-            case "Speed":
-                UpgradeSpeed(upgrade.upgradeValue);
-                break;
-            case "Jump Distance":
-                UpgradeJumpDistance(upgrade.upgradeValue);
-                break;
-            case "Damage":
-                UpgradeDamage(upgrade.upgradeValue);
-                break;
-            case "Fire Rate":
-                UpgradeFireRate(upgrade.upgradeValue);
-                break;
-            case "Reload Speed":
-                UpgradeReloadSpeed(upgrade.upgradeValue);
-                break;
-            case "Ammo Capacity":
-                UpgradeAmmoCapacity(upgrade.upgradeValue);
-                break;
-            case "Durability":
-                UpgradeMeleeDur(upgrade.upgradeValue);
-                break;
-            default: break;
-        }
-    }
-
     public bool TrySpendingGold(int upgradeCost) //Checks to see if gold can be spent
     {
-        if (gold >= upgradeCost)
+        if (Gold >= upgradeCost)
         {
-            gold -= upgradeCost;
+            Gold -= upgradeCost;
             playerUI.UpdateGold();
             AudioManager.instance.PlayShopGoodSound();
             return true;
@@ -595,23 +221,13 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public bool IsNotLaserWeapon()  //Checks to see if weapon is laser weapon
+    public bool HasLaserWeaponEquipped()  //Checks to see if weapon is laser weapon
     {
-        if (!gunList[selectedGun].isLaserWeapon)
+        if (gunHandler.SelectedGun().isLaserWeapon)
         {
             return true;
         }
         return false;
-    }
-
-    public void SetInvincible() //Sets the player temporarily invincible
-    {
-        isInvincible = !isInvincible;
-    }
-
-    public void SetShield() //Give player a shield
-    {
-        hasShield = !hasShield;
     }
 
     public void BeginPowerUp(PowerUpEffects power) //Sets active power up on pickup

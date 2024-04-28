@@ -16,8 +16,8 @@ public class WaveManagerV2 : MonoBehaviour
     int currWave;
     bool waveActive;
     int diffMod;
-    bool isSpawning;
     int spawnedEnemyCount;
+    bool isSpawning;
     
 
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class WaveManagerV2 : MonoBehaviour
         {
             int enemies = SetEnemyCount(currWave);
 
-            if (spawnedEnemyCount <= enemies)
+            if (spawnedEnemyCount <= enemies && !isSpawning)
                 StartCoroutine(SpawnEnemy());
         }
     }

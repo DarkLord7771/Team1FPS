@@ -18,7 +18,7 @@ public class GunAttack : MonoBehaviour
         }
         else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
         {
-            //StartCoroutine(NoAmmoFlash());
+            StartCoroutine(gamemanager.instance.DisplayMessage(gamemanager.instance.menuNoAmmo));
         }
     }
 
@@ -31,7 +31,6 @@ public class GunAttack : MonoBehaviour
         {
             aud.PlayOneShot(gun.shootSound, gun.shootSoundVolume);
             gun.ammoCur--;
-            //UpdatePlayerUI();
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, gun.shootDist))
             {

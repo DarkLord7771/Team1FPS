@@ -26,7 +26,7 @@ public class MeleePickup : MonoBehaviour
         {
             gamemanager.instance.SetMenuInactive();
 
-            if (gamemanager.instance.playerScript.BuyMelee(melee))
+            if (gamemanager.instance.playerScript.meleeHandler.BuyMelee(melee))
             {
                 Destroy(gameObject);
             }

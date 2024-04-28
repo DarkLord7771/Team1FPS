@@ -23,11 +23,14 @@ public class GunStats : ScriptableObject
     public int baseDamage;
     public float baseShootDist;
     public float baseFireRate;
+    public int baseMaxAmmo;
+    public int baseReloadSpeed;
 
     [Header("----- Current Stats -----")]
     public int shootDamage;
     public float shootDist;
     public float fireRate;
+    public float reloadSpeed;
 
     [Header("----- Ammo Stats -----")]
     public int ammoCur;

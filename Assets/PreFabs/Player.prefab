@@ -128,6 +128,55 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &3742892535778169766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2454305981411931602}
+  - component: {fileID: 6377716257483309680}
+  m_Layer: 0
+  m_Name: Gun Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2454305981411931602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742892535778169766}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 956936029679624981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6377716257483309680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742892535778169766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2057f9388faa33b4c8b6a957b9b59869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  gunList: []
+  gunModel: {fileID: 5505698671203001191}
+  gun: {fileID: 6781782391145008139}
+  totalGunsAllowed: 2
 --- !u!1 &4782236428532839183
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +585,38 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &8438006141214605254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956936029679624981}
+  m_Layer: 0
+  m_Name: WeaponHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &956936029679624981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8438006141214605254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2454305981411931602}
+  m_Father: {fileID: 1803175517322764891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9006794672349309869
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 956936029679624981}
   - {fileID: 6096385356382716046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -593,22 +675,18 @@ MonoBehaviour:
   jumps: 2
   jumpSpeed: 9
   gravity: -15
-  gold: 0
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
   damageUpgrade: 0
   shootRateUpgrade: 0
   ammoCapacityUpgrade: 0
-  gunList: []
-  gunModel: {fileID: 5505698671203001191}
   shootDamage: 1
   shootDist: 25
   shootRate: 0.2
   reloadSpeed: 0
   ammoCapacity: 0
-  totalGunsAllowed: 2
-  gun: {fileID: 6781782391145008139}
+  gunHandler: {fileID: 6377716257483309680}
   reticle: {fileID: 0}
   reticleRecoil: 15
   settleSpeed: 1
@@ -616,8 +694,9 @@ MonoBehaviour:
   meleeModel: {fileID: 0}
   meleeDamage: 0
   meleeDist: 0
-  meleeRate: 0
-  totalmeleesAllowed: 0
+  meleeSpeed: 0
+  durabilityCap: 0
+  totalMeleesAllowed: 0
   HPOrig: 0
   damagePowerUp: 0
   hasShield: 0

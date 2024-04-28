@@ -9,126 +9,109 @@ public class AutoScroller : MonoBehaviour
     [SerializeField] float scrollSpeed = 10f;
     [SerializeField] float yPadding = 20f;
 
-    //*** PROPERTIES ***//
-    // REFERENCES
-    protected RectTransform LayoutListGroup
+    
+    RectTransform LayoutListGroup
     {
-        get { return TargetScrollRect != null ? TargetScrollRect.content : null; }
+        get { return ScrollRect != null ? ScrollRect.content : null; }
     }
+    RectTransform ScrollWindow { get; set; }
+    ScrollRect ScrollRect { get; set; }
+    bool isManualScrolling;
 
-    // SETTINGS
-    protected float ScrollSpeed
-    {
-        get { return scrollSpeed; }
-    }
-
-    // CACHED REFERENCES
-    protected RectTransform ScrollWindow { get; set; }
-    protected ScrollRect TargetScrollRect { get; set; }
-
-    // SCROLLING
-    protected EventSystem CurrentEventSystem
-    {
-        get { return EventSystem.current; }
-    }
-    protected GameObject LastCheckedGameObject { get; set; }
-    protected GameObject CurrentSelectedGameObject
+    GameObject LastGameObject { get; set; }
+    GameObject CurrentGameObject
     {
         get { return EventSystem.current.currentSelectedGameObject; }
     }
-    protected RectTransform CurrentTargetRectTransform { get; set; }
-    protected bool IsManualScrollingAvailable { get; set; }
+    RectTransform CurrentRectTransform { get; set; }
 
-    //*** METHODS - PROTECTED ***//
-    protected virtual void Awake()
+    private void Awake()
     {
-        TargetScrollRect = GetComponent<ScrollRect>();
-        ScrollWindow = TargetScrollRect.GetComponent<RectTransform>();
+        ScrollRect = GetComponent<ScrollRect>();
+        ScrollWindow = ScrollRect.GetComponent<RectTransform>();
     }
 
-    protected virtual void Update()
+    private void Update()
     {
-        UpdateReferences();
-        CheckIfScrollingShouldBeLocked();
-        ScrollRectToLevelSelection();
+        // Update current and last game objects.
+        UpdateGameObjects();
+
+        // Check if manually scrolling.
+        LockedScrollingEnabled();
+
+        // Move Scroll Rect
+        ScrollToSelection();
     }
 
-    //*** METHODS - PRIVATE ***//
-    private void UpdateReferences()
+    private void UpdateGameObjects()
     {
-        // update current selected rect transform
-        if (CurrentSelectedGameObject != LastCheckedGameObject)
+        if (CurrentGameObject != LastGameObject)
         {
-            CurrentTargetRectTransform = (CurrentSelectedGameObject != null) ?
-                CurrentSelectedGameObject.GetComponent<RectTransform>() :
-                null;
+            CurrentRectTransform = (CurrentGameObject != null) ? CurrentGameObject.GetComponent<RectTransform>() : null;
 
-            // unlock automatic scrolling
-            if (CurrentSelectedGameObject != null &&
-                CurrentSelectedGameObject.transform.parent == LayoutListGroup.transform)
+            // Automatically scroll if not manually scrolling.
+            if (CurrentGameObject != null && CurrentGameObject.transform.parent == LayoutListGroup.transform)
             {
-                IsManualScrollingAvailable = false;
+                isManualScrolling = false;
             }
         }
 
-        LastCheckedGameObject = CurrentSelectedGameObject;
+        LastGameObject = CurrentGameObject;
     }
 
-    private void CheckIfScrollingShouldBeLocked()
+    private void LockedScrollingEnabled()
     {
-        if (IsManualScrollingAvailable == true)
+        if (isManualScrolling == true)
         {
             return;
         }
     }
 
-    private void ScrollRectToLevelSelection()
+    private void ScrollToSelection()
     {
-        // check main references
-        bool referencesAreIncorrect = (TargetScrollRect == null || LayoutListGroup == null || ScrollWindow == null);
+        bool hasReferences = (ScrollRect == null || LayoutListGroup == null || ScrollWindow == null);
 
-        if (referencesAreIncorrect == true || IsManualScrollingAvailable == true)
+        if (hasReferences == true || isManualScrolling == true)
         {
             return;
         }
 
-        RectTransform selection = CurrentTargetRectTransform;
+        RectTransform selection = CurrentRectTransform;
 
-        // check if scrolling is possible
+        // Check if scrolling is possible.
         if (selection == null || selection.transform.parent != LayoutListGroup.transform)
         {
             return;
         }
 
-        UpdateVerticalScrollPosition(selection);
+        UpdateScrollPosition(selection);
     }
 
-    private void UpdateVerticalScrollPosition(RectTransform selection)
+    private void UpdateScrollPosition(RectTransform selection)
     {
-        // move the current scroll rect to correct position
-        float selectionPosition = -selection.anchoredPosition.y - (selection.rect.height * (1 - selection.pivot.y) - yPadding);
+        // Move to selected position.
+        float selectionPos = -selection.anchoredPosition.y - (selection.rect.height * (1 - selection.pivot.y) - yPadding);
 
-        float elementHeight = selection.rect.height;
-        float maskHeight = ScrollWindow.rect.height;
-        float listAnchorPosition = LayoutListGroup.anchoredPosition.y;
+        float selectionHeight = selection.rect.height;
+        float windowHeight = ScrollWindow.rect.height;
+        float anchorPosition = LayoutListGroup.anchoredPosition.y;
 
-        // get the element offset value depending on the cursor move direction
-        float offlimitsValue = GetScrollOffset(selectionPosition, listAnchorPosition, elementHeight, maskHeight);
+        // Get the offset based off of mouse position.
+        float offlimitsValue = ScrollOffset(selectionPos, anchorPosition, selectionHeight, windowHeight);
 
-        // move the target scroll rect
-        TargetScrollRect.verticalNormalizedPosition +=
-            (offlimitsValue / LayoutListGroup.rect.height) * Time.unscaledDeltaTime * scrollSpeed;
+        // Move scroll rect.
+        ScrollRect.verticalNormalizedPosition += (offlimitsValue / LayoutListGroup.rect.height) * Time.unscaledDeltaTime * scrollSpeed;
     }
 
-    private float GetScrollOffset(float position, float listAnchorPosition, float targetLength, float maskLength)
+    private float ScrollOffset(float position, float listPosition, float targetLength, float maskLength)
     {
-        if (position < listAnchorPosition + (targetLength / 2))
+        if (position < listPosition + (targetLength / 2))
         {
-            return (listAnchorPosition + maskLength) - (position - targetLength);
+            return (listPosition + maskLength) - (position - targetLength);
         }
-        else if (position + targetLength > listAnchorPosition + maskLength)
+        else if (position + targetLength > listPosition + maskLength)
         {
-            return (listAnchorPosition + maskLength) - (position + targetLength);
+            return (listPosition + maskLength) - (position + targetLength);
         }
 
         return 0;

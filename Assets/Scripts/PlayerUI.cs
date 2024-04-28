@@ -42,7 +42,7 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateGold()
     {
-        goldTotalText.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
+        goldTotalText.text = gamemanager.instance.playerScript.Gold.ToString("F0");
         ShopManager.instance.UpdateShopGold();
     }
 

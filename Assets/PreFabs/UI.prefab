@@ -263,7 +263,7 @@ MonoBehaviour:
   playerUI: {fileID: 3667792415147363451}
   isPaused: 0
   isTimerRunning: 0
-  startingObject: {fileID: 716882022898726123}
+  difficultyMod: 0
 --- !u!82 &7698727473776498633
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2009,7 +2009,7 @@ GameObject:
   - component: {fileID: 6979516026528889692}
   - component: {fileID: 715121156856641}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3488,7 +3488,7 @@ GameObject:
   - component: {fileID: 6539879947762983173}
   - component: {fileID: 6107718082686295327}
   m_Layer: 5
-  m_Name: Music Volume Text
+  m_Name: Menu Volume Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3541,7 +3541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music Volume
+  m_text: Menu Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 537eb1eef138da7489d2d0c861629654, type: 2}
   m_sharedMaterial: {fileID: -2009162042594335899, guid: 537eb1eef138da7489d2d0c861629654, type: 2}

@@ -7,8 +7,8 @@ public class Invincibility : PowerUpEffects
 {
     public override IEnumerator ApplyEffect()
     {
-        gamemanager.instance.playerScript.SetInvincible();
+        gamemanager.instance.playerScript.IsInvincible = true; ;
         yield return new WaitForSeconds(powerUpTime);
-        gamemanager.instance.playerScript.SetInvincible();
+        gamemanager.instance.playerScript.IsInvincible = false;
     }
 }

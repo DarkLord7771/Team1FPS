@@ -49,14 +49,13 @@ public class gamemanager : MonoBehaviour
     public PlayerController playerScript;
     public GameObject playerStartPos;
     public PlayerUI playerUI;
+    public PlayerUpgrade playerUpgrade;
 
     // Pause
     [Header("----- Game State -----")]
     public bool isPaused;
     public bool isTimerRunning;
-
-    [Header("----- Power Ups -----")]
-    public GameObject startingObject;
+    public float difficultyMod;
 
     // Time
     float timeScaleOrig;
@@ -77,6 +76,7 @@ public class gamemanager : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
+        playerUpgrade = player.GetComponent<PlayerUpgrade>();
         timeScaleOrig = Time.timeScale;
         playerStartPos = GameObject.FindWithTag("Player Spawn Pos");
 
@@ -84,6 +84,15 @@ public class gamemanager : MonoBehaviour
         if (WaveManager.instance)
         {
             SetWaveCount();
+        }
+
+        if (PlayerPrefs.GetInt("Difficulty") > 0)
+        {
+            difficultyMod = Mathf.Log10(PlayerPrefs.GetInt("Difficulty")) * 10;
+        }
+        else
+        {
+            difficultyMod = 1;
         }
     }
 
@@ -96,8 +105,6 @@ public class gamemanager : MonoBehaviour
             {
                 StatePaused();
                 SetMenuActive(menuPause);
-
-                EventSystem.current.SetSelectedGameObject(startingObject);
             }
             else
             {

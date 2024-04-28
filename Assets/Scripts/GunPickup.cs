@@ -5,7 +5,6 @@ using UnityEngine;
 public class GunPickup : MonoBehaviour
 {
     [SerializeField] GunStats gun;
-    [SerializeField] float displayTime;
     GameObject buyMenu;
     GameObject notEnoughMenu;
     bool isNearGun;
@@ -25,7 +24,7 @@ public class GunPickup : MonoBehaviour
         {
             gamemanager.instance.SetMenuInactive();
 
-            if (gamemanager.instance.playerScript.BuyGun(gun))
+            if (gamemanager.instance.playerScript.gunHandler.BuyGun(gun))
             {
                 Destroy(gameObject);
             }
@@ -41,7 +40,8 @@ public class GunPickup : MonoBehaviour
         gun.shootDamage = gun.baseDamage;
         gun.shootDist = gun.baseShootDist;
         gun.fireRate = gun.baseFireRate;
-        gun.ammoCur = gun.ammoMax;
+        gun.ammoCur = gun.baseMaxAmmo;
+        gun.reloadSpeed = gun.baseReloadSpeed;
     }
 
     void OnTriggerEnter(Collider other)

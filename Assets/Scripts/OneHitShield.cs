@@ -7,7 +7,7 @@ public class OneHitShield : PowerUpEffects
 {
     public override IEnumerator ApplyEffect()
     {
-        gamemanager.instance.playerScript.SetShield();
+        gamemanager.instance.playerScript.HasShield = true;
         yield return null;
     }
 }

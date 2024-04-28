@@ -29,20 +29,18 @@ public class AmmoBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Debug.Log(other.name);
-
-        if (other.CompareTag("Player") && gamemanager.instance.playerScript.HasMissingAmmo())
+        if (other.CompareTag("Player") && gamemanager.instance.playerScript.gunHandler.HasMissingAmmo())
         {
             aud.PlayOneShot(audOpen, audOpenVol);
             lid.transform.Rotate(lidOpenRot);
-            gamemanager.instance.playerScript.RefillAmmo();
+            gamemanager.instance.playerScript.gunHandler.RefillAmmo();
             
             hasRefilledAmmo = true;
         }
-        else if (gamemanager.instance.playerScript.HasGuns() && !gamemanager.instance.playerScript.HasMissingAmmo())
+        else if (gamemanager.instance.playerScript.gunHandler.HasGuns() && !gamemanager.instance.playerScript.gunHandler.HasMissingAmmo())
         {
             hasRefilledAmmo = false;
-            gamemanager.instance.menuFullAmmo.SetActive(true);
+            StartCoroutine(gamemanager.instance.DisplayMessage(gamemanager.instance.menuFullAmmo));
         }
     }
 

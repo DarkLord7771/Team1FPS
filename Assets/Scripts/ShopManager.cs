@@ -64,7 +64,7 @@ public class ShopManager : MonoBehaviour
     {
         if (gamemanager.instance.playerScript.TrySpendingGold(upgrade.cost))
         {
-            gamemanager.instance.playerScript.BoughtUpgrade(upgrade);
+            gamemanager.instance.playerUpgrade.BoughtUpgrade(upgrade);
 
             upgrade.cost *= upgradeCostMultiplier; 
         }
@@ -72,6 +72,6 @@ public class ShopManager : MonoBehaviour
 
     public void UpdateShopGold()
     {
-        shopGoldDisplay.text = gamemanager.instance.playerScript.GetGold().ToString("F0");
+        shopGoldDisplay.text = gamemanager.instance.playerScript.Gold.ToString("F0");
     }
 }

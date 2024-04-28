@@ -134,7 +134,7 @@ public class BossAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.playerScript.SetGold(gold);
+            gamemanager.instance.playerScript.Gold += gold;
             gamemanager.instance.UpdateGameGoal(-1);
 
             if (whereISpawned)

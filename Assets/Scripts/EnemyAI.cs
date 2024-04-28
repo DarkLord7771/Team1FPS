@@ -48,11 +48,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     WeaponIk weaponIk;
     Kamikaze kamikaze;
     Heavy heavy;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        HP *= (int)(HP * gamemanager.instance.difficultyMod);
         maxHP = HP;
+
 
         // Find healthbar and set it to not active on start.
         healthbar = GameObject.Find("Health Bar").GetComponent<Slider>();
@@ -159,7 +162,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         else if (isShielded)
         {
-            if (!gamemanager.instance.playerScript.IsNotLaserWeapon())
+            if (gamemanager.instance.playerScript.HasLaserWeaponEquipped())
             {
                 amount *= 2;
             }
@@ -182,7 +185,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gamemanager.instance.playerScript.SetGold(gold);
+            gamemanager.instance.playerScript.Gold += (int)(gold * gamemanager.instance.difficultyMod);
             gamemanager.instance.playerUI.UpdateGold();
             gamemanager.instance.UpdateGameGoal(-1);
 

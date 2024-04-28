@@ -6,13 +6,13 @@ public class Heavy : MonoBehaviour
 {
     public bool IsLaserShot()
     {
-        if (gamemanager.instance.playerScript.IsNotLaserWeapon())
+        if (gamemanager.instance.playerScript.HasLaserWeaponEquipped())
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 }

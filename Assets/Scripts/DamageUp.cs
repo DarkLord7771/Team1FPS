@@ -10,14 +10,11 @@ public class DamageUp : PowerUpEffects
     public override IEnumerator ApplyEffect()
     {
         gamemanager.instance.playerScript.damagePowerUp = true;
-        gamemanager.instance.playerScript.SetDamageMultiplier(damageModifier);
+        gamemanager.instance.playerScript.DamageMultiplier = damageModifier;
             
         yield return new WaitForSeconds(powerUpTime);
         gamemanager.instance.playerScript.damagePowerUp = false;
-        gamemanager.instance.playerScript.SetDamageMultiplier(0);
-        gamemanager.instance.playerScript.ResetDamage();
-        
+        gamemanager.instance.playerScript.DamageMultiplier = 0;
+        gamemanager.instance.playerScript.gunHandler.ResetDamage();
     }
-
-
 }
