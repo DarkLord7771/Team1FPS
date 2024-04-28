@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] int sensitivity;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
+    [SerializeField] GunAttack gunAttack;
 
     float rotX;
 

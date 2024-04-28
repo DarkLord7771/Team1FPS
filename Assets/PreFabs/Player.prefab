@@ -359,6 +359,7 @@ MonoBehaviour:
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
+  gunAttack: {fileID: 6781782391145008139}
 --- !u!20 &2048824666397360542
 Camera:
   m_ObjectHideFlags: 0
@@ -442,7 +443,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
+  m_VolumeFrameworkUpdateModeOption: 0
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
@@ -507,6 +508,7 @@ GameObject:
   - component: {fileID: 4875634354784556692}
   - component: {fileID: 2205369062290094447}
   - component: {fileID: 6781782391145008139}
+  - component: {fileID: 2888160815491766036}
   - component: {fileID: 4171242967695071732}
   - component: {fileID: 2349272196234506760}
   m_Layer: 6
@@ -596,7 +598,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laser: {fileID: 4171242967695071732}
   shootPos: {fileID: 3635828597663416159}
+  recoil: {fileID: 2888160815491766036}
   isShooting: 0
+--- !u!114 &2888160815491766036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505698671203001191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49344c5318c789f4293a00f5f3519a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 6096385356382716046}
+  recoilX: -2
+  recoilY: 2
+  recoilZ: 7
+  kickbackZ: 0.3
+  playerController: {fileID: 6467950498167673251}
+  snappiness: 5
+  returnAmount: 8
 --- !u!114 &4171242967695071732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +833,7 @@ GameObject:
   - component: {fileID: 3774749029946527827}
   - component: {fileID: 688489229017537685}
   - component: {fileID: 9001948008768963193}
+  - component: {fileID: 5309274602073746562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -955,3 +979,30 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &5309274602073746562
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006794672349309869}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

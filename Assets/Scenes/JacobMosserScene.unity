@@ -420,11 +420,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6260362319205163398, guid: 5d58863f31079fe458906602de73350c, type: 3}
   m_PrefabInstance: {fileID: 7369868741433437619}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &569602609 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6096385356382716046, guid: c34790a0933b02240a265431401b2b46, type: 3}
-  m_PrefabInstance: {fileID: 1598334876}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &601776244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -607,17 +602,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7279781051620608485, guid: 21f4a33a2cbf4dd4ab1e0dfc2befc1c2, type: 3}
   m_PrefabInstance: {fileID: 858006876}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &920691328 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6377716257483309680, guid: c34790a0933b02240a265431401b2b46, type: 3}
-  m_PrefabInstance: {fileID: 1598334876}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2057f9388faa33b4c8b6a957b9b59869, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &965470208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,22 +806,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6377716257483309680, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: gunTransform
-      value: 
-      objectReference: {fileID: 569602609}
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 1018200162}
-    - target: {fileID: 6781782391145008139, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: handler
-      value: 
-      objectReference: {fileID: 920691328}
-    - target: {fileID: 6781782391145008139, guid: c34790a0933b02240a265431401b2b46, type: 3}
-      propertyPath: recoilResetTimeSeconds
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: m_Name
       value: Player

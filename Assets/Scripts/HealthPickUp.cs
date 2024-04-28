@@ -18,6 +18,11 @@ public class HealthPickUp : MonoBehaviour
                 GameObject.FindWithTag("Player").GetComponent<PlayerController>().SetHP();
                 GameObject.FindWithTag("Player").GetComponent<PlayerController>().CallHPUIUpdate();
 
+                if (gamemanager.instance.playerScript.lowHealth)
+                {
+                    gamemanager.instance.playerScript.lowHealth = false;
+                }
+
                 StartCoroutine(RespawnHP());
             }
         }

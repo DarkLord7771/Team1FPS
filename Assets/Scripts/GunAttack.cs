@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class GunAttack : MonoBehaviour
 {
     [SerializeField] Laser laser;
     [SerializeField] Transform shootPos;
-    [SerializeField] bool isShooting;
+    public ProceduralRecoil recoil;
+    public bool isShooting;
 
     public void FireWeapon(AudioSource source, GunStats gun, int gunCount)
     {
@@ -15,6 +17,7 @@ public class GunAttack : MonoBehaviour
         if (InputManager.instance.FireInput && !isShooting && gun.ammoCur > 0)
         {
             StartCoroutine(Shoot(source, gun));
+            recoil.Recoil();
         }
         else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
         {
@@ -53,7 +56,6 @@ public class GunAttack : MonoBehaviour
                     gamemanager.instance.playerScript.reticle.Expand(gamemanager.instance.playerScript.reticleRecoil);
                 }
             }
-
             // If beam is enabled, shoot beam from trail renderer.
             if (gun.isLaserWeapon)
             {
