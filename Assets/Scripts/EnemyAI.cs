@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Canvas displayCanvas;
     [SerializeField] GameObject Bullet;
     [SerializeField] Slider healthbar;
     [SerializeField] GameObject shield;
@@ -177,6 +178,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemySFXVol);
+
+        DamagePopupGenerator.instance.DisplayPopUp(amount, transform.Find("DamagePopUpParent"));
 
         if (healthbar != null)
         {

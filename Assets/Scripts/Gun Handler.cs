@@ -33,7 +33,7 @@ public class GunHandler : MonoBehaviour
 
             if (player.damagePowerUp && gunList.Count > 0)
             {
-                //shootDamage = (int)Mathf.Ceil((gunHandler.SelectedGun().shootDamage + damageUpgrade) * damageMultiplier);
+                gunList[selectedGun].shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + player.DamageUpgrade) * player.DamageMultiplier);
             }
         }
     }
