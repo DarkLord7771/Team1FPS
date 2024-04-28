@@ -50,6 +50,7 @@ public class gamemanager : MonoBehaviour
     public GameObject playerStartPos;
     public PlayerUI playerUI;
     public PlayerUpgrade playerUpgrade;
+    public Camera mainCamera;
 
     // Pause
     [Header("----- Game State -----")]
@@ -80,6 +81,7 @@ public class gamemanager : MonoBehaviour
         playerUpgrade = player.GetComponent<PlayerUpgrade>();
         timeScaleOrig = Time.timeScale;
         playerStartPos = GameObject.FindWithTag("Player Spawn Pos");
+        mainCamera = Camera.main;
 
         // Check if WaveManager.instance is null or if it started first.
         if (WaveManager.instance)

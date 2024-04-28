@@ -420,6 +420,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6260362319205163398, guid: 5d58863f31079fe458906602de73350c, type: 3}
   m_PrefabInstance: {fileID: 7369868741433437619}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &569602609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6096385356382716046, guid: c34790a0933b02240a265431401b2b46, type: 3}
+  m_PrefabInstance: {fileID: 1598334876}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &601776244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -431,6 +436,14 @@ PrefabInstance:
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6862606650326632731, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Pivot.x
@@ -594,6 +607,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7279781051620608485, guid: 21f4a33a2cbf4dd4ab1e0dfc2befc1c2, type: 3}
   m_PrefabInstance: {fileID: 858006876}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &920691328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6377716257483309680, guid: c34790a0933b02240a265431401b2b46, type: 3}
+  m_PrefabInstance: {fileID: 1598334876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2057f9388faa33b4c8b6a957b9b59869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &965470208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -798,10 +822,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6377716257483309680, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: gunTransform
+      value: 
+      objectReference: {fileID: 569602609}
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 1018200162}
+    - target: {fileID: 6781782391145008139, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 920691328}
+    - target: {fileID: 6781782391145008139, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: recoilResetTimeSeconds
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1571,7 +1607,7 @@ PrefabInstance:
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: objectToSpawn.Array.data[0]
       value: 
-      objectReference: {fileID: 4922257440237033226, guid: c0b45bb0c655cce41892d287d4da4011, type: 3}
+      objectReference: {fileID: 3880070783380827280, guid: 020909f2d3ce1b84ba047ae854619328, type: 3}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: objectToSpawn.Array.data[1]
       value: 

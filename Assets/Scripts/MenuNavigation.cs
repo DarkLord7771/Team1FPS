@@ -13,6 +13,7 @@ public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(firstSelectedObject);
+        InputManager.instance.LastSelected = firstSelectedObject;
     }
 
     // Update is called once per frame
@@ -38,14 +39,14 @@ public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        
+        InputManager.instance.LastSelected = eventData.selectedObject;
         eventData.selectedObject = null;
     }
 
 
     public void OnDeselect(BaseEventData eventData)
     {
-        if (!Gamepad.current.wasUpdatedThisFrame && EventSystem.current.currentSelectedGameObject == null)
+        if (Gamepad.current != null && !Gamepad.current.wasUpdatedThisFrame && EventSystem.current.currentSelectedGameObject == null)
         {
             eventData.selectedObject = InputManager.instance.LastSelected;
         }

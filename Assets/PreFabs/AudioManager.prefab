@@ -435,16 +435,9 @@ MonoBehaviour:
   aud: {fileID: 1143552707070563730}
   musicSource: {fileID: 6173109035394125084}
   sfxSource: {fileID: 4213021936438537715}
+  menuSource: {fileID: 0}
   musicAud:
   - {fileID: 8300000, guid: 56441742ce34f5a4191043d5e9818fc0, type: 3}
-  - {fileID: 8300000, guid: 3c2092b25a21f2940b6ca77275e1e403, type: 3}
-  - {fileID: 8300000, guid: 852155c0a31d4c641a4c32769fc52c1d, type: 3}
-  - {fileID: 8300000, guid: 80ca32b22593d1d4cb2d42ef63ab1f82, type: 3}
-  - {fileID: 8300000, guid: 9c1332f939b359145a97389a338140e0, type: 3}
-  - {fileID: 8300000, guid: 205cc20c8cad3574eab5c4ca066a7410, type: 3}
-  - {fileID: 8300000, guid: 457ed077cc0e035448fa6b32db554b80, type: 3}
-  - {fileID: 8300000, guid: c3846b5caa7fa604198b65d662b8ee19, type: 3}
-  - {fileID: 8300000, guid: 3d26d0bcdbfbd5649a5a8d2fe029045b, type: 3}
   - {fileID: 8300000, guid: 3e653b0cce83a924095469407ec96feb, type: 3}
   audJump:
   - {fileID: 8300000, guid: d85a44c42001ee84abf0f14c4f772fc7, type: 3}
