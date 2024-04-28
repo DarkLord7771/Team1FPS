@@ -651,7 +651,7 @@ MonoBehaviour:
   HP: 50
   shootRate: 0.8
   gold: 300
-  dropRate: 0
+  dropRate: 1
   offset: 1.5
   raycastDistance: 30
   isShielded: 0

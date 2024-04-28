@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class gamemanager : MonoBehaviour
 {
@@ -99,6 +101,9 @@ public class gamemanager : MonoBehaviour
         {
             difficultyMod = 1;
         }
+
+        if (!player)
+            DontDestroyOnLoad(player);
     }
 
     // Update is called once per frame
@@ -187,7 +192,14 @@ public class gamemanager : MonoBehaviour
             }
             else if (WaveManager.instance.waveCurrent >= WaveManager.instance.spawners.Length)
             {
-                PlayerHasWon();
+                if (SceneManager.GetActiveScene().buildIndex == 1)
+                {
+                    return;
+                }
+                else
+                {
+                    PlayerHasWon();
+                }
             }
         }
     }

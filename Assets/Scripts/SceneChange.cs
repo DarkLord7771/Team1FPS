@@ -7,6 +7,7 @@ public class SceneChange : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(2);        
+        //SceneManager.LoadScene(2);
+        gamemanager.instance.PlayerHasWon();
     }
 }
