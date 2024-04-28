@@ -503,6 +503,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicVol
+      value: 0.191
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 205cc20c8cad3574eab5c4ca066a7410, type: 3}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 56441742ce34f5a4191043d5e9818fc0, type: 3}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c2092b25a21f2940b6ca77275e1e403, type: 3}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 852155c0a31d4c641a4c32769fc52c1d, type: 3}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 80ca32b22593d1d4cb2d42ef63ab1f82, type: 3}
+    - target: {fileID: 8333534688313419250, guid: 955c04bd33cb0b84ea8cb97992cd340c, type: 3}
+      propertyPath: musicAud.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c1332f939b359145a97389a338140e0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
