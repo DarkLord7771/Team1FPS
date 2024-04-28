@@ -9,8 +9,8 @@ public class DamagePopup : MonoBehaviour
     Color textColor;
     Transform playerTransform;
 
-    float disappearTimer = 0.5f;
-    float fadeOutSpeed = 5f;
+    float disappearTimer = 0.15f;
+    float fadeOutSpeed = 4f;
     float moveYSpeed = 1f;
 
     public void SetUp(int amount)

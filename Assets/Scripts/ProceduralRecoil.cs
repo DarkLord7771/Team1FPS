@@ -27,7 +27,7 @@ public class ProceduralRecoil : MonoBehaviour
         targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnAmount  * Time.deltaTime);
         currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness *  Time.fixedDeltaTime);
         transform.localRotation = Quaternion.Euler(currentRotation);
-        cam.localRotation = Quaternion.Euler(new Vector3(playerController.transform.rotation.x * currentRotation.x, 0 , 0));
+        //cam.localRotation = Quaternion.Euler(currentRotation);
 
         Back(); // Kickback
     }
@@ -36,7 +36,7 @@ public class ProceduralRecoil : MonoBehaviour
     {
         targetPosition -= new Vector3(0, 0, gun.kickbackZ);
         targetRotation += new Vector3(gun.recoilX, Random.Range(-gun.recoilY, gun.recoilY), Random.Range(-gun.recoilZ, gun.recoilZ));
-        playerController.transform.position -= playerController.transform.forward * gun.kickbackZ;
+        //playerController.transform.position -= new Vector3(playerController.transform.position.x * gun.kickbackZ, 0f, playerController.transform.position.z * gun.kickbackZ);
     }
 
     void Back()

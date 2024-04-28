@@ -22,15 +22,15 @@ MonoBehaviour:
   cost: 0
   isLaserWeapon: 0
   baseDamage: 3
-  baseShootDist: 50
-  baseFireRate: 1
+  baseShootDist: 65
+  baseFireRate: 0.9
   baseMaxAmmo: 48
   baseReloadSpeed: 0
   shootDamage: 3
-  shootDist: 50
-  fireRate: 1
+  shootDist: 65
+  fireRate: 0.9
   reloadSpeed: 0
-  ammoCur: 41
+  ammoCur: 44
   ammoMax: 48
   recoilX: -2
   recoilY: 2
