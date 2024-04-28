@@ -85202,7 +85202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f22a28d87f10994990eb634f45c5d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: -12
+  threshold: -110
 --- !u!4 &1733913645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 925999055805086331, guid: 4cbc26fa4eb08af43b5d775780fd2a80, type: 3}

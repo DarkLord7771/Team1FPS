@@ -10,7 +10,7 @@ public class FallRespawn : MonoBehaviour
     {
         if (transform.position.y < threshold)
         {
-            transform.position = new Vector3(-0.86f, -13.46f, 7.8f);
+            transform.position = new Vector3(-3f, -80f, 195f);
 
         }
     }
