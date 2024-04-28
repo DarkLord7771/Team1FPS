@@ -585,6 +585,54 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &6788549883716115367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 549416292439067170}
+  - component: {fileID: 8129130260103455608}
+  m_Layer: 0
+  m_Name: MeleeHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &549416292439067170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788549883716115367}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 956936029679624981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8129130260103455608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788549883716115367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7d83fb651edf449843eea081225a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  meleeList: []
+  meleeModel: {fileID: 5505698671203001191}
+  totalMeleeAllowed: 1
 --- !u!1 &8438006141214605254
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +663,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2454305981411931602}
+  - {fileID: 549416292439067170}
   m_Father: {fileID: 1803175517322764891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9006794672349309869
@@ -627,6 +676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1803175517322764891}
   - component: {fileID: 6467950498167673251}
+  - component: {fileID: 2546866636042110249}
   - component: {fileID: 3774749029946527827}
   - component: {fileID: 688489229017537685}
   - component: {fileID: 9001948008768963193}
@@ -678,29 +728,27 @@ MonoBehaviour:
   maxHP: 25
   maxSpeed: 10
   maxJumpSpeed: 25
-  damageUpgrade: 0
-  shootRateUpgrade: 0
-  ammoCapacityUpgrade: 0
-  shootDamage: 1
-  shootDist: 25
-  shootRate: 0.2
-  reloadSpeed: 0
-  ammoCapacity: 0
   gunHandler: {fileID: 6377716257483309680}
+  meleeHandler: {fileID: 0}
   reticle: {fileID: 0}
   reticleRecoil: 15
   settleSpeed: 1
-  meleeList: []
-  meleeModel: {fileID: 0}
-  meleeDamage: 0
-  meleeDist: 0
-  meleeSpeed: 0
-  durabilityCap: 0
-  totalMeleesAllowed: 0
   HPOrig: 0
   damagePowerUp: 0
-  hasShield: 0
   lowHealth: 0
+--- !u!114 &2546866636042110249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006794672349309869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e8b4f33d7177849afad83ac90fe618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!33 &3774749029946527827
 MeshFilter:
   m_ObjectHideFlags: 0

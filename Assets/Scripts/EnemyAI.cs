@@ -53,7 +53,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        HP *= (int)(HP * gamemanager.instance.difficultyMod);
+        HP = (int)(HP * gamemanager.instance.difficultyMod);
         maxHP = HP;
 
 

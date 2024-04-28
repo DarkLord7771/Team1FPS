@@ -56,6 +56,7 @@ public class gamemanager : MonoBehaviour
     public bool isPaused;
     public bool isTimerRunning;
     public float difficultyMod;
+    public float difficulty;
 
     // Time
     float timeScaleOrig;
@@ -86,9 +87,11 @@ public class gamemanager : MonoBehaviour
             SetWaveCount();
         }
 
+        difficulty = PlayerPrefs.GetInt("Difficulty");
+
         if (PlayerPrefs.GetInt("Difficulty") > 0)
         {
-            difficultyMod = Mathf.Log10(PlayerPrefs.GetInt("Difficulty")) * 10;
+            difficultyMod = Mathf.Log10(PlayerPrefs.GetInt("Difficulty")) * 2;
         }
         else
         {
