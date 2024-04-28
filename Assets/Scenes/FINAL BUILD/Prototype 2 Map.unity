@@ -35968,7 +35968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: numToSpawn
-      value: 13
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: spawnPos.Array.size
@@ -36021,6 +36021,10 @@ PrefabInstance:
     - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: m_Name
       value: Wave 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48999,7 +49003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: numToSpawn
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: spawnPos.Array.size
@@ -49044,6 +49048,10 @@ PrefabInstance:
     - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: m_Name
       value: Wave 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52055,7 +52063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: numToSpawn
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: spawnPos.Array.size
@@ -52104,6 +52112,10 @@ PrefabInstance:
     - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: m_Name
       value: Wave 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64262,7 +64274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: numToSpawn
-      value: 16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: spawnPos.Array.size
@@ -64315,6 +64327,10 @@ PrefabInstance:
     - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: m_Name
       value: Wave 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75341,6 +75357,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
+      propertyPath: numToSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077361927578965210, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: spawnPos.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -75379,6 +75399,10 @@ PrefabInstance:
     - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
       propertyPath: m_Name
       value: Wave 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875773618009064194, guid: 9e2e7e937bc704e4ca92311d7c2c0eb8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

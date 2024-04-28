@@ -652,8 +652,8 @@ MonoBehaviour:
   shootRate: 0.8
   gold: 300
   dropRate: 0
-  offset: 0
-  raycastDistance: 0
+  offset: 1.5
+  raycastDistance: 30
   isShielded: 0
   faceTargetSpeed: 5
   animSpeedTrans: 3
