@@ -12,16 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5109b1cf1d9a41aaea7a8cd679311, type: 3}
   m_Name: Gun - SMG
   m_EditorClassIdentifier: 
-  gunName: SMG
-  cost: 15
-  shootDamage: 2
-  shootDist: 25
-  shootRate: 0.6
-  ammoCur: 0
-  ammoMax: 350
-  isLaserWeapon: 1
   model: {fileID: 138408, guid: a66d64962dad7b441b895147b3616981, type: 3}
   hitEffect: {fileID: 8796357564163452080, guid: 345ad314e763e2c41b1904b892610767, type: 3}
+  bloodEffect: {fileID: 0}
   shootSound: {fileID: 8300000, guid: fe0517963bab1f2408ed3ea853166bbb, type: 3}
   shootSoundVolume: 0.5
   gunTransform: {fileID: 6260362319205163398, guid: 5d58863f31079fe458906602de73350c, type: 3}
+  gunName: SMG
+  cost: 15
+  isLaserWeapon: 1
+  baseDamage: 0
+  baseShootDist: 0
+  baseFireRate: 0
+  baseMaxAmmo: 0
+  baseReloadSpeed: 0
+  shootDamage: 2
+  shootDist: 25
+  fireRate: 0
+  reloadSpeed: 0
+  ammoCur: 0
+  ammoMax: 350
+  recoilX: -4
+  recoilY: 4
+  recoilZ: 10
+  kickbackZ: 0.2

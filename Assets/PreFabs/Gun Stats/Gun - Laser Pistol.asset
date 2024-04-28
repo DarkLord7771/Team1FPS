@@ -25,8 +25,14 @@ MonoBehaviour:
   baseShootDist: 30
   baseFireRate: 0.3
   baseMaxAmmo: 350
-  shootDamage: 2
+  baseReloadSpeed: 0
+  shootDamage: 1
   shootDist: 30
   fireRate: 0.3
+  reloadSpeed: 0
   ammoCur: 350
   ammoMax: 350
+  recoilX: -1
+  recoilY: 1
+  recoilZ: 1.1
+  kickbackZ: 0.05

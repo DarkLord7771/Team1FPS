@@ -30,5 +30,9 @@ MonoBehaviour:
   shootDist: 50
   fireRate: 1
   reloadSpeed: 0
-  ammoCur: 38
+  ammoCur: 41
   ammoMax: 48
+  recoilX: -2
+  recoilY: 2
+  recoilZ: 7
+  kickbackZ: 0.3

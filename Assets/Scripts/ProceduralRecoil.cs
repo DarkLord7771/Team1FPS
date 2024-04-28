@@ -12,11 +12,6 @@ public class ProceduralRecoil : MonoBehaviour
 
     public Transform cam;
 
-    [SerializeField] float recoilX;
-    [SerializeField] float recoilY;
-    [SerializeField] float recoilZ;
-    [SerializeField] float kickbackZ;
-
     [SerializeField] PlayerController playerController;
 
     public float snappiness;
@@ -37,11 +32,11 @@ public class ProceduralRecoil : MonoBehaviour
         Back(); // Kickback
     }
 
-    public void Recoil()
+    public void Recoil(GunStats gun)
     {
-        targetPosition -= new Vector3(0, 0, kickbackZ);
-        targetRotation += new Vector3(recoilX, Random.Range(-recoilY, recoilY), Random.Range(-recoilZ, recoilZ));
-        playerController.transform.position -= playerController.transform.forward * kickbackZ;
+        targetPosition -= new Vector3(0, 0, gun.kickbackZ);
+        targetRotation += new Vector3(gun.recoilX, Random.Range(-gun.recoilY, gun.recoilY), Random.Range(-gun.recoilZ, gun.recoilZ));
+        playerController.transform.position -= playerController.transform.forward * gun.kickbackZ;
     }
 
     void Back()

@@ -17,7 +17,7 @@ public class GunAttack : MonoBehaviour
         if (InputManager.instance.FireInput && !isShooting && gun.ammoCur > 0)
         {
             StartCoroutine(Shoot(source, gun));
-            recoil.Recoil();
+            recoil.Recoil(gun);
         }
         else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
         {

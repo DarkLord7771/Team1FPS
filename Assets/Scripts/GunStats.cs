@@ -35,4 +35,11 @@ public class GunStats : ScriptableObject
     [Header("----- Ammo Stats -----")]
     public int ammoCur;
     public int ammoMax;
+
+    [Header("----- Recoil Stats -----")]
+    public float recoilX;
+    public float recoilY;
+    public float recoilZ;
+
+    public float kickbackZ;
 }
