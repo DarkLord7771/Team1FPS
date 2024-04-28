@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (lowHealth && !playerUI.flashActive)
             {
-                StartCoroutine(playerUI.FlashDamageScreen());
+                playerUI.StartCoroutine(playerUI.FlashDamageScreen());
             }
         }
     }
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if ((float)HP / HPOrig > .3f)
             {
-                StartCoroutine(playerUI.FlashDamageScreen());
+                playerUI.StartCoroutine(playerUI.FlashDamageScreen());
             }
             else
             {
@@ -236,5 +236,15 @@ public class PlayerController : MonoBehaviour, IDamage
         AudioManager.instance.PlayPowerUpSound();
         playerUI.PowerUpDisplay.activePowerUps.Add(powerUp);
         StartCoroutine(powerUp.ApplyEffect());
+    }
+
+    public void SetHP()
+    {
+        HP = HPOrig;
+    }
+
+    public void CallHPUIUpdate()
+    {
+        playerUI.UpdateHP();
     }
 }
