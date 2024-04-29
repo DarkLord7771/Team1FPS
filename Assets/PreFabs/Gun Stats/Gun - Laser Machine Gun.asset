@@ -21,17 +21,17 @@ MonoBehaviour:
   gunName: Laser Machine Gun
   cost: 60
   isLaserWeapon: 1
-  baseDamage: 1
+  baseDamage: 2
   baseShootDist: 50
-  baseFireRate: 0.1
+  baseFireRate: 0.3
   baseMaxAmmo: 250
   baseReloadSpeed: 0
-  shootDamage: 1
+  shootDamage: 5
   shootDist: 50
-  fireRate: 0.1
-  reloadSpeed: 0
-  ammoCur: 250
-  ammoMax: 250
+  fireRate: -0.20000002
+  reloadSpeed: -0.2
+  ammoCur: 270
+  ammoMax: 270
   recoilX: -1
   recoilY: 1
   recoilZ: 3

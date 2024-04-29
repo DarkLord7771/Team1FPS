@@ -173,8 +173,15 @@ public class EnemyAI : MonoBehaviour, IDamage
             }
         }
 
-
-        HP -= amount;
+        if (HP <= amount)
+        {
+            HP -= HP;
+        }
+        else
+        {
+            HP -= amount;
+        }
+        
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemySFXVol);

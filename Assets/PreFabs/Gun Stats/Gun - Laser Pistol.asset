@@ -21,12 +21,12 @@ MonoBehaviour:
   gunName: Laser Pistol
   cost: 50
   isLaserWeapon: 1
-  baseDamage: 1
+  baseDamage: 2
   baseShootDist: 30
   baseFireRate: 0.3
   baseMaxAmmo: 350
   baseReloadSpeed: 0
-  shootDamage: 1
+  shootDamage: 2
   shootDist: 30
   fireRate: 0.3
   reloadSpeed: 0
