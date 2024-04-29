@@ -33,21 +33,26 @@ public class Reticle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Call the function to shrink the reticle to normal size on update
         ShrinkReticleToNormal();
     }
 
     // Shrink the reticle to normal size
     void ShrinkReticleToNormal()
     {
+        // If the reticle y up is not in the center, return it to the center
         if (up.transform.position.y > upDefaultPos.y)
             up.transform.position = new Vector3(up.transform.position.x, up.transform.position.y - returnToCenterSpeed, up.transform.position.z);
 
+        // If the reticle y down is not in the center, return it to the center
         if (down.transform.position.y < downDefaultPos.y)
             down.transform.position = new Vector3(down.transform.position.x, down.transform.position.y + returnToCenterSpeed, down.transform.position.z);
 
+        // If the reticle x left is not in the center, return it to the center
         if (left.transform.position.x < leftDefaultPos.x)
             left.transform.position = new Vector3(left.transform.position.x + returnToCenterSpeed, left.transform.position.y, left.transform.position.z);
 
+        // If the reticle x right is not in the center, return it to the center
         if (right.transform.position.x > rightDefaultPos.x)
             right.transform.position = new Vector3(right.transform.position.x - returnToCenterSpeed, right.transform.position.y, right.transform.position.z);
     }
@@ -55,6 +60,7 @@ public class Reticle : MonoBehaviour
     // Expand the reticle
     public void Expand(float expandAmount)
     {
+        // Expand the reticle by expandAmount
         up.transform.position = new Vector3(up.transform.position.x, up.transform.position.y + expandAmount, up.transform.position.z);
         down.transform.position = new Vector3(down.transform.position.x, down.transform.position.y - expandAmount, down.transform.position.z);
         left.transform.position = new Vector3(left.transform.position.x - expandAmount, left.transform.position.y, left.transform.position.z);

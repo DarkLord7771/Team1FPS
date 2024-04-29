@@ -932,7 +932,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -960}
+  m_AnchoredPosition: {x: 0, y: -4650}
   m_SizeDelta: {x: 454.4344, y: 66.3367}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1581256686
@@ -960,20 +960,197 @@ MonoBehaviour:
     Team 1
 
 
-    Jacob Mosser
 
+    Gameplay Programmer
+
+    Jacob
+    Mosser
+
+
+
+    Gameplay Developer
 
     Kayman Colvin
 
+
+
+    Level Designer
 
     Anthony
     Pfeifer
 
 
+
+    Game Developer
+
     Darius Holmes
 
 
-    James Primeau'
+
+    Visuals and Effects
+
+    James
+    Primeau
+
+
+
+    Music by:
+
+    Sovereign Shadows
+
+    Anthony "Reaper" Pfeifer
+
+    Sean
+    "Jester" O''Toole
+
+    Roger Druin II
+
+    Vincent Kocinski
+
+
+
+    Assets Used:
+
+    Too
+    Many Crosshairs
+
+    By: Clean Shirt Labs
+
+    assetstore.unity.com
+
+
+
+    Outdoor
+    Ground Textures
+
+    By: A dog''s life software
+
+    assetstore.unity.com
+
+
+
+    Free
+    UI Click Sound Pack
+
+    By: SwishSwoosh
+
+    assetstore.unity.com
+
+
+
+    LowPoly-3D
+    Stylized Guns WW2 U.S.
+
+    By: sametsylmz3d
+
+    assetstore.unity.com
+
+
+
+    Toon
+    Soldiers - WW2 edition
+
+    By: Polygon Blacksmith
+
+    assetstore.unity.com
+
+
+
+    Sci-Fi
+    Gun Light
+
+    By: Factory Of Models
+
+    assetstore.unity.com
+
+
+
+    Sci-Fi
+    Gun Heavy
+
+    By: Factory Of Models
+
+    assetstore.unity.com
+
+
+
+    G28 Rifle
+
+    By:
+    Game Stuff Studio
+
+    assetstore.unity.com
+
+
+
+    The Portal Collection
+
+    By:
+    ReversedInt
+
+    assetstore.unity.com
+
+
+
+    Ten Power-Ups
+
+    By: TeKniKo
+
+    assetstore.unity.com
+
+
+
+    RPG
+    Essentials Sound Effects
+
+    By: leohpaz
+
+    assetstore.unity.com
+
+
+
+    RPG
+    Character Mecanim Animation
+
+    By: Explosive
+
+    assetstore.unity.com
+
+
+
+    Low
+    Poly RPG Fantasy Weapons Lite
+
+    By: JustCreate
+
+    assetstore.unity.com
+
+
+
+    Grenade
+    Sound FX
+
+    By: MGWSoundDesign
+
+    assetstore.unity.com
+
+
+
+    Ammo Box
+
+    By:
+    Beatheart Creative Studio
+
+    assetstore.unity.com
+
+
+
+    3D Modern Menu UI
+
+    By:
+    SlimUI
+
+    assetstore.unity.com'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 59ee34472c5892a4196858080cc2141e, type: 2}
   m_sharedMaterial: {fileID: -7472687217148228796, guid: 59ee34472c5892a4196858080cc2141e, type: 2}
