@@ -642,9 +642,9 @@ MonoBehaviour:
   anim: {fileID: 7325174259548913205}
   shootPos: {fileID: 1660563738327409206}
   headPos: {fileID: 7759929139754497274}
-  displayCanvas: {fileID: 0}
+  displayCanvas: {fileID: 5121537944216428548}
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
-  healthbar: {fileID: 7318220186446040559, guid: 771f73f74019e824f891bb9f8e71d57c, type: 3}
+  healthbar: {fileID: 1013754569371738968}
   shield: {fileID: 0}
   aud: {fileID: 1270522458602915750}
   whereISpawned: {fileID: 0}
