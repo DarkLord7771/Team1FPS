@@ -57,9 +57,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         HP = Mathf.CeilToInt(HP * gamemanager.instance.difficultyMod);
         maxHP = HP;
 
-
-        // Find healthbar and set it to not active on start.
-        healthbar = GameObject.Find("Health Bar").GetComponent<Slider>();
         healthbar.gameObject.SetActive(false);
 
         weaponIk = GetComponent<WeaponIk>();
@@ -225,7 +222,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         walking = false;
     }
 
-    void SetHealthBar()
+     void SetHealthBar()
     {
         // If the healthbar is not active, set it to active.
         if (!healthbar.gameObject.activeSelf)

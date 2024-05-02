@@ -1901,7 +1901,7 @@ MonoBehaviour:
   anim: {fileID: 3240824845771880191}
   shootPos: {fileID: 3380173099522103934}
   headPos: {fileID: 7827981253963147449}
-  displayCanvas: {fileID: 0}
+  displayCanvas: {fileID: 1281912494430909587}
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   healthbar: {fileID: 2636161595369740224}
   shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}

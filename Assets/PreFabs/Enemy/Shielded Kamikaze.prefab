@@ -1036,7 +1036,7 @@ MonoBehaviour:
   anim: {fileID: 8122632397193704537}
   shootPos: {fileID: 0}
   headPos: {fileID: 7544311633188129427}
-  displayCanvas: {fileID: 0}
+  displayCanvas: {fileID: 3221864422207599971}
   Bullet: {fileID: 7795726109579180511, guid: f8ac10b2ff1cfbc4baf201413d234dcf, type: 3}
   healthbar: {fileID: 454769069165605638}
   shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}
