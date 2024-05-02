@@ -154,7 +154,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
-        if ((heavy != null && !gamemanager.instance.playerScript.HasLaserWeaponEquipped()) || isShielded)
+        if (!gamemanager.instance.playerScript.HasLaserWeaponEquipped() && (heavy != null || isShielded))
         {
             amount = (int)(amount * 0.5);
         }

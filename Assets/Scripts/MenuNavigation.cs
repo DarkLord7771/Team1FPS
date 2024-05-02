@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDeselectHandler
+public class MenuNavigation : MonoBehaviour /*IPointerEnterHandler, IPointerExitHandler*/
 {
     public GameObject firstSelectedObject;
 
@@ -19,36 +19,6 @@ public class MenuNavigation : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     // Update is called once per frame
     void Update()
     {
-        if (Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame && EventSystem.current.currentSelectedGameObject == null)
-        {
-            if (InputManager.instance.LastSelected != null)
-            {
-                EventSystem.current.SetSelectedGameObject(InputManager.instance.LastSelected);
-            }
-            else
-            {
-                EventSystem.current.SetSelectedGameObject(firstSelectedObject);
-            }
-        }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        eventData.selectedObject = gameObject;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        InputManager.instance.LastSelected = eventData.selectedObject;
-        eventData.selectedObject = null;
-    }
-
-
-    public void OnDeselect(BaseEventData eventData)
-    {
-        if (Gamepad.current != null && !Gamepad.current.wasUpdatedThisFrame && EventSystem.current.currentSelectedGameObject == null)
-        {
-            eventData.selectedObject = InputManager.instance.LastSelected;
-        }
+        EventSystem.current.SetSelectedGameObject(InputManager.instance.LastSelected);
     }
 }

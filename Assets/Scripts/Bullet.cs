@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.forward * speed;
         Destroy(gameObject, destroyTime);
 
-        damage = (int)(damage * gamemanager.instance.difficultyMod);
+        damage += (int)(damage * gamemanager.instance.difficultyMod);
     }
         
     private void OnTriggerEnter(Collider other)
