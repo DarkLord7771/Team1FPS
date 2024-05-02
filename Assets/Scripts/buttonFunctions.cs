@@ -43,7 +43,9 @@ public class buttonFunctions : MonoBehaviour
         {
             gamemanager.instance.StateMainMenu();
         }
-        
+
+        PlayerPrefs.DeleteKey("Difficulty");
+
         AudioManager.instance.PlayMenuSound();
         SceneManager.LoadScene("Main Menu");
     }

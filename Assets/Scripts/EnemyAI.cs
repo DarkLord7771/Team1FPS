@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        HP = (int)(HP * gamemanager.instance.difficultyMod);
+        HP = Mathf.CeilToInt(HP * gamemanager.instance.difficultyMod);
         maxHP = HP;
 
 
@@ -157,36 +157,28 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
-        if (heavy != null && !heavy.IsLaserShot())
+        if ((heavy != null && !gamemanager.instance.playerScript.HasLaserWeaponEquipped()) || isShielded)
         {
-            amount = (int)Mathf.Ceil(amount * 0.5f);
+            amount = (int)(amount * 0.5);
         }
-        else if (isShielded)
+        else if (isShielded && gamemanager.instance.playerScript.HasLaserWeaponEquipped())
         {
-            if (gamemanager.instance.playerScript.HasLaserWeaponEquipped())
-            {
-                amount *= 2;
-            }
-            else
-            {
-                amount /= 2;
-            }
+            amount *= (int)(amount * 1.25);
         }
 
-        if (HP <= amount)
+        if (HP <= amount || amount < 0)
         {
-            HP -= HP;
+            amount = HP;
         }
-        else
-        {
-            HP -= amount;
-        }
+
+        HP -= amount;
         
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemySFXVol);
 
         DamagePopupGenerator.instance.DisplayPopUp(amount, transform.Find("DamagePopUpParent"));
+
 
         if (healthbar != null)
         {

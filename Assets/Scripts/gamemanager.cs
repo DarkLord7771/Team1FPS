@@ -93,14 +93,7 @@ public class gamemanager : MonoBehaviour
 
         difficulty = PlayerPrefs.GetInt("Difficulty");
 
-        if (PlayerPrefs.GetInt("Difficulty") > 0)
-        {
-            difficultyMod = Mathf.Log10(PlayerPrefs.GetInt("Difficulty")) * 2;
-        }
-        else
-        {
-            difficultyMod = 1;
-        }
+        difficultyMod = Mathf.Log10(difficulty + 2) + difficulty;
     }
 
     // Update is called once per frame
