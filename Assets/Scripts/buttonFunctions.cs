@@ -29,16 +29,20 @@ public class buttonFunctions : MonoBehaviour
 
     public void Exit()
     {
+        // reset the difficulty
         PlayerPrefs.DeleteKey("Difficulty");
 
+        // if in the editor, stop playing the game
     #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_WEBGL
-            AudioManager.instance.PlayMenuSound();
-            SceneManager.LoadScene("Main Menu");
-#else
-            Application.Quit();
-#endif
+
+        // Exit on the webgl platform, play sound and reload main menu
+    #elif UNITY_WEBGL
+                AudioManager.instance.PlayMenuSound();
+                SceneManager.LoadScene("Main Menu");
+    #else
+                Application.Quit();
+    #endif
     }
 
     public void QuitToMenu()
