@@ -28,7 +28,7 @@ MonoBehaviour:
   baseReloadSpeed: 0
   shootDamage: 7
   shootDist: 20
-  fireRate: 2
+  fireRate: 0.6
   reloadSpeed: 0
   ammoCur: 200
   ammoMax: 200
