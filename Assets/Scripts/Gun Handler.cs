@@ -30,11 +30,6 @@ public class GunHandler : MonoBehaviour
                 gun.FireWeapon(AudioManager.instance.aud, gunList[selectedGun], gunList.Count);
                 gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
             }
-
-            if (player.damagePowerUp && gunList.Count > 0)
-            {
-                gunList[selectedGun].shootDamage = (int)Mathf.Ceil((gunList[selectedGun].shootDamage + player.DamageUpgrade) * player.DamageMultiplier);
-            }
         }
     }
 
@@ -105,9 +100,17 @@ public class GunHandler : MonoBehaviour
         return gunList[selectedGun];
     }
 
+    public void IncreaseDamage()
+    {
+        if (player.damagePowerUp && gunList.Count > 0)
+        {
+            gunList[selectedGun].shootDamage = (int)((gunList[selectedGun].shootDamage + player.DamageUpgrade) * player.DamageMultiplier);
+        }
+    }
+
     public void ResetDamage() //Updates weapon damage
     {
-        gunList[selectedGun].shootDamage = (int)(gunList[selectedGun].shootDamage / player.DamageMultiplier);
+        gunList[selectedGun].shootDamage = gunList[selectedGun].baseDamage + player.DamageUpgrade;
     }
 
     void RemoveGun() //Removes first gun when more than allowed are picked up

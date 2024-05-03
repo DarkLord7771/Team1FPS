@@ -943,7 +943,7 @@ MonoBehaviour:
   shield: {fileID: 4562340193409010689, guid: a860776c4719a0740a1b7132640c1a00, type: 3}
   aud: {fileID: 8983146453772074080}
   whereISpawned: {fileID: 0}
-  HP: 3
+  HP: 7
   shootRate: 0.8
   gold: 3
   dropRate: 13
@@ -1007,7 +1007,7 @@ NavMeshAgent:
   m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 3
+  m_StoppingDistance: 6
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1

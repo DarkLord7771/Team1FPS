@@ -17,5 +17,5 @@ MonoBehaviour:
   powerUpSprite: {fileID: 21300000, guid: 94dc3eea9cac3aa41918940a6a8eaf6b, type: 3}
   powerUpColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   powerUpTime: 0
-  powerUpDisplayTransform: {fileID: 0}
+  powerUpRef: {fileID: 0}
   remainingTime: 0

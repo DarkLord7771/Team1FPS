@@ -32,7 +32,7 @@ public class GunAttack : MonoBehaviour
 
         if (gun.ammoCur > 0)
         {
-            aud.PlayOneShot(gun.shootSound, gun.shootSoundVolume);
+            aud.PlayOneShot(gun.shootSound);
             gun.ammoCur--;
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, gun.shootDist))

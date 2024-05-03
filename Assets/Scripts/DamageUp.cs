@@ -11,6 +11,7 @@ public class DamageUp : PowerUpEffects
     {
         gamemanager.instance.playerScript.damagePowerUp = true;
         gamemanager.instance.playerScript.DamageMultiplier = damageModifier;
+        gamemanager.instance.playerScript.gunHandler.IncreaseDamage();
             
         yield return new WaitForSeconds(powerUpTime);
         gamemanager.instance.playerScript.damagePowerUp = false;

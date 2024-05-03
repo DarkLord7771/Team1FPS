@@ -52,8 +52,8 @@ public class buttonFunctions : MonoBehaviour
 
     public void NextWave()
     {
-        AudioManager.instance.PlayMenuSound();
         gamemanager.instance.StateUnPaused();
+        AudioManager.instance.PlayMenuSound();
         gamemanager.instance.StartCountDown();
     }
 
