@@ -94,6 +94,7 @@ public class PlayerUpgrade : MonoBehaviour
     {
         player.AmmoCapacityUpgrade += (int)value;
         player.gunHandler.SelectedGun().ammoMax = player.gunHandler.SelectedGun().baseMaxAmmo + player.AmmoCapacityUpgrade;
+        player.gunHandler.SelectedGun().ammoCur = player.gunHandler.SelectedGun().ammoMax;
         gamemanager.instance.playerUI.UpdateAmmo(player.gunHandler.SelectedGun());
     }
 

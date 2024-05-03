@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         controller.Move(moveDir * speed * Time.deltaTime);
 
-        if (InputManager.instance.jump.action.WasPressedThisFrame() && jumpCount < jumps && gamemanager.instance.menuActive == null)
+        if (InputManager.instance.jump.action.WasPressedThisFrame() && jumpCount < jumps)
         {
             jumpCount++;
             playerVel.y = jumpSpeed;
