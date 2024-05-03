@@ -30,11 +30,15 @@ public class buttonFunctions : MonoBehaviour
     public void Exit()
     {
         PlayerPrefs.DeleteKey("Difficulty");
+
     #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #else
-        Application.Quit();
-    #endif
+            UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBGL
+            AudioManager.instance.PlayMenuSound();
+            SceneManager.LoadScene("Main Menu");
+#else
+            Application.Quit();
+#endif
     }
 
     public void QuitToMenu()
