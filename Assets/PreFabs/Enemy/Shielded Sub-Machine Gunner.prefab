@@ -1909,12 +1909,12 @@ MonoBehaviour:
   whereISpawned: {fileID: 0}
   HP: 7
   shootRate: 0.8
-  gold: 3
+  gold: 22
   dropRate: 13
   offset: 1.5
   raycastDistance: 15
   isShielded: 1
-  destroyAnimTime: 1.2
+  destroyAnimTime: 1.1
   faceTargetSpeed: 5
   animSpeedTrans: 8
   enemyFootSteps:

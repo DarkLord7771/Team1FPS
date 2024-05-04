@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour, IDamage
     public float settleSpeed;
 
     [HideInInspector] public int HPOrig;
+    [HideInInspector] public float speedOrig;
+    [HideInInspector] public float jumpSpeedOrig;
     [HideInInspector] public bool damagePowerUp;
     [HideInInspector] public bool lowHealth;
 
@@ -61,6 +63,8 @@ public class PlayerController : MonoBehaviour, IDamage
         anim = GetComponent<Animator>();
         HPOrig = HP;
         crouchOrig = controller.height;
+        speedOrig = speed;
+        jumpSpeedOrig = jumpSpeed;
 
         SpawnPlayer();
 
@@ -140,7 +144,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
         else if (InputManager.instance.SprintReleasedInput)
         {
-            speed /= sprintMod;
+            speed = speedOrig;
             isSprinting = false;
         }
     }

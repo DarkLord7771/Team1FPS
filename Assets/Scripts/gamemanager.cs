@@ -130,7 +130,11 @@ public class gamemanager : MonoBehaviour
 
     public void StatePaused() //Sets game to paused state
     {
-        
+        if (playerScript.speed != playerScript.speedOrig)
+        {
+            playerScript.speed = playerScript.speedOrig;
+        }
+
         isPaused = !isPaused;
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -174,11 +178,15 @@ public class gamemanager : MonoBehaviour
         {
             // Update wave count and text.
             waveCount--;
-            waveCountText.text = waveCount.ToString("F0");
+
+            if (waveCount >= 0)
+            {
+                waveCountText.text = waveCount.ToString("F0");
+            }
 
             if (WaveManager.instance.waveCurrent < WaveManager.instance.spawners.Length)
             {
-                PlayerBeatWave();
+                StartCoroutine(PlayerBeatWave());
             }
             else if (WaveManager.instance.waveCurrent >= WaveManager.instance.spawners.Length)
             {
@@ -188,7 +196,7 @@ public class gamemanager : MonoBehaviour
                 }
                 else
                 {
-                    PlayerHasWon();
+                    StartCoroutine(PlayerHasWon());
                 }
             }
         }
@@ -200,14 +208,16 @@ public class gamemanager : MonoBehaviour
         SetMenuActive(menuLose);
     }
 
-    public void PlayerHasWon()
+    public IEnumerator PlayerHasWon()
     {
+        yield return new WaitForSeconds(1.2f);
         StatePaused();
         SetMenuActive(menuWin);
     } //Triggers when player has won
 
-    public void PlayerBeatWave() //Opens shop at end of wave
+    public IEnumerator PlayerBeatWave() //Opens shop at end of wave
     {
+        yield return new WaitForSeconds(1.2f);
         StatePaused();
         SetMenuActive(menuShop);
     }

@@ -745,17 +745,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 2572
   m_IsSelectable: 1
-  m_SelectedFaces: 04000000
-  m_SelectedEdges:
-  - a: 16
-    b: 17
-  - a: 18
-    b: 16
-  - a: 17
-    b: 19
-  - a: 19
-    b: 18
-  m_SelectedVertices: 10000000110000001200000013000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &479803006910559668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,5 +867,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.25, y: 1, z: 1.25}
-  m_Center: {x: 0.12500018, y: 0.12499969, z: 0.125}
+  m_Size: {x: 2, y: 1.5, z: 3}
+  m_Center: {x: 0.12500018, y: -0.4, z: 0.125}

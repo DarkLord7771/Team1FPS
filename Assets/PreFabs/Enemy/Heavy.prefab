@@ -2007,12 +2007,12 @@ MonoBehaviour:
   whereISpawned: {fileID: 0}
   HP: 15
   shootRate: 0.5
-  gold: 3
+  gold: 30
   dropRate: 11
   offset: 1.5
   raycastDistance: 15
   isShielded: 0
-  destroyAnimTime: 1.2
+  destroyAnimTime: 1.1
   faceTargetSpeed: 5
   animSpeedTrans: 8
   enemyFootSteps:

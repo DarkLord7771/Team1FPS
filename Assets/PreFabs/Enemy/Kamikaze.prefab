@@ -1409,7 +1409,7 @@ MonoBehaviour:
   whereISpawned: {fileID: 0}
   HP: 5
   shootRate: 0
-  gold: 2
+  gold: 15
   dropRate: 17
   offset: 1.5
   raycastDistance: 0

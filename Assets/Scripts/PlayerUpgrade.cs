@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUpgrade : MonoBehaviour
@@ -61,6 +59,7 @@ public class PlayerUpgrade : MonoBehaviour
     {
         if (player.speed <= player.maxSpeed)
         {
+            player.speedOrig += (int)value;
             player.speed += value;
         }
     }
@@ -69,6 +68,7 @@ public class PlayerUpgrade : MonoBehaviour
     {
         if (player.jumpSpeed <= player.maxJumpSpeed)
         {
+            player.jumpSpeedOrig += (int)value;
             player.jumpSpeed += value;
         }
     }

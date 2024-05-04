@@ -46,6 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     WeaponIk weaponIk;
     Kamikaze kamikaze;
     Heavy heavy;
+    GameObject activeShield;
 
 
     // Start is called before the first frame update
@@ -69,7 +70,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (isShielded)
         {
-            Instantiate(shield, transform);
+            activeShield = Instantiate(shield, transform);
         }
     }
 
@@ -85,10 +86,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (healthbar != null)
             healthbar.transform.rotation = Camera.main.transform.rotation;
 
-        //if (HP > 0)
-        //{
+        if (HP > 0)
+        {
             PursuePlayer();
-        //}
+        }
     }
 
     void PursuePlayer()
@@ -164,10 +165,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= amount || amount < 0)
         {
-            amount = HP;
+            HP -= HP;
         }
-
-        HP -= amount;
+        else
+        {
+            HP -= amount;
+        }
 
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
@@ -205,16 +208,16 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.enabled = false;
             anim.SetTrigger("Death");
 
-            if (isShielded)
+            if (isShielded && activeShield != null)
             {
-                Destroy(shield);
+                Destroy(activeShield);
             }
 
             if (kamikaze)
             {
                 kamikaze.Explode();
             }
-
+            transform.GetComponent<CapsuleCollider>().enabled = false;
             Destroy(gameObject, destroyAnimTime);
         }
     }

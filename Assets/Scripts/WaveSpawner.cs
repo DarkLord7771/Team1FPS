@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] objectToSpawn;
     [SerializeField] int numToSpawn;
-    [SerializeField] int spawnTimer;
+    [SerializeField] float spawnTimer;
     [SerializeField] Transform[] spawnPos;
 
     int spawnCount;

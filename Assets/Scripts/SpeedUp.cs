@@ -9,9 +9,8 @@ public class SpeedUp : PowerUpEffects
     
     public override IEnumerator ApplyEffect()
     {
-        float speedOrig = gamemanager.instance.playerScript.speed;
         gamemanager.instance.playerScript.speed *= speedModifier;
         yield return new WaitForSeconds(powerUpTime);
-        gamemanager.instance.playerScript.speed = speedOrig;
+        gamemanager.instance.playerScript.speed = gamemanager.instance.playerScript.speedOrig;
     }
 }

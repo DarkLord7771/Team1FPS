@@ -384,12 +384,12 @@ MonoBehaviour:
   whereISpawned: {fileID: 0}
   HP: 10
   shootRate: 1
-  gold: 5
+  gold: 25
   dropRate: 7
   offset: 1.5
   raycastDistance: 15
   isShielded: 1
-  destroyAnimTime: 1.2
+  destroyAnimTime: 1.1
   faceTargetSpeed: 5
   animSpeedTrans: 8
   enemyFootSteps:

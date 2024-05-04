@@ -7,7 +7,7 @@ public class GunHandler : MonoBehaviour
     [SerializeField] PlayerController player;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] List<GunStats> gunList = new List<GunStats>();
+    [SerializeField] List<GunStats> gunList = new();
     [SerializeField] GameObject gunModel;
     [SerializeField] GunAttack gun;
     [SerializeField] int totalGunsAllowed;
