@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
@@ -31,6 +27,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float offset;
     [SerializeField] int raycastDistance;
     [SerializeField] bool isShielded;
+    [SerializeField] float destroyAnimTime;
 
     [Header("----- Enemy Locomotion -----")]
     [SerializeField] int faceTargetSpeed;
@@ -49,7 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     WeaponIk weaponIk;
     Kamikaze kamikaze;
     Heavy heavy;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,8 +85,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (healthbar != null)
             healthbar.transform.rotation = Camera.main.transform.rotation;
 
-
-        PursuePlayer();
+        //if (HP > 0)
+        //{
+            PursuePlayer();
+        //}
     }
 
     void PursuePlayer()
@@ -169,7 +168,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
 
         HP -= amount;
-        
+
         anim.SetTrigger("Damage");
         StartCoroutine(FlashRed());
         aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemySFXVol);
@@ -203,7 +202,20 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             Destroy(healthbar);
 
-            Destroy(gameObject);
+            agent.enabled = false;
+            anim.SetTrigger("Death");
+
+            if (isShielded)
+            {
+                Destroy(shield);
+            }
+
+            if (kamikaze)
+            {
+                kamikaze.Explode();
+            }
+
+            Destroy(gameObject, destroyAnimTime);
         }
     }
 
@@ -222,7 +234,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         walking = false;
     }
 
-     void SetHealthBar()
+    void SetHealthBar()
     {
         // If the healthbar is not active, set it to active.
         if (!healthbar.gameObject.activeSelf)

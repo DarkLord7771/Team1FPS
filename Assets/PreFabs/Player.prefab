@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47e2e9cb4e69ea479c9cab0b03dae25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 200
+  sensitivity: 100
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
@@ -829,6 +829,7 @@ GameObject:
   - component: {fileID: 3774749029946527827}
   - component: {fileID: 688489229017537685}
   - component: {fileID: 9001948008768963193}
+  - component: {fileID: 7183431455424938897}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -974,3 +975,16 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7183431455424938897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006794672349309869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f22a28d87f10994990eb634f45c5d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: -110

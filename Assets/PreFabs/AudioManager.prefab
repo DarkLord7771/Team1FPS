@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3208659237548057753, guid: 62715d233d1899e46b3b3adfe98dc361, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.501
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -438,7 +438,11 @@ MonoBehaviour:
   menuSource: {fileID: 0}
   musicAud:
   - {fileID: 8300000, guid: 56441742ce34f5a4191043d5e9818fc0, type: 3}
+  - {fileID: 8300000, guid: c3846b5caa7fa604198b65d662b8ee19, type: 3}
+  - {fileID: 8300000, guid: 852155c0a31d4c641a4c32769fc52c1d, type: 3}
+  - {fileID: 8300000, guid: 205cc20c8cad3574eab5c4ca066a7410, type: 3}
   - {fileID: 8300000, guid: 3e653b0cce83a924095469407ec96feb, type: 3}
+  - {fileID: 8300000, guid: 3d26d0bcdbfbd5649a5a8d2fe029045b, type: 3}
   audJump:
   - {fileID: 8300000, guid: d85a44c42001ee84abf0f14c4f772fc7, type: 3}
   - {fileID: 8300000, guid: 1fccee725f5b7d84f9e001048789c563, type: 3}

@@ -1049,6 +1049,7 @@ MonoBehaviour:
   offset: 1.5
   raycastDistance: 0
   isShielded: 1
+  destroyAnimTime: 1.2
   faceTargetSpeed: 5
   animSpeedTrans: 8
   enemyFootSteps:

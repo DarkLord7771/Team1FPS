@@ -9,8 +9,9 @@ public class JumpHeightUp : PowerUpEffects
 
     public override IEnumerator ApplyEffect()
     {
+        float jumpSpeedOrig = gamemanager.instance.playerScript.jumpSpeed;
         gamemanager.instance.playerScript.jumpSpeed *= jumpModifier;
         yield return new WaitForSeconds(powerUpTime);
-        gamemanager.instance.playerScript.jumpSpeed /= jumpModifier;
+        gamemanager.instance.playerScript.jumpSpeed = jumpSpeedOrig;
     }
 }
