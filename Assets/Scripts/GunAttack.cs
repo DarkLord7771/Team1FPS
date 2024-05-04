@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
@@ -8,15 +9,21 @@ public class GunAttack : MonoBehaviour
 {
     [SerializeField] Laser laser;
     [SerializeField] Transform shootPos;
+    Coroutine lastRoutine = null;
     public ProceduralRecoil recoil;
     public bool isShooting;
 
     public void FireWeapon(GunStats gun, int gunCount)
     {
-
-        if (InputManager.instance.FireInput && !isShooting && gun.ammoCur > 0)
+        // If gun has changed, stop coroutine to avoid waiting for previous guns fire rate.
+        if (gamemanager.instance.playerScript.gunHandler.ChangedGun)
         {
-            StartCoroutine(Shoot(gun));
+            StopCoroutine(lastRoutine);
+        }
+
+        if (InputManager.instance.FireInput && (!isShooting || gamemanager.instance.playerScript.gunHandler.ChangedGun) && gun.ammoCur > 0)
+        {
+            lastRoutine = StartCoroutine(Shoot(gun));
             recoil.Recoil(gun);
         }
         else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
@@ -25,7 +32,7 @@ public class GunAttack : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot(GunStats gun)
+    public IEnumerator Shoot(GunStats gun)
     {
         isShooting = true;
 
@@ -63,7 +70,9 @@ public class GunAttack : MonoBehaviour
             }
         }
 
+        gamemanager.instance.playerScript.gunHandler.ChangedGun = false;
         yield return new WaitForSeconds(gun.fireRate);
+
         isShooting = false;
     }
 }

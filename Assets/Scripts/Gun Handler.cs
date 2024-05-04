@@ -12,11 +12,14 @@ public class GunHandler : MonoBehaviour
     [SerializeField] GunAttack gun;
     [SerializeField] int totalGunsAllowed;
 
+    public bool ChangedGun { get; set; }
+
     int selectedGun;
 
     private void Start()
     {
         player = gamemanager.instance.playerScript;
+        
     }
 
     private void Update()
@@ -49,6 +52,11 @@ public class GunHandler : MonoBehaviour
 
     public void GetGunStats(GunStats gun) //Get gun stats function for when weapon is picked up
     {
+        if (gunList.Count > 0)
+        {
+            ChangedGun = true;
+        }
+
         gunList.Add(gun);
 
         gunList[selectedGun].shootDamage = gunList[selectedGun].baseDamage + player.DamageUpgrade;
@@ -79,6 +87,8 @@ public class GunHandler : MonoBehaviour
         gunModel.GetComponent<Transform>().localScale = gunList[selectedGun].gunTransform.localScale;
 
         gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
+
+        ChangedGun = true;
     }
 
     void SelectGun() //Gun selection
