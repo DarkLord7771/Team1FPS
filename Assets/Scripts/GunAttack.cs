@@ -11,12 +11,12 @@ public class GunAttack : MonoBehaviour
     public ProceduralRecoil recoil;
     public bool isShooting;
 
-    public void FireWeapon(AudioSource source, GunStats gun, int gunCount)
+    public void FireWeapon(GunStats gun, int gunCount)
     {
 
         if (InputManager.instance.FireInput && !isShooting && gun.ammoCur > 0)
         {
-            StartCoroutine(Shoot(source, gun));
+            StartCoroutine(Shoot(gun));
             recoil.Recoil(gun);
         }
         else if (gunCount > 0 && Input.GetButton("Fire1") && !isShooting && gun.ammoCur <= 0)
@@ -25,14 +25,14 @@ public class GunAttack : MonoBehaviour
         }
     }
 
-    IEnumerator Shoot(AudioSource aud, GunStats gun)
+    IEnumerator Shoot(GunStats gun)
     {
         isShooting = true;
 
 
         if (gun.ammoCur > 0)
         {
-            aud.PlayOneShot(gun.shootSound);
+            AudioManager.instance.PlayShootSound();
             gun.ammoCur--;
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, gun.shootDist))

@@ -27,7 +27,7 @@ public class GunHandler : MonoBehaviour
 
             if (gunList.Count > 0)
             {
-                gun.FireWeapon(AudioManager.instance.aud, gunList[selectedGun], gunList.Count);
+                gun.FireWeapon(gunList[selectedGun], gunList.Count);
                 gamemanager.instance.playerUI.UpdateAmmo(gunList[selectedGun]);
             }
         }
