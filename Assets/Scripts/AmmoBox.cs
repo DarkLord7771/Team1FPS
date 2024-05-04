@@ -36,6 +36,7 @@ public class AmmoBox : MonoBehaviour
             gamemanager.instance.playerScript.gunHandler.RefillAmmo();
             
             hasRefilledAmmo = true;
+            DestroyAmmoBox();
         }
         else if (gamemanager.instance.playerScript.gunHandler.HasGuns() && !gamemanager.instance.playerScript.gunHandler.HasMissingAmmo())
         {
@@ -44,12 +45,11 @@ public class AmmoBox : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void DestroyAmmoBox()
     {
         if (hasRefilledAmmo)
         {
             aud.PlayOneShot(audClose, audCloseVol);
-            lid.transform.rotation = lidRot;
 
             if (whereISpawned)
             {
@@ -59,10 +59,6 @@ public class AmmoBox : MonoBehaviour
 
             Destroy(gameObject, destroyTime);
             hasRefilledAmmo = false;
-        }
-        else
-        {
-            gamemanager.instance.menuFullAmmo.SetActive(false);
         }
     }
 }

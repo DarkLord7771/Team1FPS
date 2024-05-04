@@ -45,12 +45,16 @@ public class AmmoSpawner : MonoBehaviour
 
     IEnumerator Respawn(int index)
     {
-        isSpawning = true;
+        if (ammoSpawnPos[index].GetComponent<AmmoBox>() != null)
+        {
+            isSpawning = true;
 
-        yield return new WaitForSeconds(spawnTimer);
-        SpawnAmmoBox(index);
+            yield return new WaitForSeconds(spawnTimer);
+            SpawnAmmoBox(index);
 
-        isSpawning = false;
+            isSpawning = false;
+        }
+        
     }
 
     public void StartSpawn(int index)

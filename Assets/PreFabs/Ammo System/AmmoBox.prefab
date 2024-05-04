@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lid: {fileID: 3081654873364618711}
   lidOpenRot: {x: -90, y: 0, z: 0}
-  destroyTime: 0.3
+  destroyTime: 1.5
   aud: {fileID: 6420065202727557063}
   audOpen: {fileID: 8300000, guid: 8aecb35f7c6b5db4398ec335bf3498b2, type: 3}
   audOpenVol: 1
