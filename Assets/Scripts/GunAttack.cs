@@ -92,7 +92,6 @@ public class GunAttack : MonoBehaviour
         GameObject bullet = Instantiate(playerBullet, shootPos.transform.position, Quaternion.identity);
         PlayerBullet shotBullet = bullet.GetComponent<PlayerBullet>();
 
-        Destroy(bullet, shotBullet.destroyTime);
         bullet.GetComponent<Rigidbody>().AddForce((target - bullet.transform.position).normalized * shotBullet.speed, ForceMode.Impulse);
     }
 }
