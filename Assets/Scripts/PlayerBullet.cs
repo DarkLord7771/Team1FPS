@@ -9,18 +9,15 @@ public class PlayerBullet : MonoBehaviour
     public int speed;
     public int destroyTime;
 
+    void Start()
+    {
+        Destroy(gameObject, destroyTime);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
             return;
-
-        IDamage dmg = other.GetComponent<IDamage>();
-
-        if (dmg != null && !other.CompareTag("Enemy"))
-        {
-            
-            dmg.TakeDamage(gamemanager.instance.playerScript.gunHandler.SelectedGun().shootDamage);
-        }
 
         Destroy(gameObject);
     }

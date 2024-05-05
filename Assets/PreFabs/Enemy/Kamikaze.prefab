@@ -1452,6 +1452,7 @@ MonoBehaviour:
   volume: 0.647
   explosion: {fileID: 6567749030722860747, guid: 434f1b588ca1a994a8a5ecf4c996d6a2, type: 3}
   explosionDamage: 1
+  explosionTime: 0.5
 --- !u!114 &1181743948982741258
 MonoBehaviour:
   m_ObjectHideFlags: 0

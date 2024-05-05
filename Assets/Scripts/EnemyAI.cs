@@ -211,10 +211,6 @@ public class EnemyAI : MonoBehaviour, IDamage
                 Destroy(activeShield);
             }
 
-            if (kamikaze)
-            {
-                kamikaze.Explode(null);
-            }
             transform.GetComponent<CapsuleCollider>().enabled = false;
             Destroy(gameObject, destroyAnimTime);
         }
