@@ -38,7 +38,7 @@ public class GunAttack : MonoBehaviour
 
         if (gun.ammoCur > 0)
         {
-            AudioManager.instance.PlayShootSound();
+            //AudioManager.instance.PlayShootSound();
             gun.ammoCur--;
 
             Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
@@ -73,10 +73,12 @@ public class GunAttack : MonoBehaviour
             // If beam is enabled, shoot beam from trail renderer.
             if (gun.isLaserWeapon)
             {
+                AudioManager.instance.PlayLaserSound();
                 StartCoroutine(laser.ShootBeam(gun, shootPos));
             }
             else if (!gun.isLaserWeapon)
             {
+                AudioManager.instance.PlayShootSound();
                 CreateBullet(target);
             }
         }

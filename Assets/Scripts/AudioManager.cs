@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] audHurt;
     [SerializeField] AudioClip[] audSteps;
     [SerializeField] AudioClip audShoot;
+    [SerializeField] AudioClip audLaser;
     [SerializeField] AudioClip audPowerUp;
     [SerializeField] AudioClip audHeal;
 
@@ -80,6 +81,10 @@ public class AudioManager : MonoBehaviour
     public void PlayShootSound()
     {
         sfxSource.PlayOneShot(audShoot, gameSFXVol);
+    }
+    public void PlayLaserSound()
+    {
+        sfxSource.PlayOneShot(audLaser, gameSFXVol);
     }
 
     public void PlayPowerUpSound()
