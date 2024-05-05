@@ -1,17 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public class GunAttack : MonoBehaviour
 {
     [SerializeField] Laser laser;
     [SerializeField] Transform shootPos;
+    [SerializeField] GameObject playerBullet;
     Coroutine lastRoutine = null;
     public ProceduralRecoil recoil;
     public bool isShooting;
+
+    Vector3 target;
 
     public void FireWeapon(GunStats gun, int gunCount)
     {
@@ -42,9 +41,12 @@ public class GunAttack : MonoBehaviour
             AudioManager.instance.PlayShootSound();
             gun.ammoCur--;
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, gun.shootDist))
+            Ray ray = Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f));
+
+            if (Physics.Raycast(ray, out RaycastHit hit, gun.shootDist))
             {
                 IDamage dmg = hit.collider.GetComponent<IDamage>();
+                target = hit.point;
 
                 // If object hit is not the player, deal damage to object.
                 if (hit.transform != transform && dmg != null && !hit.collider.CompareTag("Player"))
@@ -52,21 +54,30 @@ public class GunAttack : MonoBehaviour
                     // Deal damage to object
                     dmg.TakeDamage(gun.shootDamage);
 
-                    // Instantiate blood effect and expand reticle.
-                    Instantiate(gun.bloodEffect, hit.point, gun.bloodEffect.transform.rotation);
-                    gamemanager.instance.playerScript.reticle.Expand(gamemanager.instance.playerScript.reticleRecoil);
+                    // Instantiate blood effect.
+                    Instantiate(gun.bloodEffect, target, gun.bloodEffect.transform.rotation);
                 }
                 else
                 {
-                    // Instantiate hit affect and expand reticle.
-                    Instantiate(gun.hitEffect, hit.point, gun.hitEffect.transform.rotation);
-                    gamemanager.instance.playerScript.reticle.Expand(gamemanager.instance.playerScript.reticleRecoil);
+                    // Instantiate hit affect.
+                    Instantiate(gun.hitEffect, target, gun.hitEffect.transform.rotation);
                 }
+
+                // Expand reticle.
+                gamemanager.instance.playerScript.reticle.Expand(gamemanager.instance.playerScript.reticleRecoil);
+            }
+            else
+            {
+                target = ray.GetPoint(gun.shootDist);
             }
             // If beam is enabled, shoot beam from trail renderer.
             if (gun.isLaserWeapon)
             {
                 StartCoroutine(laser.ShootBeam(gun, shootPos));
+            }
+            else if (!gun.isLaserWeapon)
+            {
+                CreateBullet(target);
             }
         }
 
@@ -74,5 +85,14 @@ public class GunAttack : MonoBehaviour
         yield return new WaitForSeconds(gun.fireRate);
 
         isShooting = false;
+    }
+
+    void CreateBullet(Vector3 target)
+    {
+        GameObject bullet = Instantiate(playerBullet, shootPos.transform.position, Quaternion.identity);
+        PlayerBullet shotBullet = bullet.GetComponent<PlayerBullet>();
+
+        Destroy(bullet, shotBullet.destroyTime);
+        bullet.GetComponent<Rigidbody>().AddForce((target - bullet.transform.position).normalized * shotBullet.speed, ForceMode.Impulse);
     }
 }

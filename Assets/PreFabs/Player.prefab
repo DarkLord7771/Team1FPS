@@ -490,7 +490,7 @@ Transform:
   m_GameObject: {fileID: 4913473390425492866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0.694}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laser: {fileID: 4171242967695071732}
   shootPos: {fileID: 3635828597663416159}
+  playerBullet: {fileID: 2409192405970599415, guid: ac7d6acf343e1c242b8b0e8b578bbe19, type: 3}
   recoil: {fileID: 2888160815491766036}
   isShooting: 0
 --- !u!114 &2888160815491766036
@@ -884,6 +885,8 @@ MonoBehaviour:
   reticleRecoil: 15
   settleSpeed: 1
   HPOrig: 0
+  speedOrig: 0
+  jumpSpeedOrig: 0
   damagePowerUp: 0
   lowHealth: 0
 --- !u!114 &2546866636042110249

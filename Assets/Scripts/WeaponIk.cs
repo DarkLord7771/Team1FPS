@@ -42,8 +42,6 @@ public class WeaponIk : MonoBehaviour
         Vector3 aimDirection = aimTransform.forward;
         float blendOut = 0.0f;
 
-        Debug.DrawLine(targetDirection, aimDirection);
-
         // Get angle from target.
         float targetAngle = Vector3.Angle(targetDirection, aimDirection);
         if (targetAngle > angleLimit)

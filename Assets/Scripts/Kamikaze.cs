@@ -9,9 +9,16 @@ public class Kamikaze : MonoBehaviour
     
     public GameObject explosion;
     public int explosionDamage;
+    [SerializeField] float explosionTime;
 
-    public void Explode()
+    public IEnumerator Explode(IDamage hitEnemy)
     {
         Instantiate(explosion, transform.position, transform.rotation);
+        yield return new WaitForSeconds(explosionTime);
+
+        if (hitEnemy != null)
+        {
+            hitEnemy.TakeDamage(explosionDamage);
+        }
     }
 }

@@ -122,9 +122,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
                 if (kamikaze != null)
                 {
-                    kamikaze.Explode();
-                    //gamemanager.instance.playerScript.PlayAudio(kamikaze.explosionClip, kamikaze.volume);
-                    hit.collider.GetComponent<IDamage>().TakeDamage(kamikaze.explosionDamage);
+                    StartCoroutine(kamikaze.Explode(hit.collider.GetComponent<IDamage>()));
                     TakeDamage(HP);
                 }
             }
@@ -215,7 +213,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             if (kamikaze)
             {
-                kamikaze.Explode();
+                kamikaze.Explode(null);
             }
             transform.GetComponent<CapsuleCollider>().enabled = false;
             Destroy(gameObject, destroyAnimTime);
