@@ -1912,7 +1912,7 @@ MonoBehaviour:
   gold: 22
   dropRate: 13
   offset: 1.5
-  raycastDistance: 15
+  raycastDistance: 25
   isShielded: 1
   destroyAnimTime: 1.1
   faceTargetSpeed: 5
