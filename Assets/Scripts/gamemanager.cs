@@ -210,7 +210,7 @@ public class gamemanager : MonoBehaviour
 
     public IEnumerator PlayerHasWon()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.01f);
         StatePaused();
         SetMenuActive(menuWin);
     } //Triggers when player has won
