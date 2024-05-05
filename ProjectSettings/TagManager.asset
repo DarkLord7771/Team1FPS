@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Player Spawn Pos
   - SkyBox
+  - Sense Slider
   layers:
   - Default
   - TransparentFX

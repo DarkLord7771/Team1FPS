@@ -320,6 +320,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d07c385a20601d42b65a7d5ab1eeee2, type: 3}
+--- !u!114 &8954513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+  m_PrefabInstance: {fileID: 2010072601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &10404404
 GameObject:
   m_ObjectHideFlags: 0
@@ -17295,6 +17306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5814329634061553005, guid: c34790a0933b02240a265431401b2b46, type: 3}
+      propertyPath: senseSlider
+      value: 
+      objectReference: {fileID: 8954513}
     - target: {fileID: 6467950498167673251, guid: c34790a0933b02240a265431401b2b46, type: 3}
       propertyPath: reticle
       value: 
@@ -57419,6 +57434,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114741577}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1132421800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9006794672349309869, guid: c34790a0933b02240a265431401b2b46, type: 3}
+  m_PrefabInstance: {fileID: 422985629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1132489970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7279781051620608485, guid: 21f4a33a2cbf4dd4ab1e0dfc2befc1c2, type: 3}
@@ -99749,10 +99769,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1238118632692831936, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_TagString
+      value: Sense Slider
+      objectReference: {fileID: 0}
     - target: {fileID: 1395780608188865207, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2134405635}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSensitivity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3368144262587161245, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782640113056262075, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1132421800}
     - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -99845,7 +99901,8 @@ PrefabInstance:
       propertyPath: m_text
       value: "Objective: Eliminate all Enemy Waves &\n Escape Through the Portal"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3782640113056262075, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -107594,6 +107651,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8762052704468552421, guid: 5fb1ecd673050d844b8c6730fccfbf51, type: 3}
   m_PrefabInstance: {fileID: 2131200249}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134405635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5814329634061553005, guid: c34790a0933b02240a265431401b2b46, type: 3}
+  m_PrefabInstance: {fileID: 422985629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47e2e9cb4e69ea479c9cab0b03dae25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2143416943
 Mesh:
   m_ObjectHideFlags: 0
