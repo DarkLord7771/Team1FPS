@@ -21,6 +21,8 @@ public class InputManager : MonoBehaviour
     public InputActionReference jump;
     public InputActionReference crouch;
     public InputActionReference sprint;
+    public InputActionReference leftWeapon;
+    public InputActionReference rightWeapon;
 
     [Header("---- Input Directions -----")]
     public Vector2 moveDirection;
@@ -33,6 +35,8 @@ public class InputManager : MonoBehaviour
     public bool CrouchInput {  get; private set; }
     public bool SprintPressedInput { get; private set; }
     public bool SprintReleasedInput { get; private set; }
+    public bool LeftWeaponSelectInput {  get; private set; }
+    public bool RightWeaponSelectInput { get; private set; }
 
     private void Awake()
     {
@@ -58,6 +62,8 @@ public class InputManager : MonoBehaviour
         CrouchInput = crouch.action.WasPressedThisFrame();
         SprintPressedInput = sprint.action.WasPressedThisFrame();
         SprintReleasedInput = sprint.action.WasReleasedThisFrame();
+        LeftWeaponSelectInput = leftWeapon.action.WasPressedThisFrame();
+        RightWeaponSelectInput = rightWeapon.action.WasPressedThisFrame();
 
         moveDirection = move.action.ReadValue<Vector2>();
         lookDirection = look.action.ReadValue<Vector2>();

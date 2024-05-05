@@ -54,6 +54,8 @@ MonoBehaviour:
   jump: {fileID: -4952041680533241420, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
   crouch: {fileID: -706627733086817910, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
   sprint: {fileID: 8141609519425170931, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  leftWeapon: {fileID: 4859740732428828651, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
+  rightWeapon: {fileID: -4570143198415042595, guid: 6b8bba4025442b242a741e48d3cb37a6, type: 3}
   moveDirection: {x: 0, y: 0}
   lookDirection: {x: 0, y: 0}
 --- !u!114 &7147854883632591117

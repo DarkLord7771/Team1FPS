@@ -93,12 +93,12 @@ public class GunHandler : MonoBehaviour
 
     void SelectGun() //Gun selection
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        if ((Input.GetAxis("Mouse ScrollWheel") > 0 || InputManager.instance.RightWeaponSelectInput) && selectedGun < gunList.Count - 1)
         {
             selectedGun++;
             ChangeGun();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        else if ((Input.GetAxis("Mouse ScrollWheel") < 0 || InputManager.instance.LeftWeaponSelectInput) && selectedGun > 0)
         {
             selectedGun--;
             ChangeGun();

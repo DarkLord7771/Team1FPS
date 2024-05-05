@@ -98,6 +98,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""9fed791f-c02e-4a2f-a326-58bfff0eefda"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""ea4ce630-909d-4f7e-9a47-a9774077adae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -441,6 +459,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a360c455-9019-4802-adfd-123f1e02da35"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LeftWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e77285e-06d0-4095-b6cb-6a3d39b63901"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RightWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -485,6 +525,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_LeftWeapon = m_Player.FindAction("LeftWeapon", throwIfNotFound: true);
+        m_Player_RightWeapon = m_Player.FindAction("RightWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -554,6 +596,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_LeftWeapon;
+    private readonly InputAction m_Player_RightWeapon;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -566,6 +610,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @LeftWeapon => m_Wrapper.m_Player_LeftWeapon;
+        public InputAction @RightWeapon => m_Wrapper.m_Player_RightWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -599,6 +645,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @LeftWeapon.started += instance.OnLeftWeapon;
+            @LeftWeapon.performed += instance.OnLeftWeapon;
+            @LeftWeapon.canceled += instance.OnLeftWeapon;
+            @RightWeapon.started += instance.OnRightWeapon;
+            @RightWeapon.performed += instance.OnRightWeapon;
+            @RightWeapon.canceled += instance.OnRightWeapon;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -627,6 +679,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @LeftWeapon.started -= instance.OnLeftWeapon;
+            @LeftWeapon.performed -= instance.OnLeftWeapon;
+            @LeftWeapon.canceled -= instance.OnLeftWeapon;
+            @RightWeapon.started -= instance.OnRightWeapon;
+            @RightWeapon.performed -= instance.OnRightWeapon;
+            @RightWeapon.canceled -= instance.OnRightWeapon;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -672,5 +730,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnLeftWeapon(InputAction.CallbackContext context);
+        void OnRightWeapon(InputAction.CallbackContext context);
     }
 }
