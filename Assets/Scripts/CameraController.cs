@@ -19,6 +19,11 @@ public class CameraController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         transform.forward = transform.parent.forward;
+
+        if (!PlayerPrefs.HasKey("Sensitivity"))
+        {
+            PlayerPrefs.SetInt("Sensitivity", 100);
+        }
         sensitivity = PlayerPrefs.GetInt("Sensitivity");
         senseSlider.value = (float)sensitivity / 100;
     }
