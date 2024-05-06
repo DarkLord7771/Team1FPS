@@ -99768,6 +99768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5727536547536905639, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
+      propertyPath: upgrades.Array.data[4].maxUpgradeValue
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5861653504059601345, guid: 2c86a3f5f3286da40a23fa4288d3d663, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
