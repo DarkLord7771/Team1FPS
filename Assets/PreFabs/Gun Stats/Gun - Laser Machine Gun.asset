@@ -22,14 +22,14 @@ MonoBehaviour:
   isLaserWeapon: 1
   baseDamage: 2
   baseShootDist: 50
-  baseFireRate: 0.3
+  baseFireRate: 0.5
   baseMaxAmmo: 250
   baseReloadSpeed: 0
-  shootDamage: 2
+  shootDamage: 7
   shootDist: 50
-  fireRate: 0.5
+  fireRate: -0.099999994
   reloadSpeed: 0
-  ammoCur: 250
+  ammoCur: 61
   ammoMax: 250
   recoilX: -1
   recoilY: 1

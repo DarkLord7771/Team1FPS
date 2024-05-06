@@ -59,9 +59,9 @@ public class GunHandler : MonoBehaviour
 
         gunList.Add(gun);
 
-        gunList[selectedGun].shootDamage = gunList[selectedGun].baseDamage + player.DamageUpgrade;
-        gunList[selectedGun].fireRate = gunList[selectedGun].baseFireRate + player.FireRateUpgrade;
-        gunList[selectedGun].ammoMax = gunList[selectedGun].baseMaxAmmo + player.AmmoCapacityUpgrade;
+        gun.shootDamage = gun.baseDamage + player.DamageUpgrade;
+        gun.fireRate = gun.baseFireRate + player.FireRateUpgrade;
+        gun.ammoMax = gun.baseMaxAmmo + player.AmmoCapacityUpgrade;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
