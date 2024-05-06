@@ -25,7 +25,7 @@ public class PlayerUpgrade : MonoBehaviour
                 UpgradeDamage(upgrade.upgradeValue);
                 break;
             case "Fire Rate":
-                UpgradeFireRate(upgrade.upgradeValue);
+                UpgradeFireRate(upgrade);
                 break;
             case "Reload Speed":
                 UpgradeReloadSpeed(upgrade.upgradeValue);
@@ -79,10 +79,10 @@ public class PlayerUpgrade : MonoBehaviour
         player.gunHandler.SelectedGun().shootDamage = player.gunHandler.SelectedGun().baseDamage + player.DamageUpgrade;
     }
 
-    void UpgradeFireRate(float value) //Upgrades player Fire Rate
+    void UpgradeFireRate(Upgrade upgrade) //Upgrades player Fire Rate
     {
-        player.FireRateUpgrade += value;
-        player.gunHandler.SelectedGun().fireRate = player.gunHandler.SelectedGun().baseFireRate + player.FireRateUpgrade;
+            player.FireRateUpgrade += upgrade.upgradeValue;
+            player.gunHandler.SelectedGun().fireRate = player.gunHandler.SelectedGun().baseFireRate + player.FireRateUpgrade;
     }
 
     void UpgradeReloadSpeed(float value) //Upgrades player Reload Speed

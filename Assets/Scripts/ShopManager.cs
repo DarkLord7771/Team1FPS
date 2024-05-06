@@ -38,6 +38,14 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        for (int i = 0; i < upgrades.Length; i++)
+        {
+            UpdateButtonText(buttons[i].transform, upgrades[i]);
+        }
+    }
+
     private void CreateButton(Upgrade upgrade, int index)
     {
         GameObject shopButton = Instantiate(shopPrefab, shopContentWindow);
@@ -57,13 +65,24 @@ public class ShopManager : MonoBehaviour
     private void UpdateButtonText(Transform buttonTransform, Upgrade upgrade)
     {
         buttonTransform.Find("Upgrade").GetComponent<TMP_Text>().text = "Increase " + upgrade.upgradeName;
-        buttonTransform.Find("Cost").GetComponent<TMP_Text>().text = upgrade.cost.ToString("F0") + " G";
+        if (upgrade.currentUpgradeValue >= upgrade.maxUpgradeValue && upgrade.maxUpgradeValue != 0)
+        {
+            buttonTransform.Find("Upgrade").GetComponent<TMP_Text>().text = "Sold Out!";
+            buttonTransform.Find("Cost").GetComponent<TMP_Text>().text = string.Empty;
+        }
+        else
+        {
+            buttonTransform.Find("Upgrade").GetComponent<TMP_Text>().text = "Increase " + upgrade.upgradeName;
+            buttonTransform.Find("Cost").GetComponent<TMP_Text>().text = upgrade.cost.ToString("F0") + " G";
+        }
+        
     }
 
     private void TryBuyUpgrade(Upgrade upgrade)
     {
-        if (gamemanager.instance.playerScript.TrySpendingGold(upgrade.cost))
+        if (gamemanager.instance.playerScript.TrySpendingGold(upgrade.cost, upgrade.maxUpgradeValue, upgrade.currentUpgradeValue))
         {
+            upgrade.currentUpgradeValue++;
             gamemanager.instance.playerUpgrade.BoughtUpgrade(upgrade);
 
             upgrade.cost *= upgradeCostMultiplier; 

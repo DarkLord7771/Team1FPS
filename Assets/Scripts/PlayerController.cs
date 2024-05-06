@@ -209,9 +209,9 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-    public bool TrySpendingGold(int upgradeCost) //Checks to see if gold can be spent
+    public bool TrySpendingGold(int upgradeCost, float maxUpgrade, float currentUpgrade) //Checks to see if gold can be spent
     {
-        if (Gold >= upgradeCost)
+        if (Gold >= upgradeCost && (maxUpgrade == 0 || currentUpgrade < maxUpgrade))
         {
             Gold -= upgradeCost;
             playerUI.UpdateGold();
